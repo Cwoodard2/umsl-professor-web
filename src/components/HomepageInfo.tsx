@@ -2,28 +2,35 @@ import React from "react";
 import NavButton from "./NavButton";
 
 const HomepageInfo = (props: any) => {
-    let colors: string;
-    let bgColors: string;
+    type ColorsProps = {
+        textColors: string,
+        bgColors:string
+        buttonColors: string
+    };
 
-    if (props.title === 'Research') {
-        bgColors = "w-screen h-screen flex flex-row justify-around items-center bg-white pl-32 pr-32";
-        colors = "text-green-600";
-        console.log('research');
+    let colors: ColorsProps = {
+        textColors: "",
+        bgColors: "",
+        buttonColors: ""
+    };
+
+    if (props.colors === 'color') {
+        colors.bgColors = "w-screen h-screen flex flex-row justify-around items-center bg-white pl-32 pr-32";
+        colors.textColors = "text-green-600";
+        colors.buttonColors = "green";
     } else {
-        console.log("not research");
-        bgColors = "w-screen h-screen flex flex-row justify-around items-center bg-green-700 pl-32 pr-32";;
-        colors = 'text-white'
+        colors.bgColors = "w-screen h-screen flex flex-row justify-around items-center bg-green-700 pl-32 pr-32";
+        colors.textColors = 'text-white';
+        colors.buttonColors = "white";
     }
 
-    console.log(colors);
-
     return (
-        <div className={bgColors}>
-                <div className="bg-black w-10 h-10"></div>
+            <div className={colors.bgColors}>
+                <div className="bg-black w-20 h-20"></div>
                 <div className="flex flex-col">
-                    <h1 className={colors}>{props.title}</h1>
-                    <p className={colors}>{props.description}</p>
-                    <NavButton PlaceToGo={props.goingWhere}/>
+                    <h1 className={colors.textColors}>{props.title}</h1>
+                    <p className={colors.textColors}>{props.description}</p>
+                    <NavButton path={props.route}PlaceToGo={props.goingWhere} colors={colors.buttonColors}/>
                 </div>
             </div>
     );
