@@ -7,7 +7,9 @@ module.exports = {
     // },
     extend: {
       colors: {
-        webGreen: '#669488'
+        webGreen: '#669488',
+        footerGrey: '#2D2D2D',
+        webBlue: '#355A86'
       }
     }
   },
