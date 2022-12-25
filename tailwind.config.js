@@ -5,7 +5,11 @@ module.exports = {
     // colors: {
     //   webGreen: '#669488'
     // },
-    extend: {}
+    extend: {
+      colors: {
+        webGreen: '#669488'
+      }
+    }
   },
   plugins: [],
 }
