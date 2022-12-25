@@ -11,6 +11,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "Rockwell";
+  src: local("Rockwell"), url("./fonts/ROCK.TTF") format("truetype");
+}
+
+.rockwell {
+  font-family: "Rockwell";
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -4,7 +4,7 @@ import NavButton from "./NavButton";
 const HomepageInfo = (props: any) => {
     type ColorsProps = {
         textColors: string,
-        bgColors:string
+        bgColors:string,
         buttonColors: string
     };
 
