@@ -6,11 +6,11 @@ import elainaImage from '../images/johnswolfe_2021.jpeg';
 const Homepage = (props: any) => {
     return (
         <StandardPage>
-            <div className="w-screen h-screen flex flex-row justify-center items-start bg-white p-16 gap-10">
+            <div className="w-screen h-screen flex flex-row justify-start items-start bg-white p-16 gap-10">
                 <img src={elainaImage} className="w-1/3 h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
                 <div className="flex flex-col">
-                    <h1 className="text-webGreen rockwell text-4xl">This is the start of something great!</h1>
-                    <p className="text-black">This is some text</p>
+                    <h1 className="text-webGreen rockwell text-4xl">Hello I'm Elaina Johns-Wolfe!</h1>
+                    <p className="text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 </div>
             </div>
             <HomepageInfo title='Teaching' description='Teaching description' goingWhere='Learn More' route="/Teaching"/>

@@ -17,7 +17,7 @@ const HomepageInfo = (props: any) => {
 
     if (props.colors === 'color') {
         colors.bgColors = "w-screen h-screen flex flex-row justify-start items-start bg-white p-16 gap-10";
-        colors.textColors = "text-green-600";
+        colors.textColors = "text-webGreen";
         colors.buttonColors = "green";
     } else {
         colors.bgColors = "w-screen h-screen flex flex-row-reverse justify-start items-start bg-webGreen p-16 gap-10";

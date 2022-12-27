@@ -6,7 +6,7 @@ const NavButton = (props: any) => {
     if (props.colors === 'white') {
         styles = "border-white border-4 p-1 pl-2 pr-2 rounded-md text-white";
     } else {
-        styles = "border-green-600 border-4 p-1 rounded-md text-green-600"
+        styles = "border-webGreen border-4 p-1 rounded-md text-webGreen"
     }
 
     return (
