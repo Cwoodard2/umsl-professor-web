@@ -8,7 +8,7 @@ const Navigation = (props: any) => {
                     <button className="text-4xl text-webGreen rockwell">Elaina Johns-Wolfe</button>
                     <div className="h-1 bg-webGreen rounded-lg w-full"></div>
                 </Link>
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-10">
                 <Link to='/Research'>
                     <button>Research</button>
                 </Link>
