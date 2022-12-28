@@ -9,11 +9,11 @@ const Navigation = (props: any) => {
                     <div className="h-1 bg-webGreen rounded-lg w-full"></div>
                 </Link>
             <div className="flex flex-row gap-3">
-                <Link to='/Teaching'>
-                    <button>Teaching</button>
-                </Link>
                 <Link to='/Research'>
                     <button>Research</button>
+                </Link>
+                <Link to='/Teaching'>
+                    <button>Teaching</button>
                 </Link>
                 <Link to='/CommunityEngagement'>
                     <button>Community Engagement</button>

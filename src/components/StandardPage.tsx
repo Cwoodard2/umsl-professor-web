@@ -6,7 +6,7 @@ const StandardPage = (props: any) => {
     return (
         <div>
             <Navigation />
-            {props.children}
+                {props.children}
             <Footer />
         </div>
     );
