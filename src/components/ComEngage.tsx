@@ -1,4 +1,6 @@
 import React from "react";
+import ComEngageChip from "./ComEngageChip";
+import BenefitsCircle from "./BenefitsCircle";
 import communityImage from '../images/communityengagement.png';
 
 const ComEngage = (props: any) => {
@@ -8,14 +10,17 @@ const ComEngage = (props: any) => {
             <div className="flex flex-col justify-between">
                 <div>
                     <h3 className="rockwell text-xl">{props.title}</h3>
+                    <div>
+                        <ComEngageChip name="Housing"/>
+                    </div>
                     <p>{props.description}</p>
                 </div>
                 <div>
                     <h4 className="rockwell text-lg">Benefits</h4>
                     <div className="flex flex-row gap-10">
-                        <div className="rounded-full w-12 h-12 bg-webGreen"></div>
-                        <div className="rounded-full w-12 h-12 bg-webGreen"></div>
-                        <div className="rounded-full w-12 h-12 bg-webGreen"></div>
+                        <BenefitsCircle benefit="Better Housing"/>
+                        <BenefitsCircle benefit="Healthier Lives"/>
+                        <BenefitsCircle benefit="Cleaner Air"/>
                     </div>
                 </div>
             </div>
