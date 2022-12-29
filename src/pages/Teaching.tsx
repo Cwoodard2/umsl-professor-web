@@ -1,6 +1,8 @@
 import React from "react";
 import {Link as A} from "react-scroll";
 import StandardPage from "../components/StandardPage";
+import ClassCard from "../components/ClassCard";
+import PhilosophyTile from "../components/PhilosophyTile";
 import teachingImage from '../images/dr-heng-moss_classroom.jpg';
 
 const Teaching = () => {
@@ -20,6 +22,9 @@ const Teaching = () => {
                     </div>
                 </div>
                 <img src={teachingImage} className="w-1/3 h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe teaching"></img>
+            </div>
+            <div className="p-16">
+                <ClassCard class="2202" whenTaught="Spring"/>
             </div>
         </StandardPage>
     );
