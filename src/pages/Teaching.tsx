@@ -13,10 +13,10 @@ const Teaching = () => {
                     <h1 className="text-webGreen rockwell text-4xl">Teaching</h1>
                     <p className="text-black">Explore the ways I impact my students and the experience that I have in higher education</p>
                     <div className="flex gap-3">
-                        <A to="" spy={true} smooth={true}>
+                        <A to="Philosophy" spy={true} smooth={true}>
                             <button className="bg-webGreen border-webGreen border-4 p-1 rounded-md text-white">Philosophy</button>
                         </A>
-                        <A to="" spy={true} smooth={true}>
+                        <A to="Experience" spy={true} smooth={true}>
                             <button className="border-webGreen border-4 p-1 rounded-md text-webGreen">Education</button>
                         </A>
                     </div>
