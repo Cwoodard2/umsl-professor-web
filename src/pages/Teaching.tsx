@@ -2,7 +2,7 @@ import React from "react";
 import {Link as A} from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ClassCard from "../components/ClassCard";
-import PhilosophyTile from "../components/PhilosophyTile";
+import TeachingSection from "../components/TeachingSection";
 import teachingImage from '../images/dr-heng-moss_classroom.jpg';
 
 const Teaching = () => {
@@ -23,10 +23,9 @@ const Teaching = () => {
                 </div>
                 <img src={teachingImage} className="w-1/3 h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe teaching"></img>
             </div>
-            <div className="pl-16 pr-16 flex flex-row justify-around">
-                <PhilosophyTile number="1" philDescript="Description of your philsophy 1" philosophy="Student Led Teaching"/>
-                <PhilosophyTile number="2" philDescript="Description of your philsophy 2" philosophy="Learning By Working"/>
-                <PhilosophyTile number="3" philDescript="Description of your philsophy 3" philosophy="Letting You Be heard"/>
+            <div className="flex flex-col gap-10">
+                <TeachingSection title="Philosophy" style={true}/>
+                <TeachingSection title="Experience" style={false}/>
             </div>
             <div className="p-16">
                 <ClassCard class="2202" whenTaught="Spring"/>
