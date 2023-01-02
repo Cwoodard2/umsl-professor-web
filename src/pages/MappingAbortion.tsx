@@ -5,12 +5,12 @@ import elainaImage from '../images/johnswolfe_2021.jpeg';
 const MappingAbortion = () => {
     return (
         <StandardPage>
-            <div className="w-screen h-screen flex flex-row justify-around items-start bg-white p-16 gap-10">
+            <div className="w-screen h-screen flex flex-col sm:flex-row justify-around items-start bg-white p-16 gap-10">
                 <div className="flex flex-col">
                     <h1 className="text-webGreen rockwell text-4xl">Mapping Abortion</h1>
                     <p className="text-black">This is some text</p>
                 </div>
-                <img src={elainaImage} className="w-1/3 h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
+                <img src={elainaImage} className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
             </div>
         </StandardPage>
     );

@@ -8,7 +8,7 @@ import teachingImage from '../images/dr-heng-moss_classroom.jpg';
 const Teaching = () => {
     return (
         <StandardPage>
-            <div className="w-screen h-screen flex flex-row justify-between items-start bg-white p-16 gap-10">
+            <div className="w-screen h-screen flex flex-col sm:flex-row justify-between items-start bg-white p-16 gap-10">
                 <div className="flex flex-col">
                     <h1 className="text-webGreen rockwell text-4xl">Teaching</h1>
                     <p className="text-black">Explore the ways I impact my students and the experience that I have in higher education</p>
@@ -21,7 +21,7 @@ const Teaching = () => {
                         </A>
                     </div>
                 </div>
-                <img src={teachingImage} className="w-1/3 h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe teaching"></img>
+                <img src={teachingImage} className="w-3/3 h-5/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe teaching"></img>
             </div>
             <div className="flex flex-col gap-10">
                 <TeachingSection title="Philosophy" style={true}/>
