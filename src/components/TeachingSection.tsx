@@ -4,7 +4,7 @@ import ExperiencePart from "./ExperiencePart";
 
 const TeachingSection = (props: any) => {
     return (
-       <div className="pl-16 pr-16 h-screen" id={props.title}>
+       <div className="pl-16 pr-16" id={props.title}>
         <h2 className="rockwell text-2xl">{props.title}</h2>
         <div className="w-12 h-1 bg-webGreen rounded-sm"></div>
         <p>This is placeholder text</p>
@@ -20,7 +20,7 @@ const TeachingSection = (props: any) => {
         {!props.style && <div className="flex flex-col">
             <h4 className="rockwell text-xl">Education</h4>
             <br></br>
-            <div className="flex flex-row justify-around">
+            <div className="flex flex-col md:flex-row justify-around gap-5">
                 <ExperiencePart degree="BS in Sociology" school="Ball State University" year="2011"/>
                 <ExperiencePart degree="MS in Sociology" school="Ball State University" year="2014"/>
                 <ExperiencePart degree="PhD in Sociology" school="University of Cincinatti" year="2020"/>
