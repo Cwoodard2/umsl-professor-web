@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 const StandardPage = (props: any) => {
     return (
-        <div>
+        <div className="flex flex-col gap-10">
             <Navigation />
                 {props.children}
             <Footer />
