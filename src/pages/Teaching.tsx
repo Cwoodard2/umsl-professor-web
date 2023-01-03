@@ -28,7 +28,9 @@ const Teaching = () => {
                 <TeachingSection title="Experience" style={false}/>
             </div>
             <h3 className="rockwell text-xl">Classes</h3>
-            <div className="p-16">
+            <div className="flex flex-row overflow-hidden gap-10 p-16">
+                <ClassCard class="2202" whenTaught="Spring"/>
+                <ClassCard class="2202" whenTaught="Spring"/>
                 <ClassCard class="2202" whenTaught="Spring"/>
             </div>
         </StandardPage>
