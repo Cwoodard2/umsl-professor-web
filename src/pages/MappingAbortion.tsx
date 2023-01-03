@@ -5,7 +5,7 @@ import elainaImage from '../images/johnswolfe_2021.jpeg';
 const MappingAbortion = () => {
     return (
         <StandardPage>
-            <div className="w-screen h-screen flex flex-col sm:flex-row justify-around items-start bg-white p-16 gap-10">
+            <div className="w-screen h-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
                 <div className="flex flex-col">
                     <h1 className="text-webGreen rockwell text-4xl">Mapping Abortion</h1>
                     <p className="text-black">This is some text</p>

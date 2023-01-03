@@ -8,7 +8,7 @@ import communityImage from '../images/communityengagement.png';
 const CommunityEngagement = () => {
     return (
         <StandardPage>
-            <div className="w-screen h-screen flex flex-col sm:flex-row justify-around items-start bg-white p-16 gap-10">
+            <div className="w-screen h-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
                 <div className="flex flex-col">
                     <h1 className="text-webGreen rockwell text-4xl">Community Engagement</h1>
                     <p className="text-black">Learn the various ways that I connect to my community, and the effect it has.</p>
