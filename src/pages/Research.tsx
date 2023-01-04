@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
 import researchImage from '../images/research2.jpeg';
 import ResearchItems from "../components/ResearchItems";
@@ -6,11 +7,29 @@ import SearchBar from "../components/Searchbar";
 import {db} from "../data/firebaseConfiguration";
 
 const Research = () => {
-    const [researchArticles, setResearchArticles] = useState({});
+    const [articles, setResearchArticles] = useState([{}]);
 
     useEffect(() => {
-        console.log(useEffect);
+        const checkForData = async () => {
+            const docToGet: any = doc(db, 'professordata', 'research');
+            const researchDoc: any = await getDoc(docToGet);
+            const data = researchDoc.data();
+            console.log(data.researchArticles);
+            setResearchArticles(data.researchArticles);
+        }
+        checkForData();
     }, []);
+
+    const makeList = () => {
+        const articleArray = articles.map((article: any) => <li className="list-none"><ResearchItems articleTitle={article.title} abstract={article.abstract}/></li>);
+        console.log(articleArray);
+        return articleArray;
+    }
+    console.log(articles[0]);
+    const stringArray: string[] = ['sting'];
+
+    const articlesToShow = makeList();
+    console.log(articlesToShow);
 
     return (
         <StandardPage>
@@ -27,6 +46,7 @@ const Research = () => {
                 <ResearchItems articleTitle="Second Article Title" abstract="This is the abstract"/>
                 <ResearchItems articleTitle="Third Article Title" abstract="This is the abstract"/>
             </div>
+            <div>{articlesToShow}</div>
         </StandardPage>
     );
 };
