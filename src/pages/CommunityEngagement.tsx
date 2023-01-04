@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { doc, getDoc } from "firebase/firestore";
 import {Link as A} from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ComEngage from "../components/ComEngage";
@@ -7,11 +8,28 @@ import communityImage from '../images/communityengagement.png';
 import {db} from "../data/firebaseConfiguration";
 
 const CommunityEngagement = () => {
-    const [comEngageItems, setComEngageItems] = useState({});
+    const [comEngageItems, setComEngageItems] = useState([]);
 
     useEffect(() => {
-        console.log(useEffect);
+        const checkForData = async () => {
+            const docToGet: any = doc(db, 'professordata', 'comEngage');
+            const comEngageDoc: any = await getDoc(docToGet);
+            const data = comEngageDoc.data();
+            console.log(data.comEngageOpt);
+            setComEngageItems(data.comEngageOpt);
+        }
+        checkForData();
     }, []);
+
+    const makeList = () => {
+        const articleArray = comEngageItems.map((activity: any) => <li className="list-none"><ComEngage title={activity.title} description={activity.description} chips={activity.chips} benefits={activity.benefits}/></li>);
+        console.log(articleArray);
+        return articleArray;
+    }
+    console.log(comEngageItems[0]);
+
+    const articlesToShow = makeList();
+    console.log(articlesToShow);
 
     return (
         <StandardPage>
@@ -31,6 +49,7 @@ const CommunityEngagement = () => {
             <ComEngage title="Option 1" description="First Description"/>
             <ComEngage title="Option2" description="Second Description"/>
             <ComEngage title="Option 3" description="Third Description"/>
+            {articlesToShow}
         </StandardPage>
     );
 };

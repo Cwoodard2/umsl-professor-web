@@ -12,8 +12,8 @@ const ResearchItems = (props: any) => {
                     {/* <p>{props.authors}</p> */}
                 </div>
                 <div className="flex flex-row gap-5">
-                    <button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold pt-0">PDF</button>
-                    <button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold">DOI</button>
+                    <a href={props.articleLink} target="_blank" rel='noopener noreferrer'><button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold pt-0">PDF</button></a>
+                    <a href={props.articleLink} target="_blank" rel='noopener noreferrer'><button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold">DOI</button></a>
                     <button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold">CITE</button>
                 </div>
             </div>

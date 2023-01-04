@@ -21,7 +21,7 @@ const Research = () => {
     }, []);
 
     const makeList = () => {
-        const articleArray = articles.map((article: any) => <li className="list-none"><ResearchItems articleTitle={article.title} abstract={article.abstract}/></li>);
+        const articleArray = articles.map((article: any) => <li className="list-none"><ResearchItems articleTitle={article.title} abstract={article.abstract} articleLink={article.articleLink} authors={article.authors}/></li>);
         console.log(articleArray);
         return articleArray;
     }
