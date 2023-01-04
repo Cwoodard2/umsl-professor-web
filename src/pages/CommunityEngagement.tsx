@@ -4,7 +4,7 @@ import StandardPage from "../components/StandardPage";
 import ComEngage from "../components/ComEngage";
 import ComEngageFilter from "../components/ComEngageFilter";
 import communityImage from '../images/communityengagement.png';
-import db from "../data/firebaseConfiguration";
+import {db} from "../data/firebaseConfiguration";
 
 const CommunityEngagement = () => {
     const [comEngageItems, setComEngageItems] = useState({});

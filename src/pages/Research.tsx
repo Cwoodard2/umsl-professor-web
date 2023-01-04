@@ -3,7 +3,7 @@ import StandardPage from "../components/StandardPage";
 import researchImage from '../images/research2.jpeg';
 import ResearchItems from "../components/ResearchItems";
 import SearchBar from "../components/Searchbar";
-import db from "../data/firebaseConfiguration";
+import {db} from "../data/firebaseConfiguration";
 
 const Research = () => {
     const [researchArticles, setResearchArticles] = useState({});
