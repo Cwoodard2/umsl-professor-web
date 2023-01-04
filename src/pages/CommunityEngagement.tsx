@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Link as A} from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ComEngage from "../components/ComEngage";
 import ComEngageFilter from "../components/ComEngageFilter";
 import communityImage from '../images/communityengagement.png';
+import db from "../data/firebaseConfiguration";
 
 const CommunityEngagement = () => {
+    const [comEngageItems, setComEngageItems] = useState({});
+
+    useEffect(() => {
+        console.log(useEffect);
+    }, []);
+
     return (
         <StandardPage>
             <div className="w-screen h-screen flex flex-col md:flex-row md:justify-around items-start bg-white p-16 gap-10">

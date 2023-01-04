@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import StandardPage from "../components/StandardPage";
 import researchImage from '../images/research2.jpeg';
 import ResearchItems from "../components/ResearchItems";
 import SearchBar from "../components/Searchbar";
+import db from "../data/firebaseConfiguration";
 
 const Research = () => {
+    const [researchArticles, setResearchArticles] = useState({});
+
+    useEffect(() => {
+        console.log(useEffect);
+    }, []);
+
     return (
         <StandardPage>
             <div className="w-screen h-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
