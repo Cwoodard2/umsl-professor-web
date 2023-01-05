@@ -7,14 +7,13 @@ import SearchBar from "../components/Searchbar";
 import {db} from "../data/firebaseConfiguration";
 
 const Research = () => {
-    const [articles, setResearchArticles] = useState([{}]);
+    const [articles, setResearchArticles] = useState([]);
 
     useEffect(() => {
         const checkForData = async () => {
             const docToGet: any = doc(db, 'professordata', 'research');
             const researchDoc: any = await getDoc(docToGet);
             const data = researchDoc.data();
-            console.log(data.researchArticles);
             setResearchArticles(data.researchArticles);
         }
         checkForData();
@@ -42,9 +41,9 @@ const Research = () => {
                 <img src={researchImage} className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
             </div>
             <div className="flex flex-col">
-                <ResearchItems articleTitle="First Article Title" abstract="This is the abstract"/>
+                {/* <ResearchItems articleTitle="First Article Title" abstract="This is the abstract"/>
                 <ResearchItems articleTitle="Second Article Title" abstract="This is the abstract"/>
-                <ResearchItems articleTitle="Third Article Title" abstract="This is the abstract"/>
+                <ResearchItems articleTitle="Third Article Title" abstract="This is the abstract"/> */}
             </div>
             <div>{articlesToShow}</div>
         </StandardPage>

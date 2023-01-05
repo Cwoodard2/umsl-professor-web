@@ -46,9 +46,9 @@ const CommunityEngagement = () => {
                 <img src={communityImage} className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
             </div>
             <ComEngageFilter tags={["Housing"]}/>
-            <ComEngage title="Option 1" description="First Description"/>
+            {/* <ComEngage title="Option 1" description="First Description"/>
             <ComEngage title="Option2" description="Second Description"/>
-            <ComEngage title="Option 3" description="Third Description"/>
+            <ComEngage title="Option 3" description="Third Description"/> */}
             {articlesToShow}
         </StandardPage>
     );
