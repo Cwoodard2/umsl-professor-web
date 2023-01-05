@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import LoginPage from './CMSBackEnd/loginPage';
+import ItemEditor from './CMSBackEnd/ItemEditor';
 import Homepage from './pages/Homepage';
 import CommunityEngagement from './pages/CommunityEngagement';
 import MappingAbortion from './pages/MappingAbortion';
@@ -11,7 +13,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/ItemEditor" element={<ItemEditor />}></Route>
+        <Route path="/Homepage" element={<Homepage />}></Route>
         <Route path="/Teaching" element={<Teaching />}></Route>
         <Route path="/CommunityEngagement" element={<CommunityEngagement />}></Route>
         <Route path="/Research" element={<Research />}></Route>
