@@ -30,6 +30,9 @@ const Navigation = (props: any) => {
                     <Link to='/MappingAbortion'>
                         <button>Map</button>
                     </Link>
+                    <Link to='/AboutMe'>
+                        <button>About</button>
+                    </Link>
                 </div>
             </div>
             <div className="md:hidden flex flex-row justify-around items-center w-screen">
