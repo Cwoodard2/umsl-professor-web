@@ -33,7 +33,7 @@ const ItemEditor = () => {
 
 
     return(
-        <div>
+        <div className="flex flex-col">
             <h1>Research Article</h1>
             <input placeholder="Article Title" id="articleTitle"></input>
             <input placeholder="Abstract" id="abstract"></input>
