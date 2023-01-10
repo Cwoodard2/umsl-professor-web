@@ -27,11 +27,13 @@ const Teaching = () => {
                 <TeachingSection title="Philosophy" style={true}/>
                 <TeachingSection title="Experience" style={false}/>
             </div>
-            <h3 className="rockwell text-xl">Classes</h3>
-            <div className="flex flex-row overflow-hidden gap-10 p-16">
-                <ClassCard class="2202" whenTaught="Spring"/>
-                <ClassCard class="2202" whenTaught="Spring"/>
-                <ClassCard class="2202" whenTaught="Spring"/>
+            <div className="p-16">
+                <h3 className="rockwell text-2xl">Classes</h3>
+                <div className="flex flex-row overflow-hidden gap-10">
+                    <ClassCard class="2202" whenTaught="Spring"/>
+                    <ClassCard class="2202" whenTaught="Spring"/>
+                    <ClassCard class="2202" whenTaught="Spring"/>
+                </div>
             </div>
         </StandardPage>
     );

@@ -3,8 +3,14 @@ import PhilosophyTile from "./PhilosophyTile";
 import ExperiencePart from "./ExperiencePart";
 
 const TeachingSection = (props: any) => {
+    let bgToHave: string = "";
+    if (props.style) {
+        bgToHave = "pl-16 pr-16";
+    } else {
+        bgToHave = "bg-webGreen p-16 text-white";
+    }
     return (
-       <div className="pl-16 pr-16" id={props.title}>
+       <div className={bgToHave} id={props.title}>
         <h2 className="rockwell text-2xl">{props.title}</h2>
         <div className="w-12 h-1 bg-webGreen rounded-sm"></div>
         <p>This is placeholder text</p>
