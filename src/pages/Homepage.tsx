@@ -15,28 +15,28 @@ const Homepage = (props: any) => {
     let homepageToBuild: HomepageObj[] = [
         {
             title: 'Teaching',
-            descript: 'Teaching Description',
+            descript: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             going: 'Learn More',
             route: "/Teaching",
             colors: ""
         },
         {
             title: 'Research',
-            descript: 'Research description',
+            descript: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             going: 'Learn More',
             route: "/Research",
             colors: "color"
         },
         {
             title: 'Community Engagement',
-            descript: 'Community Engagement description',
+            descript: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             going: 'Learn More',
             route: "/Community Engagement",
             colors: ""
         },
         {
             title: 'Mapping Abortion',
-            descript: 'Mapping Abortion description',
+            descript: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             going: 'Learn More',
             route: "/MappingAbortion",
             colors: "color"

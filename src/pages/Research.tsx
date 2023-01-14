@@ -25,7 +25,6 @@ const Research = () => {
         return articleArray;
     }
     console.log(articles[0]);
-    const stringArray: string[] = ['sting'];
 
     const articlesToShow = makeList();
     console.log(articlesToShow);
@@ -41,9 +40,6 @@ const Research = () => {
                 <img src={researchImage} className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe"></img>
             </div>
             <div className="flex flex-col">
-                {/* <ResearchItems articleTitle="First Article Title" abstract="This is the abstract"/>
-                <ResearchItems articleTitle="Second Article Title" abstract="This is the abstract"/>
-                <ResearchItems articleTitle="Third Article Title" abstract="This is the abstract"/> */}
             </div>
             <div>{articlesToShow}</div>
         </StandardPage>

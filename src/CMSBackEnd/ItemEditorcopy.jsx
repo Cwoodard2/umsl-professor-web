@@ -33,14 +33,15 @@ const ItemEditor = () => {
 
 
     return(
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-10 justify-center items-center">
             <h1>Research Article</h1>
-            <input placeholder="Article Title" id="articleTitle"></input>
-            <input placeholder="Abstract" id="abstract"></input>
-            <input placeholder="Author" id="authors"></input>
-            <button className="bg-webGreen" onClick={() => addItem()}>Add Author</button>
-            <input placeholder="Article Link" id="link"></input>
-            <button className="bg-webGreen text-white" onClick={() => handleSubmit()}>Submit</button>
+            <input placeholder="Article Title" id="articleTitle" className="border border-webGreen rounded-sm p-1"></input>
+            <textarea placeholder="Abstract" id="abstract" className="border border-webGreen rounded-sm p-1"></textarea>
+            <input placeholder="Author" id="authors" className="border border-webGreen rounded-sm p-1"></input>
+            <ul>{articleAuthors.map((author) => <li>{author}</li>)}</ul>
+            <button className="bg-webGreen rounded-sm pl-1 pr-1 text-white" onClick={() => addItem()}>Add Author</button>
+            <input placeholder="Article Link" id="link" className="border border-webGreen rounded-sm p-1"></input>
+            <button className="bg-webGreen rounded-sm pl-1 pr-1 text-white" onClick={() => handleSubmit()}>Submit</button>
         </div>
     );
 };
