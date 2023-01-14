@@ -4,6 +4,46 @@ import HomepageInfo from "../components/HomepageInfo";
 import elainaImage from '../images/johnswolfe_2021.jpeg';
 
 const Homepage = (props: any) => {
+    type HomepageObj = {
+        title: string,
+        descript: string,
+        going: string,
+        route: string,
+        colors: string
+    };
+
+    let homepageToBuild: HomepageObj[] = [
+        {
+            title: 'Teaching',
+            descript: 'Teaching Description',
+            going: 'Learn More',
+            route: "/Teaching",
+            colors: ""
+        },
+        {
+            title: 'Research',
+            descript: 'Research description',
+            going: 'Learn More',
+            route: "/Research",
+            colors: "color"
+        },
+        {
+            title: 'Community Engagement',
+            descript: 'Community Engagement description',
+            going: 'Learn More',
+            route: "/Community Engagement",
+            colors: ""
+        },
+        {
+            title: 'Mapping Abortion',
+            descript: 'Mapping Abortion description',
+            going: 'Learn More',
+            route: "/MappingAbortion",
+            colors: "color"
+        }
+    ];
+
+    const sections = homepageToBuild.map((section) => <HomepageInfo title={section.title} description={section.descript} goingWhere='Learn More' route={section.route} colors={section.colors}/>);
     return (
         <StandardPage>
             <div className="w-screen h-screen flex flex-col-reverse md:flex-row justify-start items-start bg-white p-16 gap-10">
@@ -13,10 +53,7 @@ const Homepage = (props: any) => {
                     <p className="text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 </div>
             </div>
-            <HomepageInfo title='Teaching' description='Teaching description' goingWhere='Learn More' route="/Teaching"/>
-            <HomepageInfo title='Research' description='Research description' goingWhere='Learn More' colors="color" route="/Research"/>
-            <HomepageInfo title='Community Engagement' description='Community Engagement description' goingWhere='Learn More' route="/Community Engagement"/>
-            <HomepageInfo title='Mapping Abortion' description='Mapping Abortion description' goingWhere='Learn More' colors="color" route="/MappingAbortion"/>
+            {sections}
         </StandardPage>
     );
 };
