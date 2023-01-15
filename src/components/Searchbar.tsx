@@ -1,6 +1,7 @@
 import React from "react";
 
 const SearchBar = (props: any) => {
+    let filterArray = [];
 
     const handleChange = () => {
         return;

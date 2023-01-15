@@ -30,7 +30,7 @@ const Teaching = () => {
             </div>
             <div className="p-16">
                 <h3 className="rockwell text-2xl">Classes</h3>
-                <div className="flex flex-row overflow-hidden gap-10">
+                <div className="flex flex-row overflow-hidden gap-10 p-4">
                     <ClassCard class="2202" whenTaught="Spring" descript="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
                     <ClassCard class="2202" whenTaught="Spring"/>
                     <ClassCard class="2202" whenTaught="Spring"/>
