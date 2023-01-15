@@ -3,6 +3,7 @@ import {Link as A} from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ClassCard from "../components/ClassCard";
 import TeachingSection from "../components/TeachingSection";
+import EducationSection from "../components/EducationSection";
 import teachingImage from '../images/dr-heng-moss_classroom.jpg';
 
 const Teaching = () => {
@@ -25,7 +26,7 @@ const Teaching = () => {
             </div>
             <div className="flex flex-col gap-10">
                 <TeachingSection title="Philosophy" style={true}/>
-                <TeachingSection title="Experience" style={false}/>
+                <EducationSection title="Experience" style={false}/>
             </div>
             <div className="p-16">
                 <h3 className="rockwell text-2xl">Classes</h3>
