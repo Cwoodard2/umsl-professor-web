@@ -25,8 +25,8 @@ const Teaching = () => {
                 <img src={teachingImage} className="w-3/3 h-5/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover" alt="Elaina Johns-Wolfe teaching"></img>
             </div>
             <div className="flex flex-col gap-10">
-                <TeachingSection title="Philosophy" style={true}/>
-                <EducationSection title="Experience" style={false}/>
+                <TeachingSection title="Philosophy" />
+                <EducationSection title="Experience" />
             </div>
             <div className="p-16">
                 <h3 className="rockwell text-2xl">Classes</h3>

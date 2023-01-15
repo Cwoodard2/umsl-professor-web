@@ -1,5 +1,4 @@
 import React from "react";
-import PhilosophyTile from "./PhilosophyTile";
 import ExperiencePart from "./ExperiencePart";
 
 const EducationSection = (props: any) => {

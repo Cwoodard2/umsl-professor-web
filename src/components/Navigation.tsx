@@ -35,9 +35,9 @@ const Navigation = (props: any) => {
                     </Link>
                 </div>
             </div>
-            <div className="md:hidden flex flex-row justify-around items-center w-screen">
+            <div className="md:hidden flex flex-row justify-between items-center w-screen pl-2 pr-2">
                 <Link to='/'>
-                    <button className="text-4xl text-webGreen rockwell">EJW</button>
+                    <button className="text-3xl text-webGreen rockwell">EJW</button>
                 </Link>
                 <div className="" onClick={showMobileMenu}>
                     <p>---</p>
