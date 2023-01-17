@@ -18,6 +18,7 @@ const Research = () => {
       setResearchArticles(data.researchArticles);
     };
     checkForData();
+    makeList();
   }, []);
 
   const makeList = () => {
@@ -31,14 +32,15 @@ const Research = () => {
         />
       </li>
     ));
-    console.log(articleArray);
     setFinalArticles(articleArray);
   };
 
   const filterList = (filterCriteria: string) => {
+    // console.log(articles.title.includes());
     const filteredList = articles.filter((article: any) =>
-      article.title.includes(filterCriteria)
+      article.title === filterCriteria
     );
+
     const finalList = filteredList.map((article: any) => (
       <li className="list-none">
         <ResearchItems
@@ -52,8 +54,12 @@ const Research = () => {
     setFinalArticles(finalList);
   };
 
-  const articlesToShow = makeList();
-  console.log(articlesToShow);
+//   const articlesToShow = makeList();
+//   console.log(articlesToShow);
+
+  // while (finalArticles.length == 0) {
+  //   return (<h1>Loading</h1>);
+  // }
 
   return (
     <StandardPage>
