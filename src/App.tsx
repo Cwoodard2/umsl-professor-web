@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LoginPage from './CMSBackEnd/loginPage';
-import ItemEditor from './CMSBackEnd/ItemEditorcopy';
+import ResearchEditor from './CMSBackEnd/ResearchEditor';
+import ComEngageEditor from './CMSBackEnd/ComEngageEditor';
+import ClassCardEditor from './CMSBackEnd/ClassCardEditor';
 import Homepage from './pages/Homepage';
 import CommunityEngagement from './pages/CommunityEngagement';
 import MappingAbortion from './pages/MappingAbortion';
@@ -21,7 +23,9 @@ function App() {
         <Route path="/MappingAbortion" element={<MappingAbortion />}></Route>
         <Route path="AboutMe" element={<AboutMe />}></Route>
         <Route path="/LoginPage" element={<LoginPage />}></Route>
-        <Route path="/ItemEditorcopy" element={<ItemEditor />}></Route>
+        <Route path="/ResearchEditor" element={<ResearchEditor />}></Route>
+        <Route path="/ComEngageEditor" element={<ComEngageEditor />}></Route>
+        <Route path="/ClassCardEditor" element={<ClassCardEditor />}></Route>
       </Routes>
     </Router>
   );

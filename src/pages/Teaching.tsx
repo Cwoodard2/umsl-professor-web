@@ -49,6 +49,13 @@ const Teaching = () => {
           />
           <ClassCard class="2202" whenTaught="Spring" />
           <ClassCard class="2202" whenTaught="Spring" />
+          <ClassCard
+            class="2202"
+            whenTaught="Spring"
+            descript="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <ClassCard class="2202" whenTaught="Spring" />
+          <ClassCard class="2202" whenTaught="Spring" />
         </div>
       </div>
     </StandardPage>

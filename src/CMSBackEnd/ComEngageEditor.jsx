@@ -1,8 +1,9 @@
 import React, {useState} from "react";
+import CMSNav from "../components/CMSNav";
 import {db} from "../data/firebaseConfiguration";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 
-const ItemEditor = () => {
+const ComEngageEditor = () => {
     const [articleAuthors, setAuthors] = useState([]);
     // type researchToAdd = {
     //     title: any,
@@ -33,17 +34,20 @@ const ItemEditor = () => {
 
 
     return(
+        <>
+        <CMSNav />
         <div className="flex flex-col gap-10 justify-center items-center">
-            <h1>Research Article</h1>
-            <input placeholder="Article Title" id="articleTitle" className="border border-webGreen rounded-sm p-1"></input>
-            <textarea placeholder="Abstract" id="abstract" className="border border-webGreen rounded-sm p-1"></textarea>
-            <input placeholder="Author" id="authors" className="border border-webGreen rounded-sm p-1"></input>
+            <h1>Community Engagement</h1>
+            <input placeholder="Title" id="title" className="border border-webGreen rounded-sm p-1"></input>
+            <textarea placeholder="Community Engagement Description" id="description" className="border border-webGreen rounded-sm p-1"></textarea>
+            <input placeholder="Benefit" id="benefits" className="border border-webGreen rounded-sm p-1"></input>
             <ul>{articleAuthors.map((author) => <li>{author}</li>)}</ul>
-            <button className="bg-webGreen rounded-sm pl-1 pr-1 text-white" onClick={() => addItem()}>Add Author</button>
-            <input placeholder="Article Link" id="link" className="border border-webGreen rounded-sm p-1"></input>
+            <button className="bg-webGreen rounded-sm pl-1 pr-1 text-white" onClick={() => addItem()}>Add Benefit</button>
+            <input placeholder="Organization Link" id="link" className="border border-webGreen rounded-sm p-1"></input>
             <button className="bg-webGreen rounded-sm pl-1 pr-1 text-white" onClick={() => handleSubmit()}>Submit</button>
         </div>
+        </>
     );
 };
 
-export default ItemEditor;
+export default ComEngageEditor;
