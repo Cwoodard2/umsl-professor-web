@@ -64,7 +64,7 @@ const Research = () => {
   return (
     <StandardPage>
       <div className="w-screen h-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Research</h1>
           <p className="text-black">
             Discover the research that I partake in and the potential effects of

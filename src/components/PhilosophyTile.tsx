@@ -6,7 +6,7 @@ const PhilosophyTile = (props: any) => {
       <div className="bg-webGreen rounded-full w-12 h-12 rockwell flex justify-center items-center text-white text-3xl">
         <p>{props.number}</p>
       </div>
-      <h3 className="rockwell text-xl">{props.philosophy}</h3>
+      <h3 className="rockwell text-xl text-center">{props.philosophy}</h3>
       <p>{props.philDescript}</p>
     </div>
   );

@@ -5,7 +5,7 @@ const EducationSection = (props: any) => {
   return (
     <div className="p-16 bg-webGreen text-white" id={props.title}>
       <h2 className="rockwell text-2xl">{props.title}</h2>
-      <div className="w-12 h-1 bg-webGreen rounded-sm"></div>
+      <div className="w-12 h-1 bg-webBlue rounded-sm"></div>
       <p>This is placeholder text</p>
       <br></br>
       <div className="flex flex-col">

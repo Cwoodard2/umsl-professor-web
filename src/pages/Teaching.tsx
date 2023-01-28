@@ -10,7 +10,7 @@ const Teaching = () => {
   return (
     <StandardPage>
       <div className="w-screen h-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Teaching</h1>
           <p className="text-black">
             Explore the ways I impact my students and the experience that I have
@@ -18,12 +18,12 @@ const Teaching = () => {
           </p>
           <div className="flex gap-3">
             <A to="Philosophy" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-4 p-1 rounded-md text-white">
+              <button className="bg-webGreen border-webGreen border-4 p-1 rounded-md text-white font-semibold">
                 Philosophy
               </button>
             </A>
             <A to="Experience" spy={true} smooth={true}>
-              <button className="border-webGreen border-4 p-1 rounded-md text-webGreen">
+              <button className="border-webGreen border-4 p-1 rounded-md text-webGreen font-semibold">
                 Education
               </button>
             </A>

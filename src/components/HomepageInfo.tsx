@@ -21,14 +21,14 @@ const HomepageInfo = (props: any) => {
 
   if (props.colors === "color") {
     colors.bgColors =
-      "w-screen h-screen flex flex-col-reverse md:flex-row justify-start items-start bg-white p-16 gap-10";
+      "w-screen h-screen flex flex-col-reverse md:flex-row justify-start items-center bg-white pl-16 pr-16 gap-10";
     colors.textColors = "text-black";
     colors.buttonColors = "green";
     colors.headingStyle = "text-webGreen text-3xl rockwell";
     colors.divStyle = "w-auto h-1 bg-webGreen rounded-sm";
   } else {
     colors.bgColors =
-      "w-screen h-screen flex flex-col-reverse md:flex-row-reverse justify-end items-start bg-webGreen p-16 gap-10";
+      "w-screen h-screen flex flex-col-reverse md:flex-row-reverse justify-end items-center bg-webGreen pl-16 pr-16 gap-10";
     colors.textColors = "text-white";
     colors.buttonColors = "white";
     colors.headingStyle = "text-white text-3xl rockwell";
