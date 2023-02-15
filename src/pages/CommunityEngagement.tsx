@@ -5,11 +5,11 @@ import StandardPage from "../components/StandardPage";
 import ComEngage from "../components/ComEngage";
 import ComEngageFilter from "../components/ComEngageFilter";
 import communityImage from "../images/communityengagement.png";
-import { db } from "../data/firebaseConfiguration";
+import { db, storage } from "../data/firebaseConfiguration";
+import { ref } from "firebase/storage";
 
 const CommunityEngagement = () => {
   const [comEngageItems, setComEngageItems] = useState([]);
-
   useEffect(() => {
     const checkForData = async () => {
       const docToGet: any = doc(db, "professordata", "comEngage");

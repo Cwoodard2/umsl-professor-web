@@ -42,9 +42,14 @@ const ClassCardEditor = () => {
     return(
         <>
         <CMSNav />
+        <div className="flex flex-row">
         <div className="flex flex-col gap-10 justify-center items-center">
             <h1>Class Card</h1>
-            <input placeholder="Class" id="class" className="border border-webGreen rounded-sm p-1" value={card} onChange={(e) => setCard(e.target.value)}></input>
+            <input placeholder="Class number" id="class" className="border border-webGreen rounded-sm p-1" value={card} onChange={(e) => setCard(e.target.value)}></input>
+            <input placeholder="class name" id="whenTaught" className="border border-webGreen rounded-sm p-1"></input>
+            <input placeholder="Mode" id="whenTaught" className="border border-webGreen rounded-sm p-1"></input>
+            <input placeholder="schedule" id="whenTaught" className="border border-webGreen rounded-sm p-1"></input>
+            <input placeholder="next offered" id="whenTaught" className="border border-webGreen rounded-sm p-1"></input>
             <textarea placeholder="Course Description" id="description" className="border border-webGreen rounded-sm p-1" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
             <input placeholder="Semesters Taught" id="whenTaught" className="border border-webGreen rounded-sm p-1"></input>
             <ul>{articleAuthors.map((author) => <li>{author}</li>)}</ul>
@@ -56,6 +61,7 @@ const ClassCardEditor = () => {
             whenTaught={articleAuthors}
             descript={description}
           />
+        </div>
         </>
     );
 };

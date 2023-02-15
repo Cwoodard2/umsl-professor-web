@@ -4,7 +4,7 @@ import StandardPage from "../components/StandardPage";
 import ClassCard from "../components/ClassCard";
 import TeachingSection from "../components/TeachingSection";
 import EducationSection from "../components/EducationSection";
-import teachingImage from "../images/dr-heng-moss_classroom.jpg";
+import teachingImage from "../images/TEACHING.png";
 
 const Teaching = () => {
   return (
@@ -52,6 +52,8 @@ const Teaching = () => {
           <ClassCard
             class="2202"
             whenTaught="Spring"
+            mode="Online"
+            nextOffered=""
             descript="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <ClassCard class="2202" whenTaught="Spring" />
