@@ -7,7 +7,7 @@ import SearchBar from "../components/Searchbar";
 import { db } from "../data/firebaseConfiguration";
 
 const Research = () => {
-  const [articles, setResearchArticles] = useState([]);
+  const [articles, setResearchArticles] = useState<any>([]);
   const [finalArticles, setFinalArticles] = useState<any>([]);
 
   useEffect(() => {
@@ -16,28 +16,35 @@ const Research = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setResearchArticles(data.researchArticles);
+      setFinalArticles(data.researchArticles);
     };
     checkForData();
-    makeList();
+    // makeList();
   }, []);
 
-  const makeList = () => {
-    const articleArray = articles.map((article: any) => (
-      <li className="list-none">
-        <ResearchItems
-          articleTitle={article.title}
-          abstract={article.abstract}
-          articleLink={article.articleLink}
-          authors={article.authors}
-        />
-      </li>
-    ));
-    setFinalArticles(articleArray);
-  };
+  // function makeList() {
+  //   const articleArray = articles.map((article: any) => (
+  //     <li className="list-none">
+  //       <ResearchItems
+  //         articleTitle={article.title}
+  //         abstract={article.abstract}
+  //         articleLink={article.articleLink}
+  //         authors={article.authors}
+  //       />
+  //     </li>
+  //   ));
+  //   setFinalArticles(articleArray);
+  //};
 
+  //fix this
   const filterList = (filterCriteria: string) => {
-    // console.log(articles.title.includes());
-    const filteredList = articles.filter((article: any) =>
+    // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
+    // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
+    if (filterCriteria != "") {
+      const filteredList = articles.filter((article: any) =>
+      // let thisVar = article['title'];
+      // console.log(typeof thisVar);
+      // thisVar.includes(filterCriteria.toLowerCase())
       article.title === filterCriteria
     );
 
@@ -51,7 +58,11 @@ const Research = () => {
         />
       </li>
     ));
-    setFinalArticles(finalList);
+    setFinalArticles(filteredList);
+    } else {
+    setFinalArticles(articles);
+    }
+
   };
 
 //   const articlesToShow = makeList();
@@ -63,7 +74,7 @@ const Research = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen h-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Research</h1>
           <p className="text-black">
@@ -78,8 +89,17 @@ const Research = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <div className="flex flex-col"></div>
-      <div>{finalArticles}</div>
+      <div className="flex flex-col"></div> 
+      <ul>{finalArticles.map((article: any) => (
+      <li className="list-none">
+        <ResearchItems
+          articleTitle={article.title}
+          abstract={article.abstract}
+          articleLink={article.articleLink}
+          authors={article.authors}
+        />
+      </li>
+    ))}</ul>
     </StandardPage>
   );
 };

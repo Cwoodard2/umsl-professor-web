@@ -3,10 +3,10 @@ import React from "react";
 const SearchBar = (props: any) => {
   let filterArray = [];
 
-  const handleChange = () => {
+  const handleChange = (e: any) => {
     const filter = document.getElementById("searchbar") as HTMLInputElement || null;
-    props.filter(filter.value);
-    filter.value = "";
+    props.filter(e.target.value);
+    // filter.value = "";
     return;
   };
 
@@ -16,8 +16,9 @@ const SearchBar = (props: any) => {
         id="searchbar"
         placeholder="Type Here to search"
         className="bg-white border-webGreen border-2 rounded-full shadow-lg p-2"
+        onChange={(e) => handleChange(e)}
       ></input>
-      <button onClick={() => handleChange()}>Search</button>
+      <button onClick={(e) => handleChange(e)}>Search</button>
     </>
   );
 };

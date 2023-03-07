@@ -21,14 +21,14 @@ const HomepageInfo = (props: any) => {
 
   if (props.colors === "color") {
     colors.bgColors =
-      "w-screen h-screen flex flex-col-reverse md:flex-row justify-start items-center bg-white pl-16 pr-16 gap-10";
+      "w-screen flex flex-col-reverse md:flex-row justify-center md:justify-start items-center bg-white p-16 gap-10";
     colors.textColors = "text-black";
     colors.buttonColors = "green";
     colors.headingStyle = "text-webGreen text-3xl rockwell";
     colors.divStyle = "w-auto h-1 bg-webGreen rounded-sm";
   } else {
     colors.bgColors =
-      "w-screen h-screen flex flex-col-reverse md:flex-row-reverse justify-end items-center bg-webGreen pl-16 pr-16 gap-10";
+      "w-screen flex flex-col-reverse md:flex-row-reverse justify-center md:justify-end items-center bg-webGreen p-16 gap-10";
     colors.textColors = "text-white";
     colors.buttonColors = "white";
     colors.headingStyle = "text-white text-3xl rockwell";
@@ -39,10 +39,10 @@ const HomepageInfo = (props: any) => {
     <div className={colors.bgColors}>
       <img
         src={elainaImage}
-        className="w-3/3 h-auto sm:w-1/3 sm:h-3/5 rounded-md shadow-md object-cover"
+        className="w-3/3 h-auto md:w-1/3 sm:h-3/5 rounded-md shadow-md object-cover"
         alt="Elaina Johns-Wolfe"
       ></img>
-      <div className="flex flex-col gap-12 items-start h-3/5">
+      <div className="flex flex-col gap-12 items-start h-auto md:h-3/5">
         <div>
           <h1 className={colors.headingStyle}>{props.title}</h1>
           <div className={colors.divStyle}></div>

@@ -10,7 +10,7 @@ const ClassCard = (props: any) => {
   }
 
   return (
-    <div className="flex flex-col md:w-2/5 h-96 bg-webGreen rounded-md hover:shadow-lg hover:shadow-black transition-all">
+    <div className="flex flex-col w-80 h-96 bg-webGreen rounded-md hover:shadow-md hover:shadow-black transition-all p-4 flex-shrink-0">
       <ClassModal
         show={showModal}
         toggle={() => setShowModal(false)}
@@ -27,7 +27,7 @@ const ClassCard = (props: any) => {
       <p className="text-white">{props.whenTaught}</p>
       <button
         onClick={changeModalState}
-        className="border-white border-4 p-1 w-3/5 rounded-md text-white hover:text-webGreen hover:bg-white transition-all"
+        className="border-white border-4 p-1 w-full rounded-md text-white hover:text-webGreen hover:bg-white transition-all"
       >
         Learn more
       </button>
