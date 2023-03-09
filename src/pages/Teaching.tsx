@@ -14,6 +14,7 @@ const Teaching = () => {
   const [finalArticles, setFinalArticles] = useState<any>([]);
   const [imgToShow, setImgToShow] = useState<any>("");
   const [classCards, setClassCards] = useState<any>([]);
+  const [loading, setLoading] = useState<any>(true);
 
   useEffect(() => {
     const checkForData = async () => {
@@ -33,10 +34,9 @@ const Teaching = () => {
         return (
           <ClassCard
             class={article.className}
-            classNumber={article.classNumber}
             descript={article.description}
             mode={article.mode}
-            whenTaught={article.nextOffered}
+            nextOffered={article.nextOffered}
             schedule={article.schedule}
             classImg={imgUrl}
           />
@@ -46,6 +46,7 @@ const Teaching = () => {
       }}))
       console.log(classCardsMade);
       setClassCards(classCardsMade);
+      setLoading(false);
     };
     checkForData();
     // makeList();
@@ -93,7 +94,7 @@ const Teaching = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen h-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Teaching</h1>
           <p className="text-black">
@@ -126,7 +127,7 @@ const Teaching = () => {
       <div className="p-16">
         <h3 className="rockwell text-2xl">Classes</h3>
         <div className="flex flex-row gap-10 p-4 overflow-auto md:flex-wrap">
-          {classCards}
+          {loading ? <p>loading</p> : classCards}
           {/* {imgToShow} */}
           {/* <ClassCard
             class="2202"
