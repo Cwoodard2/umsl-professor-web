@@ -9,8 +9,10 @@ const ClassCard = (props: any) => {
     setShowModal(true);
   }
 
+  console.log(props.image);
+
   return (
-    <div className="flex flex-col w-80 h-96 bg-webGreen rounded-md hover:shadow-md hover:shadow-black transition-all p-4 flex-shrink-0">
+    <div className="flex flex-col w-80 bg-webGreen rounded-md hover:shadow-md hover:shadow-black transition-all p-4 flex-shrink-0">
       <ClassModal
         show={showModal}
         toggle={() => setShowModal(false)}
@@ -19,8 +21,8 @@ const ClassCard = (props: any) => {
         description={props.descript}
       />
       <img
-        src={teachingImage}
-        className="w-full h-80 rounded-md shadow-md object-cover"
+        src={props.classImg}
+        className="w-full rounded-md shadow-md object-cover aspect-square"
         alt="Teacher teaching the class"
       ></img>
       <h4 className="rockwell text-white text-xl">{props.class}</h4>

@@ -6,10 +6,11 @@ import ComEngage from "../components/ComEngage";
 import ComEngageFilter from "../components/ComEngageFilter";
 import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
-import { ref } from "firebase/storage";
+import { ref, getDownloadURL } from "firebase/storage";
 
 const CommunityEngagement = () => {
   const [comEngageItems, setComEngageItems] = useState([]);
+  const [finalComEngageItems, setFinalComEngageItems] = useState([]);
   useEffect(() => {
     const checkForData = async () => {
       const docToGet: any = doc(db, "professordata", "comEngage");
@@ -17,6 +18,28 @@ const CommunityEngagement = () => {
       const data = comEngageDoc.data();
       console.log(data.comEngageOpt);
       setComEngageItems(data.comEngageOpt);
+      const classCardsMade: any = await Promise.all(data.comEngageOpt.map(async (activity: any) => {
+        let imgUrl:any = "";
+        try {
+          let imageRef = ref(storage, `comEngage/${activity.image}`);
+        await getDownloadURL(imageRef).then((url) => {
+          console.log(url);
+          imgUrl = url;
+        });
+        console.log(imgUrl);
+        return (
+          <ComEngage
+          title={activity.title}
+          description={activity.description}
+          chips={activity.chips}
+          benefits={activity.benefits}
+          image={imgUrl}
+        />
+        );
+      } catch(error) {
+        console.log(error);
+      }}))
+      setFinalComEngageItems(classCardsMade);
     };
     checkForData();
   }, []);
@@ -66,7 +89,7 @@ const CommunityEngagement = () => {
         ></img>
       </div>
       <ComEngageFilter tags={["Housing"]} />
-      {articlesToShow}
+      {finalComEngageItems}
     </StandardPage>
   );
 };

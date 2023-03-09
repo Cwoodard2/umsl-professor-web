@@ -13,7 +13,7 @@ const ComEngage = (props: any) => {
   return (
     <div className="flex flex-col-reverse md:flex-row p-16 gap-10">
       <img
-        src={communityImage}
+        src={props.image}
         className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-lg object-cover"
         alt="Placeholder alt text"
       />

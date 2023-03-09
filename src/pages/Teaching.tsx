@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link as A } from "react-scroll";
 import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
@@ -6,11 +6,14 @@ import ClassCard from "../components/ClassCard";
 import TeachingSection from "../components/TeachingSection";
 import EducationSection from "../components/EducationSection";
 import teachingImage from "../images/TEACHING.png";
-import { db } from "../data/firebaseConfiguration";
+import { db, storage } from "../data/firebaseConfiguration";
+import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
 
 const Teaching = () => {
   const [classes, setClasses] = useState([]);
   const [finalArticles, setFinalArticles] = useState<any>([]);
+  const [imgToShow, setImgToShow] = useState<any>("");
+  const [classCards, setClassCards] = useState<any>([]);
 
   useEffect(() => {
     const checkForData = async () => {
@@ -18,10 +21,59 @@ const Teaching = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setClasses(data.Cards);
+      const classCardsMade: any = await Promise.all(data.Cards.map(async (article: any) => {
+        let imgUrl:any = "";
+        try {
+          let imageRef = ref(storage, `classes/${article.image}`);
+        await getDownloadURL(imageRef).then((url) => {
+          console.log(url);
+          imgUrl = url;
+        });
+        console.log(imgUrl);
+        return (
+          <ClassCard
+            class={article.className}
+            classNumber={article.classNumber}
+            descript={article.description}
+            mode={article.mode}
+            whenTaught={article.nextOffered}
+            schedule={article.schedule}
+            classImg={imgUrl}
+          />
+        );
+      } catch(error) {
+        console.log(error);
+      }}))
+      console.log(classCardsMade);
+      setClassCards(classCardsMade);
     };
     checkForData();
     // makeList();
   }, []);
+
+  async function makeClassCards() {
+    const classCardsMade = await Promise.all(classes.map(async (article: any) => {
+      let imgUrl:any = "";
+      let imageRef = ref(storage, article.image);
+      await getDownloadURL(imageRef).then((url) => {
+        console.log(url);
+        imgUrl = url;
+      });
+      console.log(imgUrl);
+      return (
+        <ClassCard
+          class={article.className}
+          classNumber={article.classNumber}
+          descript={article.description}
+          mode={article.mode}
+          whenTaught={article.nextOffered}
+          schedule={article.schedule}
+          classImg={imgUrl}
+        />
+      );
+    }))
+    return(classCardsMade);
+  }
 
   // const makeList = () => {
   //   const articleArray = classes.map((article: any) => (
@@ -74,16 +126,8 @@ const Teaching = () => {
       <div className="p-16">
         <h3 className="rockwell text-2xl">Classes</h3>
         <div className="flex flex-row gap-10 p-4 overflow-auto md:flex-wrap">
-          {classes.map((article: any) => (
-        <ClassCard
-          class={article.className}
-          classNumber={article.classNumber}
-          descript={article.description}
-          mode={article.mode}
-          whenTaught={article.nextOffered}
-          schedule={article.schedule}
-        />
-    ))}
+          {classCards}
+          {/* {imgToShow} */}
           {/* <ClassCard
             class="2202"
             whenTaught="Spring"

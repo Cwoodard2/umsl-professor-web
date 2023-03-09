@@ -4,7 +4,8 @@ import StandardPage from "../components/StandardPage";
 import researchImage from "../images/research2.jpeg";
 import ResearchItems from "../components/ResearchItems";
 import SearchBar from "../components/Searchbar";
-import { db } from "../data/firebaseConfiguration";
+import { db, storage } from "../data/firebaseConfiguration";
+import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
 
 const Research = () => {
   const [articles, setResearchArticles] = useState<any>([]);
@@ -16,7 +17,28 @@ const Research = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setResearchArticles(data.researchArticles);
-      setFinalArticles(data.researchArticles);
+      const classCardsMade: any = await Promise.all(data.researchArticles.map(async (article: any) => {
+        let imgUrl:any = "";
+        try {
+          let imageRef = ref(storage, `research/${article.image}`);
+        await getDownloadURL(imageRef).then((url) => {
+          console.log(url);
+          imgUrl = url;
+        });
+        console.log(imgUrl);
+        return (
+          <ResearchItems
+          articleTitle={article.title}
+          abstract={article.abstract}
+          articleLink={article.articleLink}
+          authors={article.authors}
+          image={imgUrl}
+          />
+        );
+      } catch(error) {
+        console.log(error);
+      }}))
+      setFinalArticles(classCardsMade);
     };
     checkForData();
     // makeList();
@@ -37,7 +59,7 @@ const Research = () => {
   //};
 
   //fix this
-  const filterList = (filterCriteria: string) => {
+  const filterList = async (filterCriteria: string) => {
     // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
     // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
     if (filterCriteria != "") {
@@ -48,19 +70,31 @@ const Research = () => {
       article.title === filterCriteria
     );
 
-    const finalList = filteredList.map((article: any) => (
-      <li className="list-none">
+    const finalList = await Promise.all(filteredList.map(async (article: any) => {
+      let imgUrl:any = "";
+      try {
+        let imageRef = ref(storage, `research/${article.image}`);
+      await getDownloadURL(imageRef).then((url) => {
+        console.log(url);
+        imgUrl = url;
+      });
+      console.log(imgUrl);
+      return (
         <ResearchItems
-          articleTitle={article.title}
-          abstract={article.abstract}
-          articleLink={article.articleLink}
-          authors={article.authors}
+        articleTitle={article.title}
+        abstract={article.abstract}
+        articleLink={article.articleLink}
+        authors={article.authors}
+        image={imgUrl}
         />
-      </li>
-    ));
-    setFinalArticles(filteredList);
+      );
+    } catch(error) {
+      console.log(error);
+    }}))
+    console.log(filteredList)
+    setFinalArticles(finalList);
     } else {
-    setFinalArticles(articles);
+    setFinalArticles(finalArticles);
     }
 
   };
@@ -90,7 +124,9 @@ const Research = () => {
         ></img>
       </div>
       <div className="flex flex-col"></div> 
-      <ul>{finalArticles.map((article: any) => (
+      {finalArticles}
+      {/* <ul>
+        {finalArticles.map((article: any) => (
       <li className="list-none">
         <ResearchItems
           articleTitle={article.title}
@@ -99,7 +135,8 @@ const Research = () => {
           authors={article.authors}
         />
       </li>
-    ))}</ul>
+    ))}
+    </ul> */}
     </StandardPage>
   );
 };
