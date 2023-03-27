@@ -35,18 +35,19 @@ const ComEngageEditor = () => {
   const handleSubmit = async () => {
     const toSave = {
       title: title,
-      abstract: description,
-      authors: articleAuthors,
+      description: description,
+      benefits: articleAuthors,
       articleLink: document.getElementById("link").value,
+      chips: chips
     };
     setTitle("");
     setAuthors([]);
     setChips([]);
     setDescription("");
 
-    const docRef = doc(db, "professordata", "research");
+    const docRef = doc(db, "professordata", "comEngage");
     await updateDoc(docRef, {
-      researchArticles: arrayUnion(toSave),
+      comEngageOpt: arrayUnion(toSave),
     });
   };
 

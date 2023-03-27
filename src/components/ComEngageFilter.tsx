@@ -9,7 +9,7 @@ const ComEngageFilter = (props: any) => {
     <div className="pl-16 scroll-mt-10" id="filter">
       <div className="bg-webBlue text-white w-1/5 rounded-md p-1">
         {props.tags.map((tag: string) => (
-          <button>{props.tags}</button>
+          <button>{tag}</button>
         ))}
       </div>
     </div>
