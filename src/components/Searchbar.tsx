@@ -18,7 +18,7 @@ const SearchBar = (props: any) => {
         className="bg-white border-webGreen border-2 rounded-full shadow-lg p-2"
         onChange={(e) => handleChange(e)}
       ></input>
-      <button onClick={(e) => handleChange(e)}>Search</button>
+      {/* <button onClick={(e) => handleChange(e)}>Search</button> */}
     </>
   );
 };

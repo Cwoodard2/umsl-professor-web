@@ -5,6 +5,7 @@ import StandardPage from "../components/StandardPage";
 import ClassCard from "../components/ClassCard";
 import TeachingSection from "../components/TeachingSection";
 import EducationSection from "../components/EducationSection";
+import CourseHighlight from "../components/CourseHighlight";
 import teachingImage from "../images/TEACHING.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
@@ -94,7 +95,7 @@ const Teaching = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-8 md:p-16 gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Teaching</h1>
           <p className="text-black">
@@ -122,11 +123,15 @@ const Teaching = () => {
       </div>
       <div className="flex flex-col gap-10">
         <TeachingSection title="Philosophy" />
-        <EducationSection title="Experience" />
+        {/* <EducationSection title="Experience" /> */}
+        <CourseHighlight />
       </div>
-      <div className="p-16">
-        <h3 className="rockwell text-2xl">Classes</h3>
-        <div className="flex flex-row gap-10 p-4 overflow-auto md:flex-wrap">
+      <div className="p-8 md:p-16">
+        <h2 className="rockwell text-3xl">Experience</h2>
+        <p>During my time at the University of Cincinnati and University of Missouri-St. Louis, I have created and taught ten distinct courses. Please check out my current teaching rotation below.</p>
+        <br></br>
+        <h3 className="rockwell text-2xl">Classes Taught</h3>
+        <div className="flex flex-row gap-10 py-4 overflow-auto md:flex-wrap">
           {loading ? <p>loading</p> : classCards}
           {/* {imgToShow} */}
           {/* <ClassCard

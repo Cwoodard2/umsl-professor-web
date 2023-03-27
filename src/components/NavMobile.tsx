@@ -15,9 +15,11 @@ const NavMobile = (props: any) => {
           <Link to="/">
             <button className="text-3xl text-webGreen rockwell">EJW</button>
           </Link>
-          <div className="" onClick={showMobileMenu}>
-            <p>---</p>
-          </div>
+          {!showMobile ? <div className="flex flex-col gap-1" onClick={showMobileMenu}>
+            <div className="bg-webGreen w-7 h-1 rounded-full"></div>
+            <div className="bg-webGreen w-7 h-1 rounded-full"></div>
+            <div className="bg-webGreen w-7 h-1 rounded-full"></div>
+          </div> : <p className="text-webGreen rockwell font-bold text-3xl" onClick={showMobileMenu}>X</p>}
         </div>
         {showMobile && (
           <div className="md:hidden flex flex-col justify-start w-screen pl-4 pr-4">
