@@ -63,6 +63,44 @@ const CommunityEngagement = () => {
   const articlesToShow = makeList();
   console.log(articlesToShow);
 
+  const filterList = async (filterCriteria: string) => {
+    // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
+    // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
+    if (filterCriteria != "") {
+      const filteredList = comEngageItems.filter((article: any) =>
+      // let thisVar = article['title'];
+      // console.log(typeof thisVar);
+      // thisVar.includes(filterCriteria.toLowerCase())
+      article.chips.includes(filterCriteria)
+    );
+
+    const classCardsMade: any = await Promise.all(filteredList.map(async (activity: any) => {
+      let imgUrl:any = "";
+      try {
+        let imageRef = ref(storage, `comEngage/${activity.image}`);
+      await getDownloadURL(imageRef).then((url) => {
+        console.log(url);
+        imgUrl = url;
+      });
+      console.log(imgUrl);
+      return (
+        <ComEngage
+        title={activity.title}
+        description={activity.description}
+        chips={activity.chips}
+        benefits={activity.benefits}
+        image={imgUrl}
+      />
+      );
+    } catch(error) {
+      console.log(error);
+    }}))
+    setFinalComEngageItems(classCardsMade);
+  } else {
+    setComEngageItems(finalComEngageItems)
+  }
+  };
+
   return (
     <StandardPage>
       <div className="w-screen h-screen flex flex-col md:flex-row md:justify-around items-start bg-white p-16 gap-10">
@@ -88,7 +126,7 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <ComEngageFilter tags={["Housing"]} />
+      <ComEngageFilter tags={["Housing"]} filter={filterList} />
       {finalComEngageItems}
     </StandardPage>
   );
