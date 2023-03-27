@@ -126,7 +126,7 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <ComEngageFilter tags={["Housing"]} filter={filterList} />
+      <ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
       {finalComEngageItems}
     </StandardPage>
   );
