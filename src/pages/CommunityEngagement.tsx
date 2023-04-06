@@ -4,6 +4,7 @@ import { Link as A } from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ComEngage from "../components/ComEngage";
 import ComEngageFilter from "../components/ComEngageFilter";
+import LoadingItems from "../components/LoadingItems";
 import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { ref, getDownloadURL } from "firebase/storage";
@@ -11,8 +12,10 @@ import { ref, getDownloadURL } from "firebase/storage";
 const CommunityEngagement = () => {
   const [comEngageItems, setComEngageItems] = useState([]);
   const [finalComEngageItems, setFinalComEngageItems] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const checkForData = async () => {
+      setLoading(true);
       const docToGet: any = doc(db, "professordata", "comEngage");
       const comEngageDoc: any = await getDoc(docToGet);
       const data = comEngageDoc.data();
@@ -40,6 +43,7 @@ const CommunityEngagement = () => {
         console.log(error);
       }}))
       setFinalComEngageItems(classCardsMade);
+      setLoading(false)
     };
     checkForData();
   }, []);
@@ -64,6 +68,7 @@ const CommunityEngagement = () => {
   console.log(articlesToShow);
 
   const filterList = async (filterCriteria: string) => {
+    setLoading(true);
     // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
     // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
     if (filterCriteria != "") {
@@ -96,8 +101,10 @@ const CommunityEngagement = () => {
       console.log(error);
     }}))
     setFinalComEngageItems(classCardsMade);
+    setLoading(false);
   } else {
-    setComEngageItems(finalComEngageItems)
+    setComEngageItems(finalComEngageItems);
+    setLoading(false);
   }
   };
 
@@ -126,8 +133,11 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
+      {loading ? <LoadingItems /> : 
+      (<><ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
       {finalComEngageItems}
+      </>
+    )}
     </StandardPage>
   );
 };

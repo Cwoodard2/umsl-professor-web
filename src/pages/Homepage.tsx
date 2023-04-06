@@ -61,7 +61,7 @@ const Homepage = (props: any) => {
       <div className="w-screen flex flex-col-reverse md:flex-row justify-start items-start bg-white p-16 gap-10">
         <img
           src={elainaImage}
-          className="w-3/3 h-4/5 sm:w-3/3 sm:h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
+          className="w-3/3 h-4/5 sm:w-3/3 sm:h-5/5 md:w-1/3 md:h-5/5 rounded-md shadow-md object-cover"
           alt="Elaina Johns-Wolfe"
         ></img>
         <div className="flex flex-col">
