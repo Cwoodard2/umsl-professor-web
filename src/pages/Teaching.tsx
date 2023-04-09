@@ -9,6 +9,7 @@ import CourseHighlight from "../components/CourseHighlight";
 import teachingImage from "../images/TEACHING.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
+import LoadingItems from "../components/LoadingItems";
 
 const Teaching = () => {
   const [classes, setClasses] = useState([]);
@@ -104,12 +105,12 @@ const Teaching = () => {
           </p>
           <div className="flex gap-3">
             <A to="Philosophy" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-4 p-1 rounded-md text-white font-semibold">
+              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white font-semibold hover:bg-white hover:text-webGreen transition-all">
                 Philosophy
               </button>
             </A>
             <A to="Experience" spy={true} smooth={true}>
-              <button className="border-webGreen border-4 p-1 rounded-md text-webGreen font-semibold">
+              <button className="border-webGreen border-2 p-2 rounded-md text-webGreen font-semibold hover:bg-webGreen hover:text-white transition-all">
                 Education
               </button>
             </A>
@@ -132,24 +133,7 @@ const Teaching = () => {
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
         <div className="flex flex-row gap-10 py-4 overflow-auto md:flex-wrap">
-          {loading ? <p>loading</p> : classCards}
-          {/* {imgToShow} */}
-          {/* <ClassCard
-            class="2202"
-            whenTaught="Spring"
-            descript="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <ClassCard class="2202" whenTaught="Spring" />
-          <ClassCard class="2202" whenTaught="Spring" />
-          <ClassCard
-            class="2202"
-            whenTaught="Spring"
-            mode="Online"
-            nextOffered=""
-            descript="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <ClassCard class="2202" whenTaught="Spring" />
-          <ClassCard class="2202" whenTaught="Spring" /> */}
+          {loading ? <LoadingItems /> : classCards}
         </div>
       </div>
     </StandardPage>

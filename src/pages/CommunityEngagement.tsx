@@ -121,7 +121,7 @@ const CommunityEngagement = () => {
           </p>
           <div>
             <A to="filter" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-4 p-1 rounded-md text-white">
+              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white hover:bg-white hover:text-webGreen transition-all">
                 Learn More
               </button>
             </A>

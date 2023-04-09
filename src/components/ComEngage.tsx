@@ -20,7 +20,7 @@ const ComEngage = (props: any) => {
       <div className="flex flex-col justify-between gap-3">
         <div className="flex flex-col">
           <h3 className="rockwell text-xl">{props.title}</h3>
-          <div>{chipArray}</div>
+          <div className="flex flex-row gap-2">{chipArray}</div>
           <p>{props.description}</p>
         </div>
         <div>

@@ -3,9 +3,9 @@ import React from "react";
 const ComEngageChip = (props: any) => {
   return (
     <>
-      <button className="border-webGreen border-2 rounded-full text-webGreen pl-1 pr-1 text-sm">
+      <div className="border-webBlue border-2 rounded-full text-webBlue pl-1 pr-1 text-sm">
         {props.name}
-      </button>
+      </div>
     </>
   );
 };

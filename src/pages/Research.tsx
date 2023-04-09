@@ -6,13 +6,16 @@ import ResearchItems from "../components/ResearchItems";
 import SearchBar from "../components/Searchbar";
 import { db, storage } from "../data/firebaseConfiguration";
 import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
+import LoadingResearch from "../components/LoadingResearch";
 
 const Research = () => {
   const [articles, setResearchArticles] = useState<any>([]);
   const [finalArticles, setFinalArticles] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkForData = async () => {
+      setLoading(true);
       const docToGet: any = doc(db, "professordata", "research");
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
@@ -39,6 +42,7 @@ const Research = () => {
         console.log(error);
       }}))
       setFinalArticles(classCardsMade);
+      setLoading(false);
     };
     checkForData();
     // makeList();
@@ -60,6 +64,7 @@ const Research = () => {
 
   //fix this
   const filterList = async (filterCriteria: string) => {
+    setLoading(true);
     // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
     // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
     if (filterCriteria != "") {
@@ -93,8 +98,10 @@ const Research = () => {
     }}))
     console.log(filteredList)
     setFinalArticles(finalList);
+    setLoading(false);
     } else {
     setFinalArticles(finalArticles);
+    setLoading(false);
     }
 
   };
@@ -124,7 +131,7 @@ const Research = () => {
         ></img>
       </div>
       <div className="flex flex-col"></div> 
-      {finalArticles}
+      {loading ? <LoadingResearch /> : <>{finalArticles}</>}
       {/* <ul>
         {finalArticles.map((article: any) => (
       <li className="list-none">
