@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-footerGrey w-screen h-20 flex flex-col text-white p-1">
+    <div className="bg-footerGrey w-screen h-20 flex flex-col text-white p-1 fixed bottom-0 left-0">
       <p>UMSL - 574C Clark Hall</p>
       <p>(314) 516 - 5497</p>
       <p>ejohns-wolfe@umsl.edu</p>
