@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoadingItems = (props: any) => {
+const LoadingResearch = (props: any) => {
   return (
     <div className="flex flex-col-reverse md:flex-row p-16 gap-10 animate-pulse h-full w-full">
       <div
@@ -21,4 +21,4 @@ const LoadingItems = (props: any) => {
   );
 };
 
-export default LoadingItems;
+export default LoadingResearch;
