@@ -9,7 +9,7 @@ import CourseHighlight from "../components/CourseHighlight";
 import teachingImage from "../images/TEACHING.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
-import LoadingItems from "../components/LoadingItems";
+import LoadingClasses from "../components/LoadingClasses";
 
 const Teaching = () => {
   const [classes, setClasses] = useState([]);
@@ -110,7 +110,7 @@ const Teaching = () => {
               </button>
             </A>
             <A to="Experience" spy={true} smooth={true}>
-              <button className="border-webGreen border-2 p-2 rounded-md text-webGreen font-semibold hover:bg-webGreen hover:text-white transition-all">
+              <button className="border-webGreen border-2 p-2 rounded-md text-webGreen font-semibold hover:bg-webGreen hover:bg-opacity-10 transition-all">
                 Education
               </button>
             </A>
@@ -124,7 +124,6 @@ const Teaching = () => {
       </div>
       <div className="flex flex-col gap-10">
         <TeachingSection title="Philosophy" />
-        {/* <EducationSection title="Experience" /> */}
         <CourseHighlight />
       </div>
       <div className="p-8 md:p-16">
@@ -132,8 +131,8 @@ const Teaching = () => {
         <p>During my time at the University of Cincinnati and University of Missouri-St. Louis, I have created and taught ten distinct courses. Please check out my current teaching rotation below.</p>
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
-        <div className="flex flex-row gap-10 py-4 overflow-auto md:flex-wrap">
-          {loading ? <LoadingItems /> : classCards}
+        <div className="flex flex-row md:justify-center gap-10 py-4 overflow-auto md:flex-wrap">
+          {loading ? <LoadingClasses /> : classCards}
         </div>
       </div>
     </StandardPage>

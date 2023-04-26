@@ -14,12 +14,16 @@ module.exports = {
         'class-card': url('./src/images/manhattan-585245881-59864e706f53ba0011d47eea.jpg')
       },
       animation: {
-        inOut: 'inOut 0.35s forwards linear'
+        inOut: 'fadeIn 0.35s forwards linear'
       },
       keyframes: {
         inOut: {
           '0%': { transform: 'translateY(-10vw)' },
           '100%': { transform: 'translateY(0vw)' },
+        },
+        fadeIn: {
+          '0%': { transform: 'translateY(2vh)', opacity: '0%' },
+          '100%': { transform: 'translateY(0vw)', opacity: '100%' },
         }
     }
   },

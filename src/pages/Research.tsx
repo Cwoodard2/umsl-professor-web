@@ -122,7 +122,6 @@ const Research = () => {
             Discover the research that I partake in and the potential effects of
             it.
           </p>
-          <SearchBar filter={filterList} />
         </div>
         <img
           src={researchImage}
@@ -130,7 +129,7 @@ const Research = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <div className="flex flex-col"></div> 
+      <div className="flex flex-col items-center justify-center"><SearchBar filter={filterList} /></div>
       {loading ? <LoadingResearch /> : <>{finalArticles}</>}
       {/* <ul>
         {finalArticles.map((article: any) => (

@@ -14,8 +14,8 @@ const SearchBar = (props: any) => {
     <>
       <input
         id="searchbar"
-        placeholder="Type Here to search"
-        className="bg-white border-webGreen border-2 rounded-full shadow-lg p-2"
+        placeholder="Type here to search for articles"
+        className="bg-white border-webGreen border-2 rounded-full shadow-lg p-2 w-3/5"
         onChange={(e) => handleChange(e)}
       ></input>
       {/* <button onClick={(e) => handleChange(e)}>Search</button> */}
