@@ -34,7 +34,6 @@ const ResearchEditor = () => {
     setTitle("");
     setAbstract("");
     setAuthors([]);
-    
 
     const docRef = doc(db, "professordata", "research");
     await updateDoc(docRef, {
@@ -45,13 +44,13 @@ const ResearchEditor = () => {
   return (
     <>
       <CMSNav />
-      <div className="flex flex-row items-center justify-center w-screen">
+      <div className="flex flex-row items-center justify-center w-screen min-h-screen">
         <div className="flex flex-col gap-10 justify-center items-center">
-          <h1>Research Article</h1>
+          <h1 className="text-webGreen rockwell text-4xl">Research Article</h1>
           <input
             placeholder="Article Title"
             id="articleTitle"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           ></input>
@@ -62,32 +61,34 @@ const ResearchEditor = () => {
             onChange={(e) => setAbstract(e.target.value)}
             value={abstract}
           ></textarea>
-          <input
-            placeholder="Author"
-            id="authors"
-            className="border border-webGreen rounded-sm p-1"
-          ></input>
-          <ul>
-            {articleAuthors.map((author) => (
-              <li>{author}</li>
-            ))}
-          </ul>
-          <button
-            className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
-            onClick={() => addItem()}
-          >
-            Add Author
-          </button>
+          <div className="flex flex-col gap-1">
+            <input
+              placeholder="Author"
+              id="authors"
+              className="border border-webGreen rounded-sm p-1"
+            ></input>
+            <ul>
+              {articleAuthors.map((author) => (
+                <li>{author}</li>
+              ))}
+            </ul>
+            <button
+              className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
+              onClick={() => addItem()}
+            >
+              Add Author
+            </button>
+          </div>
           <input
             placeholder="Article Link"
             id="link"
             className="border border-webGreen rounded-sm p-1"
           ></input>
           <button
-            className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
+            className="bg-webGreen rounded-sm p-2 text-white"
             onClick={() => handleSubmit()}
           >
-            Submit
+            Save
           </button>
         </div>
         <ResearchItems

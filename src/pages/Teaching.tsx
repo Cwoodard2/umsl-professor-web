@@ -132,7 +132,7 @@ const Teaching = () => {
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
         <div className="flex flex-row md:justify-center gap-10 py-4 overflow-auto md:flex-wrap">
-          {loading ? <LoadingClasses /> : classCards}
+          {loading ? <><LoadingClasses /><LoadingClasses /><LoadingClasses /><LoadingClasses /></> : classCards}
         </div>
       </div>
     </StandardPage>

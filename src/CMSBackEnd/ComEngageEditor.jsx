@@ -54,25 +54,26 @@ const ComEngageEditor = () => {
   return (
     <>
       <CMSNav />
-      <div className="flex flex-row">
+      <div className="flex flex-row w-screen min-h-screen items-center justify-center">
         <div className="flex flex-col gap-10 justify-center items-center">
-          <h1>Community Engagement</h1>
+          <h1 className="text-webGreen rockwell text-4xl">Community Engagement</h1>
           <input
             placeholder="Title"
             id="title"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
             onChange={(e) => setTitle(e.target.value)}
           ></input>
           <textarea
             placeholder="Community Engagement Description"
             id="description"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+          <div className="flex flex-col gap-2">
           <input
             placeholder="Benefit"
             id="benefits"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
           ></input>
           <ul>
             {articleAuthors.map((author) => (
@@ -80,15 +81,17 @@ const ComEngageEditor = () => {
             ))}
           </ul>
           <button
-            className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
+            className="bg-webGreen rounded pl-1 pr-1 text-white"
             onClick={() => addItem()}
           >
             Add Benefit
           </button>
+          </div>
+          <div className="flex flex-col gap-2">
           <input
             placeholder="Chip"
             id="chip"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
           ></input>
           <ul>
             {chips.map((author) => (
@@ -101,16 +104,17 @@ const ComEngageEditor = () => {
           >
             Add Chip
           </button>
+          </div>
           <input
             placeholder="Organization Link"
             id="link"
-            className="border border-webGreen rounded-sm p-1"
+            className="border border-webGreen rounded p-1"
           ></input>
           <button
-            className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
+            className="bg-webGreen rounded p-2 text-white"
             onClick={() => handleSubmit()}
           >
-            Submit
+            Save
           </button>
         </div>
         <ComEngage

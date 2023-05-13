@@ -2,13 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
+
+    const verifyLogin = () => {
+
+    }
+    
     return (
-        <div className="flex flex-col justify-center items-center">
-            <h1 className="text-4xl">Login</h1>
-            <input placeholder="Username" className="border border-webGreen rounded-sm"></input>
-            <input placeholder="Password" className="border border-webGreen rounded-sm"></input>
+        <div className="flex flex-col justify-center items-center min-h-screen">
+            <h1 className="text-4xl text-webGreen rockwell">Login</h1>
+            <div className="flex flex-col gap-2">
+                <input placeholder="Username" className="border border-webGreen rounded p-1"></input>
+                <input placeholder="Password" className="border border-webGreen rounded p-1"></input>
+            </div>
+            <br></br>
             <Link to="/ResearchEditor">
-                <button className="bg-webGreen text-white pr-1 pl-1 rounded-md">Login</button>
+                <button className="bg-webGreen text-white p-2 rounded-md hover:bg-white hover:text-webGreen hover:border hover:border-webGreen transition-all">Login</button>
             </Link>
         </div>
     );
