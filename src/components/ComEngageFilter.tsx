@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ComEngageFilter = (props: any) => {
-  const handleFilter = (filter: string) => {
-    return props.tags.filter((tag: string) => tag === filter);
+  const [isActive, SetIsActive] = useState(false);
+
+
+  const handleFilter = (tag: string) => {
+    SetIsActive(!isActive);
+    props.filter(tag);
+  };
+
+  const handleActive = () => {
+    if (isActive) {
+      return "bg-webGreen bg-opacity-10"
+    }
   };
 
   return (
     <div className="pl-16 scroll-mt-10" id="filter">
-      <div className="bg-webBlue text-white w-1/5 rounded-md p-1">
+      <div className=" text-black w-1/5 rounded-md p-1 flex flex-row gap-1">
         {props.tags.map((tag: string) => (
-          <button onClick={() => props.filter(tag)}>{tag}</button>
+          <button onClick={() => handleFilter(tag)} className={`border rounded-full px-1 border-webGreen ${handleActive()}`}>{tag}</button>
         ))}
       </div>
     </div>

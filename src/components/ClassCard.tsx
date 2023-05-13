@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import teachingImage from "../images/dr-heng-moss_classroom.jpg";
 import ClassModal from "./ClassModal";
 
 const ClassCard = (props: any) => {

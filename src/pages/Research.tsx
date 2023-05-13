@@ -115,7 +115,7 @@ const Research = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-around items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl">Research</h1>
           <p className="text-black">
@@ -130,7 +130,7 @@ const Research = () => {
         ></img>
       </div>
       <div className="flex flex-col items-center justify-center"><SearchBar filter={filterList} /></div>
-      {loading ? <LoadingResearch /> : <>{finalArticles}</>}
+      {loading ? <ul><li><LoadingResearch/></li></ul> : <div className="p-16">{finalArticles}</div>}
       {/* <ul>
         {finalArticles.map((article: any) => (
       <li className="list-none">

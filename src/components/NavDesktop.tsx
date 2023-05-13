@@ -6,7 +6,7 @@ const NavDesktop = (props: any) => {
 
   return (
     <>
-        <div className="hidden md:flex md:flex-col md:justify-center md:items-center gap-2">
+        <div className="hidden md:flex md:flex-col md:justify-center md:items-center gap-2 z-50">
           <Link to="/">
             <button className="text-4xl text-webGreen rockwell">
               Elaina Johns-Wolfe
