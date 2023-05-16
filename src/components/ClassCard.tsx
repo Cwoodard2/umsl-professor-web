@@ -27,7 +27,7 @@ const ClassCard = (props: any) => {
       <h4 className="rockwell text-white text-xl">{props.class}</h4>
       <button
         onClick={changeModalState}
-        className="border-white border-4 p-1 w-full rounded-md text-white hover:text-webGreen hover:bg-white transition-all"
+        className="border-white border-4 p-1 w-full rounded-md text-white hover:text-webGreen hover:bg-white transition-all font-bold"
       >
         Learn more
       </button>

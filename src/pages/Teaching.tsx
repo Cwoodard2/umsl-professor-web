@@ -111,7 +111,7 @@ const Teaching = () => {
             </A>
             <A to="Experience" spy={true} smooth={true}>
               <button className="border-webGreen border-2 p-2 rounded-md text-webGreen font-semibold hover:bg-webGreen hover:bg-opacity-10 transition-all">
-                Education
+                Experience
               </button>
             </A>
           </div>
@@ -127,7 +127,7 @@ const Teaching = () => {
         <CourseHighlight />
       </div>
       <div className="p-8 md:p-16">
-        <h2 className="rockwell text-3xl">Experience</h2>
+        <h2 className="rockwell text-3xl" id="Experience">Experience</h2>
         <p>During my time at the University of Cincinnati and University of Missouri-St. Louis, I have created and taught ten distinct courses. Please check out my current teaching rotation below.</p>
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
