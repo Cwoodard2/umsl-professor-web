@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ComEngage from "../components/ComEngage";
+import ItemsPreview from "../components/ItemsPreview";
 import { db } from "../data/firebaseConfiguration";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 
@@ -54,8 +55,8 @@ const ComEngageEditor = () => {
   return (
     <>
       <CMSNav />
-      <div className="flex flex-row w-screen min-h-screen items-center justify-center">
-        <div className="flex flex-col gap-10 justify-center items-center">
+      <div className="flex flex-row w-screen min-h-screen justify-between">
+        <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-4xl">Community Engagement</h1>
           <input
             placeholder="Title"
@@ -123,6 +124,9 @@ const ComEngageEditor = () => {
           chips={chips}
           benefits={articleAuthors}
         />
+        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
+          <ItemsPreview document="comEngage" editor="comEngage" arrayName="comEngageOpt" storageBucket="comEngage"/>
+        </div>
       </div>
     </>
   );

@@ -3,11 +3,13 @@ import CMSNav from "../components/CMSNav";
 import ResearchItems from "../components/ResearchItems";
 import { db } from "../data/firebaseConfiguration";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import ItemsPreview from "../components/ItemsPreview";
 
 const ResearchEditor = () => {
   const [articleAuthors, setAuthors] = useState([]);
   const [title, setTitle] = useState("");
   const [abstract, setAbstract] = useState("");
+  const [loadedItem, setLoadedItem] = useState("");
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -44,9 +46,9 @@ const ResearchEditor = () => {
   return (
     <>
       <CMSNav />
-      <div className="flex flex-row items-center justify-center w-screen min-h-screen">
-        <div className="flex flex-col gap-10 justify-center items-center">
-          <h1 className="text-webGreen rockwell text-4xl">Research Article</h1>
+      <div className="flex flex-row w-screen min-h-screen justify-between">
+        <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
+          <h1 className="text-webGreen rockwell text-2xl">Research Article</h1>
           <input
             placeholder="Article Title"
             id="articleTitle"
@@ -97,6 +99,9 @@ const ResearchEditor = () => {
           articleLink=""
           authors={articleAuthors}
         />
+        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
+          <ItemsPreview document="research" editor="research" arrayName="researchArticles" storageBucket="research"/>
+        </div>
       </div>
     </>
   );

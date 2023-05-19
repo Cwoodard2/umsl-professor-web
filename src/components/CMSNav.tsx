@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import TopNavButton from "./TopNavButton";
 
 const CMSNav = (props: any) => {
   const [showMobile, setShowMobile] = useState(false);
@@ -13,15 +14,10 @@ const CMSNav = (props: any) => {
       <div className="flex flex-col h-auto w-screen justify-center items-center p-3 shadow-md shadow-black sticky top-0 bg-white gap-5">
         <div className="hidden md:flex md:flex-col md:justify-center md:items-center gap-2">
           <div className="flex flex-row gap-10">
-            <Link to="/ResearchEditor">
-              <button>Research Editor</button>
-            </Link>
-            <Link to="/ClassCardEditor">
-              <button>Class Card Editor</button>
-            </Link>
-            <Link to="/ComEngageEditor">
-              <button>Community Engagement Editor</button>
-            </Link>
+          <TopNavButton path="loginPage" name="Sign Out"/>
+            <TopNavButton path="ResearchEditor" name="Research Editor"/>
+            <TopNavButton path="ClassCardEditor" name="Class Card Editor"/>
+            <TopNavButton path="ComEngageEditor" name="Community Engagement Editor"/>
           </div>
         </div>
         <div className="md:hidden flex flex-row justify-between items-center w-screen pl-2 pr-2">
@@ -34,15 +30,9 @@ const CMSNav = (props: any) => {
         </div>
         {showMobile && (
           <div className="md:hidden flex flex-col justify-start w-screen pl-4 pr-4">
-            <Link to="/ResearchEditor">
-              <button>Research Editor</button>
-            </Link>
-            <Link to="/ClassCardEditor">
-              <button>Class Card Editor</button>
-            </Link>
-            <Link to="/ComEngageEditor">
-              <button>Community Engagement Editor</button>
-            </Link>
+            <TopNavButton path="ResearchEditor" name="Research Editor"/>
+            <TopNavButton path="ClassCardEditor" name="Class Card Editor"/>
+            <TopNavButton path="ComEngageEditor" name="Community Engagement Editor"/>
           </div>
         )}
       </div>

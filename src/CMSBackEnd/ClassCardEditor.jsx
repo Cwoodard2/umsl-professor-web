@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ClassCard from "../components/ClassCard";
+import ItemsPreview from "../components/ItemsPreview";
 import { db } from "../data/firebaseConfiguration";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 
@@ -48,8 +49,8 @@ const ClassCardEditor = () => {
   return (
     <>
       <CMSNav />
-      <div className="flex flex-row w-screen min-h-screen items-center justify-center">
-        <div className="flex flex-col gap-10 justify-center items-center">
+      <div className="flex flex-row w-screen min-h-screen justify-between">
+        <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-4xl">Class Card</h1>
           {/* <input placeholder="Class number" id="class" className="border border-webGreen rounded-sm p-1" value={card} onChange={(e) => setCard(e.target.value)}></input> */}
           <input
@@ -103,6 +104,9 @@ const ClassCardEditor = () => {
           nextOffered={nextOffered}
           classImg={""}
         />
+        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
+          <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes"/>
+        </div>
       </div>
     </>
   );
