@@ -25,6 +25,13 @@ const ResearchEditor = () => {
     setAuthors(newList);
   }
 
+  function changeItem(author, title, abstract) {
+    console.log("Called");
+    setTitle(title);
+    setAbstract(abstract);
+    setAuthors(author);
+  }
+
   const handleSubmit = async () => {
     const toSave = {
       title: title,
@@ -99,8 +106,8 @@ const ResearchEditor = () => {
           articleLink=""
           authors={articleAuthors}
         />
-        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
-          <ItemsPreview document="research" editor="research" arrayName="researchArticles" storageBucket="research"/>
+        <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">
+          <ItemsPreview document="research" editor="researchPreview" arrayName="researchArticles" storageBucket="research" updater={changeItem}/>
         </div>
       </div>
     </>

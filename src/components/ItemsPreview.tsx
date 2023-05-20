@@ -6,11 +6,18 @@ import ClassCard from "./ClassCard";
 import ComEngage from "./ComEngage";
 import ResearchItems from "./ResearchItems";
 import LoadingResearch from "./LoadingResearch";
+import ResearchPreview from "./ResearchPreview";
+import ComEngagePreview from "./ComEngagePreview";
 
 const ItemsPreview = (props: any) => {
 const [items, setItems] = useState([]);
 const [finalItems, setFinalItems] = useState([]);
 const [loading, setLoading] = useState(false);
+
+function updateResponse(author: any, title: any, abstract: any) {
+  console.log("Called");
+  props.updater(author, title, abstract)
+}
 
 useEffect(() => {
     const checkForData = async () => {
@@ -46,7 +53,7 @@ useEffect(() => {
           case "comEngage":
             {
               return (
-                <ComEngage
+                <ComEngagePreview
                 title={article.title}
                 description={article.description}
                 chips={article.chips}
@@ -64,6 +71,19 @@ useEffect(() => {
                 articleLink={article.articleLink}
                 authors={article.authors}
                 image={imgUrl}
+                />
+              );
+            }
+          case "researchPreview":
+            {
+              return (
+                <ResearchPreview
+                articleTitle={article.title}
+                abstract={article.abstract}
+                articleLink={article.articleLink}
+                authors={article.authors}
+                image={imgUrl}
+                updater={updateResponse}
                 />
               );
             }
@@ -102,7 +122,7 @@ useEffect(() => {
   //   }))
   //   return(classCardsMade);
   // }
-  return <>{finalItems}</>
+  return <div className="flex flex-col items-center">{finalItems}</div>
 }
 
 export default ItemsPreview;

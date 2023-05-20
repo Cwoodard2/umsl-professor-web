@@ -5,10 +5,10 @@ const ResearchItems = (props: any) => {
   console.log(props.authors);
   const authors = props.authors.map((author: any) => <li>{author}</li>);
   return (
-    <div className="flex flex-col-reverse md:flex-row p-16 gap-10">
+    <div className="flex flex-col-reverse md:flex-row p-16 gap-10 break-words">
       <img
         src={props.image}
-        className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-lg object-cover"
+        className="w-3/3 h-max md:w-1/3 rounded-md shadow-lg object-cover"
         alt="Placeholder alt text"
       />
       <div className="flex flex-col gap-3">

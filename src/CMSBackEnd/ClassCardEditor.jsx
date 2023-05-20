@@ -51,7 +51,7 @@ const ClassCardEditor = () => {
       <CMSNav />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
-          <h1 className="text-webGreen rockwell text-4xl">Class Card</h1>
+          <h1 className="text-webGreen rockwell text-2xl">Class Card</h1>
           {/* <input placeholder="Class number" id="class" className="border border-webGreen rounded-sm p-1" value={card} onChange={(e) => setCard(e.target.value)}></input> */}
           <input
             placeholder="class name"
@@ -104,7 +104,7 @@ const ClassCardEditor = () => {
           nextOffered={nextOffered}
           classImg={""}
         />
-        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
+        <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes"/>
         </div>
       </div>

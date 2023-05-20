@@ -57,7 +57,7 @@ const ComEngageEditor = () => {
       <CMSNav />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
-          <h1 className="text-webGreen rockwell text-4xl">Community Engagement</h1>
+          <h1 className="text-webGreen rockwell text-2xl">Community Engagement</h1>
           <input
             placeholder="Title"
             id="title"
@@ -124,7 +124,7 @@ const ComEngageEditor = () => {
           chips={chips}
           benefits={articleAuthors}
         />
-        <div className="flex flex-col gap-10 items-center border-l border-r-black py-4 px-4">
+        <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview document="comEngage" editor="comEngage" arrayName="comEngageOpt" storageBucket="comEngage"/>
         </div>
       </div>

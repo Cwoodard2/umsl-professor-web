@@ -122,6 +122,7 @@ const Research = () => {
             Discover the research that I partake in and the potential effects of
             it.
           </p>
+          <p>Quick Facts</p>
         </div>
         <img
           src={researchImage}
