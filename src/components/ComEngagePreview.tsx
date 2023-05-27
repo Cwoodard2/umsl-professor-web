@@ -11,7 +11,7 @@ const ComEngagePreview = (props: any) => {
     <ComEngageChip name={chip} />
   ));
   return (
-    <div className="flex flex-col-reverse p-4 gap-10 hover:bg-slate-400 transition-all">
+    <div className="flex flex-col-reverse p-4 gap-10 hover:bg-slate-400 transition-all" onClick={() => props.updater({benefits: props.benefits, chips: props.chips, title: props.title, description: props.description, img: props.imgFile})}>
       <img
         src={props.image}
         className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-lg object-cover"

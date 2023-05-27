@@ -23,11 +23,6 @@ const ResearchItems = (props: any) => {
               PDF
             </button>
           </a>
-          <a href={props.articleLink} target="_blank" rel="noopener noreferrer">
-            <button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold">
-              DOI
-            </button>
-          </a>
           <button className="bg-white border-webGreen border-2 rounded-md pl-2 pr-2 text-webGreen hover:text-white hover:bg-webGreen transition-all font-bold">
             CITE
           </button>
