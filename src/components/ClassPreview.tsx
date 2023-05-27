@@ -9,7 +9,7 @@ const ClassCardPreview = (props: any) => {
   }
 
   return (
-    <div className="flex flex-col w-56 sm:w-6/12 md:w-3/12 bg-webGreen rounded-md shadow-md shadow-black transition-all p-4 flex-shrink-0 gap-2">
+    <div className="flex flex-col w-56 sm:w-6/12 md:w-3/12 bg-webGreen rounded-md shadow-md shadow-black transition-all p-4 flex-shrink-0 gap-2 hover:bg-slate-400" onClick={() => props.updater({class: props.class, schedule: props.schedule, description: props.descript, mode: props.mode, nextOffered: props.nextOffered, img: props.imgFile})}>
       <ClassModal
         show={showModal}
         toggle={() => setShowModal(false)}

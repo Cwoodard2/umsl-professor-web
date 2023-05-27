@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
 import { db, storage } from "../data/firebaseConfiguration";
 import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
 import ClassCard from "./ClassCard";
@@ -8,15 +8,25 @@ import ResearchItems from "./ResearchItems";
 import LoadingResearch from "./LoadingResearch";
 import ResearchPreview from "./ResearchPreview";
 import ComEngagePreview from "./ComEngagePreview";
+import ClassCardPreview from "./ClassPreview";
 
 const ItemsPreview = (props: any) => {
 const [items, setItems] = useState([]);
 const [finalItems, setFinalItems] = useState([]);
 const [loading, setLoading] = useState(false);
 
-function updateResponse(author: any, title: any, abstract: any) {
+function updateResponse(params: any) {
   console.log("Called");
-  props.updater(author, title, abstract)
+  console.log(params);
+  props.updater(params)
+}
+
+async function handleRemove(toRemove: any) {
+  const docRef = doc(db, "professordata", props.document);
+  console.log(toRemove);
+  await updateDoc(docRef, {
+    researchArticles: arrayRemove(toRemove),
+  });
 }
 
 useEffect(() => {
@@ -36,35 +46,47 @@ useEffect(() => {
           imgUrl = url;
         });
         console.log(imgUrl);
+        console.log(article.image);
         switch(props.editor) {
           case "class":
             {
               return (
-                <ClassCard
+                <div className="flex flex-row">
+                <ClassCardPreview
                   class={article.className}
                   descript={article.description}
                   mode={article.mode}
                   nextOffered={article.nextOffered}
                   schedule={article.schedule}
                   classImg={imgUrl}
+                  imgFile={article.image}
+                  updater={updateResponse}
                 />
+                 <button>X</button>
+                </div>
               );
             }
           case "comEngage":
             {
               return (
+                <div>
                 <ComEngagePreview
                 title={article.title}
                 description={article.description}
                 chips={article.chips}
                 benefits={article.benefits}
                 image={imgUrl}
+                imgFile={article.image}
+                updater={updateResponse}
               />
+              <button>X</button>
+              </div>
               );
             }
           case "research":
             {
               return (
+                <div>
                 <ResearchItems
                 articleTitle={article.title}
                 abstract={article.abstract}
@@ -72,19 +94,30 @@ useEffect(() => {
                 authors={article.authors}
                 image={imgUrl}
                 />
+                <button>X</button>
+                </div>
               );
             }
           case "researchPreview":
             {
               return (
+                <div className="flex flex-row">
                 <ResearchPreview
                 articleTitle={article.title}
                 abstract={article.abstract}
                 articleLink={article.articleLink}
                 authors={article.authors}
                 image={imgUrl}
+                imgFile={article.image}
                 updater={updateResponse}
                 />
+                <button onClick={() => handleRemove({
+                title: article.title,
+                abstract: article.abstract,
+                articleLink: article.articleLink,
+                authors: article.authors,
+                image: article.image})}>X</button>
+                </div>
               );
             }
         }
