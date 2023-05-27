@@ -62,7 +62,13 @@ useEffect(() => {
                   imgFile={article.image}
                   updater={updateResponse}
                 />
-                 <button>X</button>
+                 <button onClick={() => handleRemove({
+                className: article.className,
+                description: article.description,
+                mode: article.mode,
+                nextOffered: article.nextOffered,
+                schedule: article.schedule,
+                image: article.image})}>X</button>
                 </div>
               );
             }
@@ -79,7 +85,13 @@ useEffect(() => {
                 imgFile={article.image}
                 updater={updateResponse}
               />
-              <button>X</button>
+              <button onClick={() => handleRemove({
+                title: article.title,
+                description: article.description,
+                benefits: article.benefits,
+                chips: article.chips,
+                articleLink: "",
+                image: article.img})}>X</button>
               </div>
               );
             }
@@ -94,7 +106,6 @@ useEffect(() => {
                 authors={article.authors}
                 image={imgUrl}
                 />
-                <button>X</button>
                 </div>
               );
             }
