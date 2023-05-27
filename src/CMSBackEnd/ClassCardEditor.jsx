@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ClassCard from "../components/ClassCard";
 import ItemsPreview from "../components/ItemsPreview";
-import { db } from "../data/firebaseConfiguration";
-import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../data/firebaseConfiguration";
+import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
 
 const ClassCardEditor = () => {
   const [description, setDescription] = useState("");
@@ -11,6 +12,9 @@ const ClassCardEditor = () => {
   const [mode, setMode] = useState("");
   const [schedule, setSchedule] = useState("");
   const [nextOffered, setNextOffered] = useState("");
+  const [imageURL, setImageURL] = useState("");
+  const [imageName, setImageName] = useState("");
+  const [loadedItem, setLoadedItem] = useState({});
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -24,27 +28,67 @@ const ClassCardEditor = () => {
   //     setAuthors(newList);
   // }
 
+  function changeItem(params) {
+    console.log("Called");
+    console.log(params);
+    setDescription(params.description);
+    setClassName(params.class);
+    setSchedule(params.schedule);
+    setNextOffered(params.nextOffered);
+    setMode(params.mode);
+    setLoadedItem({
+      className: params.class,
+      description: params.description,
+      mode: params.mode,
+      nextOffered: params.nextOffered,
+      schedule: params.schedule,
+      image: params.img
+    })
+  }
+
   const handleSubmit = async () => {
     const toSave = {
       className: className,
       description: description,
-      image: "TEACHING.png",
+      image: imageName,
       mode: mode,
       nextOffered: nextOffered,
       schedule: schedule,
     };
+
+    console.log(loadedItem);
+
+    let imageRef = ref(storage, `classes/${imageName}`);
+    await uploadBytes(imageRef, imageURL).then((snapshot) => {
+      console.log('Image uploaded!');
+    })
+
+    const docRef = doc(db, "professordata", "ClassCards");
+    await updateDoc(docRef, {
+      Cards: arrayRemove(loadedItem),
+    });
 
     setClassName("");
     setDescription("");
     setMode("");
     setNextOffered("");
     setSchedule("");
+    setLoadedItem({});
+    setImageURL("");
+    setImageName("");
 
-    const docRef = doc(db, "professordata", "ClassCards");
+
     await updateDoc(docRef, {
       Cards: arrayUnion(toSave),
     });
   };
+
+  const handleImage = (e) => {
+    console.log(e.target.files);
+    setImageURL(e.target.files[0]);
+    setImageName(e.target.files[0].name);
+    return false;
+  }
 
   return (
     <>
@@ -88,7 +132,7 @@ const ClassCardEditor = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <input type="file"></input>
+          <input id="input" type="file" onChange={(e) => handleImage(e)}></input>
           <button
             className="bg-webGreen rounded p-2 text-white"
             onClick={() => handleSubmit()}
@@ -102,10 +146,10 @@ const ClassCardEditor = () => {
           mode={mode}
           schedule={schedule}
           nextOffered={nextOffered}
-          classImg={""}
+          classImg={() => (URL.createObjectURL(imageURL))}
         />
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
-          <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes"/>
+          <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes" updater={changeItem}/>
         </div>
       </div>
     </>
