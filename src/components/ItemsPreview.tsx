@@ -25,7 +25,7 @@ async function handleRemove(toRemove: any) {
   const docRef = doc(db, "professordata", props.document);
   console.log(toRemove);
   await updateDoc(docRef, {
-    researchArticles: arrayRemove(toRemove),
+    [props.arrayName]: arrayRemove(toRemove),
   });
 }
 
@@ -81,6 +81,7 @@ useEffect(() => {
                 description={article.description}
                 chips={article.chips}
                 benefits={article.benefits}
+                orgLink={article.orgLink}
                 image={imgUrl}
                 imgFile={article.image}
                 updater={updateResponse}
@@ -91,7 +92,7 @@ useEffect(() => {
                 benefits: article.benefits,
                 chips: article.chips,
                 articleLink: "",
-                image: article.img})}>X</button>
+                image: article.image})}>X</button>
               </div>
               );
             }

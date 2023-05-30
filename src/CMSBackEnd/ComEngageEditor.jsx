@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ComEngage from "../components/ComEngage";
+import ComEngagePreview from "../components/ComEngagePreview";
 import ItemsPreview from "../components/ItemsPreview";
+import education from "../images/education.jpeg";
+import Loading from "../components/Loading";
+import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
@@ -11,9 +15,11 @@ const ComEngageEditor = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [chips, setChips] = useState([]);
+  const [orgLink, setOrgLink] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(new File([''], education));
   const [imageName, setImageName] = useState("");
+  const [loading, setLoading] = useState(false);
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -39,7 +45,7 @@ const ComEngageEditor = () => {
       description: params.description,
       benefits: params.benefits,
       chips: params.chips,
-      articleLink: "",
+      articleLink: orgLink,
       image: params.img
     })
   }
@@ -53,12 +59,14 @@ const ComEngageEditor = () => {
   }
 
   const handleSubmit = async () => {
+    setLoading(true);
     const toSave = {
       title: title,
       description: description,
       benefits: benefits,
-      articleLink: document.getElementById("link").value,
-      chips: chips
+      articleLink: orgLink,
+      chips: chips,
+      image: imageName
     };
 
     let imageRef = ref(storage, `comEngage/${imageName}`);
@@ -75,6 +83,7 @@ const ComEngageEditor = () => {
     setBenefits([]);
     setChips([]);
     setDescription("");
+    setOrgLink("");
     setLoadedItem({});
     setImageURL("");
     setImageName("");
@@ -83,6 +92,8 @@ const ComEngageEditor = () => {
     await updateDoc(docRef, {
       comEngageOpt: arrayUnion(toSave),
     });
+
+    setLoading(false);
   };
 
   const handleImage = (e) => {
@@ -95,6 +106,7 @@ const ComEngageEditor = () => {
   return (
     <>
       <CMSNav />
+      <Loading show={loading} />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Community Engagement</h1>
@@ -152,6 +164,8 @@ const ComEngageEditor = () => {
             placeholder="Organization Link"
             id="link"
             className="border border-webGreen rounded p-1"
+            onChange={(e) => setOrgLink(e.target.value)}
+            value={orgLink}
           ></input>
           <input id="input" type="file" onChange={(e) => handleImage(e)}></input>
           <button
@@ -166,6 +180,7 @@ const ComEngageEditor = () => {
           description={description}
           chips={chips}
           benefits={benefits}
+          image={URL.createObjectURL(imageURL)}
         />
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview document="comEngage" editor="comEngage" arrayName="comEngageOpt" storageBucket="comEngage" updater={changeItem}/>

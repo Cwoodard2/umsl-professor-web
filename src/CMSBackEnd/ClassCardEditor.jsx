@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ClassCard from "../components/ClassCard";
+import education from "../images/education.jpeg";
 import ItemsPreview from "../components/ItemsPreview";
+import Loading from "../components/Loading";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../data/firebaseConfiguration";
 import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
@@ -12,9 +14,10 @@ const ClassCardEditor = () => {
   const [mode, setMode] = useState("");
   const [schedule, setSchedule] = useState("");
   const [nextOffered, setNextOffered] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
+  const [loading, setLoading] = useState(false);
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -47,6 +50,7 @@ const ClassCardEditor = () => {
   }
 
   const handleSubmit = async () => {
+    setLoading(true);
     const toSave = {
       className: className,
       description: description,
@@ -81,6 +85,7 @@ const ClassCardEditor = () => {
     await updateDoc(docRef, {
       Cards: arrayUnion(toSave),
     });
+    setLoading(false);
   };
 
   const handleImage = (e) => {
@@ -93,6 +98,7 @@ const ClassCardEditor = () => {
   return (
     <>
       <CMSNav />
+      <Loading show={loading}/>
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Class Card</h1>
@@ -140,14 +146,16 @@ const ClassCardEditor = () => {
             Save
           </button>
         </div>
+        <div className="w-6/12 h-1/2 flex justify-center py-4">
         <ClassCard
           class={className}
           descript={description}
           mode={mode}
           schedule={schedule}
           nextOffered={nextOffered}
-          classImg={() => (URL.createObjectURL(imageURL))}
+          classImg={(URL.createObjectURL(imageURL))}
         />
+        </div>
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes" updater={changeItem}/>
         </div>

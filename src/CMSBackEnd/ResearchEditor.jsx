@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ResearchItems from "../components/ResearchItems";
+import Loading from "../components/Loading";
+import education from "../images/education.jpeg";
 import { db, storage } from "../data/firebaseConfiguration";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -11,8 +13,9 @@ const ResearchEditor = () => {
   const [title, setTitle] = useState("");
   const [abstract, setAbstract] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
+  const [loading, setLoading] = useState(false);
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -48,13 +51,13 @@ const ResearchEditor = () => {
   }
 
   const handleSubmit = async () => {
-    console.log(loadedItem);
+    setLoading(true);
     const toSave = {
       title: title,
       abstract: abstract,
       authors: articleAuthors,
       articleLink: document.getElementById("link").value,
-      image: "research2.jpeg"
+      image: imageName
     };
 
     let imageRef = ref(storage, `research/${imageName}`);
@@ -78,6 +81,7 @@ const ResearchEditor = () => {
     await updateDoc(docRef, {
       researchArticles: arrayUnion(toSave),
     });
+    setLoading(false);
   };
 
   const handleImage = (e) => {
@@ -90,6 +94,7 @@ const ResearchEditor = () => {
   return (
     <>
       <CMSNav />
+      <Loading show={loading}/>
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Research Article</h1>
@@ -143,6 +148,7 @@ const ResearchEditor = () => {
           abstract={abstract}
           articleLink=""
           authors={articleAuthors}
+          image={URL.createObjectURL(imageURL)}
         />
         <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">
           <ItemsPreview document="research" editor="researchPreview" arrayName="researchArticles" storageBucket="research" updater={changeItem}/>
