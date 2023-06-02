@@ -3,7 +3,17 @@ import researchImage from "../images/research2.jpeg";
 
 const ResearchPreview = (props: any) => {
   return (
-    <div className="flex flex-row md:flex-col-reverse p-4 gap-10 hover:bg-slate-400 rounded transition-all" onClick={() => props.updater({author: props.authors, articleTitle: props.articleTitle, abstract: props.abstract, img: props.imgFile})}>
+    <div
+      className="flex flex-row md:flex-col-reverse p-4 gap-10 hover:bg-slate-400 rounded transition-all"
+      onClick={() =>
+        props.updater({
+          author: props.authors,
+          articleTitle: props.articleTitle,
+          abstract: props.abstract,
+          img: props.imgFile,
+        })
+      }
+    >
       <img
         src={props.image}
         className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-lg object-cover"

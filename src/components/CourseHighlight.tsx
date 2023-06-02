@@ -16,11 +16,14 @@ const CourseHighlight = (props: any) => {
         manage quantitative data, use ArcGIS software to map eviction records
         and calculate tract eviction filing rates, and finally, write about our
         findings in a report. Our work was featured by the local ABC affiliate
-        (see <a href="https://tinyurl.com/ycppkvjf">https://tinyurl.com/ycppkvjf</a> and <a href="https://tinyurl.com/ybv7mq8a">https://tinyurl.com/ybv7mq8a</a>) and
-        appeared in an exhibit on women of color in downtown Cincinnati. As a
-        result of our report and my community partners’ efforts, Cincinnati City
-        Council approved a budget for a pilot eviction prevention program, and
-        recently passed new legislation to bolster tenants’ rights. I was
+        (see{" "}
+        <a href="https://tinyurl.com/ycppkvjf">https://tinyurl.com/ycppkvjf</a>{" "}
+        and{" "}
+        <a href="https://tinyurl.com/ybv7mq8a">https://tinyurl.com/ybv7mq8a</a>)
+        and appeared in an exhibit on women of color in downtown Cincinnati. As
+        a result of our report and my community partners’ efforts, Cincinnati
+        City Council approved a budget for a pilot eviction prevention program,
+        and recently passed new legislation to bolster tenants’ rights. I was
         subsequently honored as the “Advocate of the Year” by the Cincinnati
         Affordable Housing Advocates organization for this work.{" "}
       </p>

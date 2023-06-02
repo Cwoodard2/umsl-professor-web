@@ -4,7 +4,8 @@ const SearchBar = (props: any) => {
   let filterArray = [];
 
   const handleChange = (e: any) => {
-    const filter = document.getElementById("searchbar") as HTMLInputElement || null;
+    const filter =
+      (document.getElementById("searchbar") as HTMLInputElement) || null;
     props.filter(e.target.value);
     // filter.value = "";
     return;

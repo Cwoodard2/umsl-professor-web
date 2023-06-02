@@ -21,29 +21,32 @@ const CommunityEngagement = () => {
       const data = comEngageDoc.data();
       console.log(data.comEngageOpt);
       setComEngageItems(data.comEngageOpt);
-      const classCardsMade: any = await Promise.all(data.comEngageOpt.map(async (activity: any) => {
-        let imgUrl:any = "";
-        try {
-          let imageRef = ref(storage, `comEngage/${activity.image}`);
-        await getDownloadURL(imageRef).then((url) => {
-          console.log(url);
-          imgUrl = url;
-        });
-        console.log(imgUrl);
-        return (
-          <ComEngage
-          title={activity.title}
-          description={activity.description}
-          chips={activity.chips}
-          benefits={activity.benefits}
-          image={imgUrl}
-        />
-        );
-      } catch(error) {
-        console.log(error);
-      }}))
+      const classCardsMade: any = await Promise.all(
+        data.comEngageOpt.map(async (activity: any) => {
+          let imgUrl: any = "";
+          try {
+            let imageRef = ref(storage, `comEngage/${activity.image}`);
+            await getDownloadURL(imageRef).then((url) => {
+              console.log(url);
+              imgUrl = url;
+            });
+            console.log(imgUrl);
+            return (
+              <ComEngage
+                title={activity.title}
+                description={activity.description}
+                chips={activity.chips}
+                benefits={activity.benefits}
+                image={imgUrl}
+              />
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
       setFinalComEngageItems(classCardsMade);
-      setLoading(false)
+      setLoading(false);
     };
     checkForData();
   }, []);
@@ -73,39 +76,42 @@ const CommunityEngagement = () => {
     // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
     if (filterCriteria != "") {
       const filteredList = comEngageItems.filter((article: any) =>
-      // let thisVar = article['title'];
-      // console.log(typeof thisVar);
-      // thisVar.includes(filterCriteria.toLowerCase())
-      article.chips.includes(filterCriteria)
-    );
-
-    const classCardsMade: any = await Promise.all(filteredList.map(async (activity: any) => {
-      let imgUrl:any = "";
-      try {
-        let imageRef = ref(storage, `comEngage/${activity.image}`);
-      await getDownloadURL(imageRef).then((url) => {
-        console.log(url);
-        imgUrl = url;
-      });
-      console.log(imgUrl);
-      return (
-        <ComEngage
-        title={activity.title}
-        description={activity.description}
-        chips={activity.chips}
-        benefits={activity.benefits}
-        image={imgUrl}
-      />
+        // let thisVar = article['title'];
+        // console.log(typeof thisVar);
+        // thisVar.includes(filterCriteria.toLowerCase())
+        article.chips.includes(filterCriteria)
       );
-    } catch(error) {
-      console.log(error);
-    }}))
-    setFinalComEngageItems(classCardsMade);
-    setLoading(false);
-  } else {
-    setComEngageItems(finalComEngageItems);
-    setLoading(false);
-  }
+
+      const classCardsMade: any = await Promise.all(
+        filteredList.map(async (activity: any) => {
+          let imgUrl: any = "";
+          try {
+            let imageRef = ref(storage, `comEngage/${activity.image}`);
+            await getDownloadURL(imageRef).then((url) => {
+              console.log(url);
+              imgUrl = url;
+            });
+            console.log(imgUrl);
+            return (
+              <ComEngage
+                title={activity.title}
+                description={activity.description}
+                chips={activity.chips}
+                benefits={activity.benefits}
+                image={imgUrl}
+              />
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
+      setFinalComEngageItems(classCardsMade);
+      setLoading(false);
+    } else {
+      setComEngageItems(finalComEngageItems);
+      setLoading(false);
+    }
   };
 
   return (
@@ -133,11 +139,14 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      {loading ? <LoadingItems /> : 
-      (<><ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
-      {finalComEngageItems}
-      </>
-    )}
+      {loading ? (
+        <LoadingItems />
+      ) : (
+        <>
+          <ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
+          {finalComEngageItems}
+        </>
+      )}
     </StandardPage>
   );
 };

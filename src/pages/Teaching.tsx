@@ -24,28 +24,31 @@ const Teaching = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setClasses(data.Cards);
-      const classCardsMade: any = await Promise.all(data.Cards.map(async (article: any) => {
-        let imgUrl:any = "";
-        try {
-          let imageRef = ref(storage, `classes/${article.image}`);
-        await getDownloadURL(imageRef).then((url) => {
-          console.log(url);
-          imgUrl = url;
-        });
-        console.log(imgUrl);
-        return (
-          <ClassCard
-            class={article.className}
-            descript={article.description}
-            mode={article.mode}
-            nextOffered={article.nextOffered}
-            schedule={article.schedule}
-            classImg={imgUrl}
-          />
-        );
-      } catch(error) {
-        console.log(error);
-      }}))
+      const classCardsMade: any = await Promise.all(
+        data.Cards.map(async (article: any) => {
+          let imgUrl: any = "";
+          try {
+            let imageRef = ref(storage, `classes/${article.image}`);
+            await getDownloadURL(imageRef).then((url) => {
+              console.log(url);
+              imgUrl = url;
+            });
+            console.log(imgUrl);
+            return (
+              <ClassCard
+                class={article.className}
+                descript={article.description}
+                mode={article.mode}
+                nextOffered={article.nextOffered}
+                schedule={article.schedule}
+                classImg={imgUrl}
+              />
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
       console.log(classCardsMade);
       setClassCards(classCardsMade);
       setLoading(false);
@@ -55,27 +58,29 @@ const Teaching = () => {
   }, []);
 
   async function makeClassCards() {
-    const classCardsMade = await Promise.all(classes.map(async (article: any) => {
-      let imgUrl:any = "";
-      let imageRef = ref(storage, article.image);
-      await getDownloadURL(imageRef).then((url) => {
-        console.log(url);
-        imgUrl = url;
-      });
-      console.log(imgUrl);
-      return (
-        <ClassCard
-          class={article.className}
-          classNumber={article.classNumber}
-          descript={article.description}
-          mode={article.mode}
-          whenTaught={article.nextOffered}
-          schedule={article.schedule}
-          classImg={imgUrl}
-        />
-      );
-    }))
-    return(classCardsMade);
+    const classCardsMade = await Promise.all(
+      classes.map(async (article: any) => {
+        let imgUrl: any = "";
+        let imageRef = ref(storage, article.image);
+        await getDownloadURL(imageRef).then((url) => {
+          console.log(url);
+          imgUrl = url;
+        });
+        console.log(imgUrl);
+        return (
+          <ClassCard
+            class={article.className}
+            classNumber={article.classNumber}
+            descript={article.description}
+            mode={article.mode}
+            whenTaught={article.nextOffered}
+            schedule={article.schedule}
+            classImg={imgUrl}
+          />
+        );
+      })
+    );
+    return classCardsMade;
   }
 
   // const makeList = () => {
@@ -127,12 +132,27 @@ const Teaching = () => {
         <CourseHighlight />
       </div>
       <div className="p-8 md:p-16">
-        <h2 className="rockwell text-3xl" id="Experience">Experience</h2>
-        <p>During my time at the University of Cincinnati and University of Missouri-St. Louis, I have created and taught ten distinct courses. Please check out my current teaching rotation below.</p>
+        <h2 className="rockwell text-3xl" id="Experience">
+          Experience
+        </h2>
+        <p>
+          During my time at the University of Cincinnati and University of
+          Missouri-St. Louis, I have created and taught ten distinct courses.
+          Please check out my current teaching rotation below.
+        </p>
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
         <div className="flex flex-row md:justify-center gap-10 py-4 overflow-auto md:flex-wrap">
-          {loading ? <><LoadingClasses /><LoadingClasses /><LoadingClasses /><LoadingClasses /></> : classCards}
+          {loading ? (
+            <>
+              <LoadingClasses />
+              <LoadingClasses />
+              <LoadingClasses />
+              <LoadingClasses />
+            </>
+          ) : (
+            classCards
+          )}
         </div>
       </div>
     </StandardPage>

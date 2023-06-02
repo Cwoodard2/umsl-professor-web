@@ -5,7 +5,7 @@ import communityImage from "../images/communityengagement.png";
 
 const ComEngage = (props: any) => {
   const benefitsArray = props.benefits.map((benefit: string, index: number) => (
-    <BenefitsCircle benefit={benefit} num={index}/>
+    <BenefitsCircle benefit={benefit} num={index} />
   ));
   const chipArray = props.chips.map((chip: string) => (
     <ComEngageChip name={chip} />

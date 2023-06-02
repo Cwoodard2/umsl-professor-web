@@ -9,38 +9,46 @@ import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
 import LoadingResearch from "../components/LoadingResearch";
 
 const Research = () => {
+  //   let scholar = require('google-scholar-extended')
   const [articles, setResearchArticles] = useState<any>([]);
   const [finalArticles, setFinalArticles] = useState<any>([]);
+  const [scholarFacts, setScholarFacts] = useState<any>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkForData = async () => {
       setLoading(true);
+      // scholar.profile('nOnDaasAAAAJ').then((resultsObj: any) => {
+      //   console.log(resultsObj)
+      // })
       const docToGet: any = doc(db, "professordata", "research");
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setResearchArticles(data.researchArticles);
-      const classCardsMade: any = await Promise.all(data.researchArticles.map(async (article: any) => {
-        let imgUrl:any = "";
-        try {
-          let imageRef = ref(storage, `research/${article.image}`);
-        await getDownloadURL(imageRef).then((url) => {
-          console.log(url);
-          imgUrl = url;
-        });
-        console.log(imgUrl);
-        return (
-          <ResearchItems
-          articleTitle={article.title}
-          abstract={article.abstract}
-          articleLink={article.articleLink}
-          authors={article.authors}
-          image={imgUrl}
-          />
-        );
-      } catch(error) {
-        console.log(error);
-      }}))
+      const classCardsMade: any = await Promise.all(
+        data.researchArticles.map(async (article: any) => {
+          let imgUrl: any = "";
+          try {
+            let imageRef = ref(storage, `research/${article.image}`);
+            await getDownloadURL(imageRef).then((url) => {
+              console.log(url);
+              imgUrl = url;
+            });
+            console.log(imgUrl);
+            return (
+              <ResearchItems
+                articleTitle={article.title}
+                abstract={article.abstract}
+                articleLink={article.articleLink}
+                authors={article.authors}
+                image={imgUrl}
+              />
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
       setFinalArticles(classCardsMade);
       setLoading(false);
     };
@@ -48,70 +56,52 @@ const Research = () => {
     // makeList();
   }, []);
 
-  // function makeList() {
-  //   const articleArray = articles.map((article: any) => (
-  //     <li className="list-none">
-  //       <ResearchItems
-  //         articleTitle={article.title}
-  //         abstract={article.abstract}
-  //         articleLink={article.articleLink}
-  //         authors={article.authors}
-  //       />
-  //     </li>
-  //   ));
-  //   setFinalArticles(articleArray);
-  //};
-
   //fix this
   const filterList = async (filterCriteria: string) => {
     setLoading(true);
-    // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
-    // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
+    // console.log(articles[2].title);
+    console.log("article".toLowerCase().includes("ARTICLE".toLowerCase()));
     if (filterCriteria != "") {
-      const filteredList = articles.filter((article: any) =>
-      // let thisVar = article['title'];
-      // console.log(typeof thisVar);
-      // thisVar.includes(filterCriteria.toLowerCase())
-      article.title === filterCriteria
-    );
-
-    const finalList = await Promise.all(filteredList.map(async (article: any) => {
-      let imgUrl:any = "";
-      try {
-        let imageRef = ref(storage, `research/${article.image}`);
-      await getDownloadURL(imageRef).then((url) => {
-        console.log(url);
-        imgUrl = url;
-      });
-      console.log(imgUrl);
-      return (
-        <ResearchItems
-        articleTitle={article.title}
-        abstract={article.abstract}
-        articleLink={article.articleLink}
-        authors={article.authors}
-        image={imgUrl}
-        />
+      const filteredList = articles.filter(
+        (article: any) =>
+          // console.log(typeof thisVar);
+          article.title.includes(filterCriteria.toLowerCase())
+        // article.title === filterCriteria
       );
-    } catch(error) {
-      console.log(error);
-    }}))
-    console.log(filteredList)
-    setFinalArticles(finalList);
-    setLoading(false);
+
+      const finalList = await Promise.all(
+        filteredList.map(async (article: any) => {
+          let imgUrl: any = "";
+          try {
+            let imageRef = ref(storage, `research/${article.image}`);
+            await getDownloadURL(imageRef).then((url) => {
+              console.log(url);
+              imgUrl = url;
+            });
+            console.log(imgUrl);
+            return (
+              <ResearchItems
+                articleTitle={article.title}
+                abstract={article.abstract}
+                articleLink={article.articleLink}
+                authors={article.authors}
+                image={imgUrl}
+              />
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
+      console.log(filteredList);
+      setFinalArticles(finalList);
+      setLoading(false);
     } else {
-    setFinalArticles(finalArticles);
-    setLoading(false);
+      console.log(articles);
+      setFinalArticles(finalArticles);
+      setLoading(false);
     }
-
   };
-
-//   const articlesToShow = makeList();
-//   console.log(articlesToShow);
-
-  // while (finalArticles.length == 0) {
-  //   return (<h1>Loading</h1>);
-  // }
 
   return (
     <StandardPage>
@@ -122,16 +112,26 @@ const Research = () => {
             Discover the research that I partake in and the potential effects of
             it.
           </p>
-          <p>Quick Facts</p>
+          {/* <p>Quick Facts</p> */}
         </div>
         <img
           src={researchImage}
-          className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
+          className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
-      <div className="flex flex-col items-center justify-center"><SearchBar filter={filterList} /></div>
-      {loading ? <ul><li><LoadingResearch/></li></ul> : <div className="p-16">{finalArticles}</div>}
+      <div className="flex flex-col items-center justify-center">
+        <SearchBar filter={filterList} />
+      </div>
+      {loading ? (
+        <ul>
+          <li>
+            <LoadingResearch />
+          </li>
+        </ul>
+      ) : (
+        <div>{finalArticles}</div>
+      )}
       {/* <ul>
         {finalArticles.map((article: any) => (
       <li className="list-none">

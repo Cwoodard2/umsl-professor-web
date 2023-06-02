@@ -6,7 +6,13 @@ import ItemsPreview from "../components/ItemsPreview";
 import Loading from "../components/Loading";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../data/firebaseConfiguration";
-import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 
 const ClassCardEditor = () => {
   const [description, setDescription] = useState("");
@@ -45,8 +51,8 @@ const ClassCardEditor = () => {
       mode: params.mode,
       nextOffered: params.nextOffered,
       schedule: params.schedule,
-      image: params.img
-    })
+      image: params.img,
+    });
   }
 
   const handleSubmit = async () => {
@@ -64,8 +70,8 @@ const ClassCardEditor = () => {
 
     let imageRef = ref(storage, `classes/${imageName}`);
     await uploadBytes(imageRef, imageURL).then((snapshot) => {
-      console.log('Image uploaded!');
-    })
+      console.log("Image uploaded!");
+    });
 
     const docRef = doc(db, "professordata", "ClassCards");
     await updateDoc(docRef, {
@@ -81,7 +87,6 @@ const ClassCardEditor = () => {
     setImageURL("");
     setImageName("");
 
-
     await updateDoc(docRef, {
       Cards: arrayUnion(toSave),
     });
@@ -93,12 +98,12 @@ const ClassCardEditor = () => {
     setImageURL(e.target.files[0]);
     setImageName(e.target.files[0].name);
     return false;
-  }
+  };
 
   return (
     <>
       <CMSNav />
-      <Loading show={loading}/>
+      <Loading show={loading} />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Class Card</h1>
@@ -138,7 +143,11 @@ const ClassCardEditor = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <input id="input" type="file" onChange={(e) => handleImage(e)}></input>
+          <input
+            id="input"
+            type="file"
+            onChange={(e) => handleImage(e)}
+          ></input>
           <button
             className="bg-webGreen rounded p-2 text-white"
             onClick={() => handleSubmit()}
@@ -147,17 +156,23 @@ const ClassCardEditor = () => {
           </button>
         </div>
         <div className="w-6/12 h-1/2 flex justify-center py-4">
-        <ClassCard
-          class={className}
-          descript={description}
-          mode={mode}
-          schedule={schedule}
-          nextOffered={nextOffered}
-          classImg={(URL.createObjectURL(imageURL))}
-        />
+          <ClassCard
+            class={className}
+            descript={description}
+            mode={mode}
+            schedule={schedule}
+            nextOffered={nextOffered}
+            classImg={URL.createObjectURL(imageURL)}
+          />
         </div>
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
-          <ItemsPreview document="ClassCards" editor="class" arrayName="Cards" storageBucket="classes" updater={changeItem}/>
+          <ItemsPreview
+            document="ClassCards"
+            editor="class"
+            arrayName="Cards"
+            storageBucket="classes"
+            updater={changeItem}
+          />
         </div>
       </div>
     </>

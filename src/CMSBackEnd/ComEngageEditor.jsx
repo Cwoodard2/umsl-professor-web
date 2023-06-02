@@ -8,7 +8,13 @@ import Loading from "../components/Loading";
 import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 
 const ComEngageEditor = () => {
   const [benefits, setBenefits] = useState([]);
@@ -17,7 +23,7 @@ const ComEngageEditor = () => {
   const [chips, setChips] = useState([]);
   const [orgLink, setOrgLink] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
-  const [imageURL, setImageURL] = useState(new File([''], education));
+  const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
   const [loading, setLoading] = useState(false);
   // type researchToAdd = {
@@ -28,9 +34,7 @@ const ComEngageEditor = () => {
   // }
 
   function addItem() {
-    const newList = benefits.concat(
-      document.getElementById("benefits").value
-    );
+    const newList = benefits.concat(document.getElementById("benefits").value);
     document.getElementById("benefits").value = "";
     setBenefits(newList);
   }
@@ -39,21 +43,19 @@ const ComEngageEditor = () => {
     setTitle(params.title);
     setDescription(params.description);
     setBenefits(params.benefits);
-    setChips(params.chips)
+    setChips(params.chips);
     setLoadedItem({
       title: params.title,
       description: params.description,
       benefits: params.benefits,
       chips: params.chips,
       articleLink: orgLink,
-      image: params.img
-    })
+      image: params.img,
+    });
   }
 
   function addChip() {
-    const newList = chips.concat(
-      document.getElementById("chip").value
-    );
+    const newList = chips.concat(document.getElementById("chip").value);
     document.getElementById("chip").value = "";
     setChips(newList);
   }
@@ -66,13 +68,13 @@ const ComEngageEditor = () => {
       benefits: benefits,
       articleLink: orgLink,
       chips: chips,
-      image: imageName
+      image: imageName,
     };
 
     let imageRef = ref(storage, `comEngage/${imageName}`);
     await uploadBytes(imageRef, imageURL).then((snapshot) => {
-      console.log('Image uploaded!');
-    })
+      console.log("Image uploaded!");
+    });
 
     const docRef = doc(db, "professordata", "comEngage");
     await updateDoc(docRef, {
@@ -88,7 +90,6 @@ const ComEngageEditor = () => {
     setImageURL("");
     setImageName("");
 
-
     await updateDoc(docRef, {
       comEngageOpt: arrayUnion(toSave),
     });
@@ -101,7 +102,7 @@ const ComEngageEditor = () => {
     setImageURL(e.target.files[0]);
     setImageName(e.target.files[0].name);
     return false;
-  }
+  };
 
   return (
     <>
@@ -109,7 +110,9 @@ const ComEngageEditor = () => {
       <Loading show={loading} />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
-          <h1 className="text-webGreen rockwell text-2xl">Community Engagement</h1>
+          <h1 className="text-webGreen rockwell text-2xl">
+            Community Engagement
+          </h1>
           <input
             placeholder="Title"
             id="title"
@@ -125,40 +128,40 @@ const ComEngageEditor = () => {
             value={description}
           ></textarea>
           <div className="flex flex-col gap-2">
-          <input
-            placeholder="Benefit"
-            id="benefits"
-            className="border border-webGreen rounded p-1"
-          ></input>
-          <ul>
-            {benefits.map((author) => (
-              <li>{author}</li>
-            ))}
-          </ul>
-          <button
-            className="bg-webGreen rounded pl-1 pr-1 text-white"
-            onClick={() => addItem()}
-          >
-            Add Benefit
-          </button>
+            <input
+              placeholder="Benefit"
+              id="benefits"
+              className="border border-webGreen rounded p-1"
+            ></input>
+            <ul>
+              {benefits.map((author) => (
+                <li>{author}</li>
+              ))}
+            </ul>
+            <button
+              className="bg-webGreen rounded pl-1 pr-1 text-white"
+              onClick={() => addItem()}
+            >
+              Add Benefit
+            </button>
           </div>
           <div className="flex flex-col gap-2">
-          <input
-            placeholder="Chip"
-            id="chip"
-            className="border border-webGreen rounded p-1"
-          ></input>
-          <ul>
-            {chips.map((author) => (
-              <li>{author}</li>
-            ))}
-          </ul>
-          <button
-            className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
-            onClick={() => addChip()}
-          >
-            Add Chip
-          </button>
+            <input
+              placeholder="Chip"
+              id="chip"
+              className="border border-webGreen rounded p-1"
+            ></input>
+            <ul>
+              {chips.map((author) => (
+                <li>{author}</li>
+              ))}
+            </ul>
+            <button
+              className="bg-webGreen rounded-sm pl-1 pr-1 text-white"
+              onClick={() => addChip()}
+            >
+              Add Chip
+            </button>
           </div>
           <input
             placeholder="Organization Link"
@@ -167,7 +170,11 @@ const ComEngageEditor = () => {
             onChange={(e) => setOrgLink(e.target.value)}
             value={orgLink}
           ></input>
-          <input id="input" type="file" onChange={(e) => handleImage(e)}></input>
+          <input
+            id="input"
+            type="file"
+            onChange={(e) => handleImage(e)}
+          ></input>
           <button
             className="bg-webGreen rounded p-2 text-white"
             onClick={() => handleSubmit()}
@@ -183,7 +190,13 @@ const ComEngageEditor = () => {
           image={URL.createObjectURL(imageURL)}
         />
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
-          <ItemsPreview document="comEngage" editor="comEngage" arrayName="comEngageOpt" storageBucket="comEngage" updater={changeItem}/>
+          <ItemsPreview
+            document="comEngage"
+            editor="comEngage"
+            arrayName="comEngageOpt"
+            storageBucket="comEngage"
+            updater={changeItem}
+          />
         </div>
       </div>
     </>

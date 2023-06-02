@@ -5,7 +5,13 @@ import Loading from "../components/Loading";
 import education from "../images/education.jpeg";
 import { db, storage } from "../data/firebaseConfiguration";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import ItemsPreview from "../components/ItemsPreview";
 
 const ResearchEditor = () => {
@@ -41,8 +47,8 @@ const ResearchEditor = () => {
       abstract: params.abstract,
       authors: params.author,
       articleLink: "",
-      image: params.img
-    })
+      image: params.img,
+    });
   }
 
   function removeItem(author) {
@@ -57,13 +63,13 @@ const ResearchEditor = () => {
       abstract: abstract,
       authors: articleAuthors,
       articleLink: document.getElementById("link").value,
-      image: imageName
+      image: imageName,
     };
 
     let imageRef = ref(storage, `research/${imageName}`);
     await uploadBytes(imageRef, imageURL).then((snapshot) => {
-      console.log('Image uploaded!');
-    })
+      console.log("Image uploaded!");
+    });
 
     const docRef = doc(db, "professordata", "research");
     await updateDoc(docRef, {
@@ -77,7 +83,6 @@ const ResearchEditor = () => {
     setImageURL("");
     setImageName("");
 
-
     await updateDoc(docRef, {
       researchArticles: arrayUnion(toSave),
     });
@@ -89,12 +94,12 @@ const ResearchEditor = () => {
     setImageURL(e.target.files[0]);
     setImageName(e.target.files[0].name);
     return false;
-  }
+  };
 
   return (
     <>
       <CMSNav />
-      <Loading show={loading}/>
+      <Loading show={loading} />
       <div className="flex flex-row w-screen min-h-screen justify-between">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Research Article</h1>
@@ -120,7 +125,9 @@ const ResearchEditor = () => {
             ></input>
             <ul>
               {articleAuthors.map((author) => (
-                <li key={author}>{author} <button onClick={() => removeItem(author)}>X</button></li>
+                <li key={author}>
+                  {author} <button onClick={() => removeItem(author)}>X</button>
+                </li>
               ))}
             </ul>
             <button
@@ -135,7 +142,11 @@ const ResearchEditor = () => {
             id="link"
             className="border border-webGreen rounded-sm p-1"
           ></input>
-          <input id="input" type="file" onChange={(e) => handleImage(e)}></input>
+          <input
+            id="input"
+            type="file"
+            onChange={(e) => handleImage(e)}
+          ></input>
           <button
             className="bg-webGreen rounded-sm p-2 text-white"
             onClick={() => handleSubmit()}
@@ -151,7 +162,13 @@ const ResearchEditor = () => {
           image={URL.createObjectURL(imageURL)}
         />
         <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">
-          <ItemsPreview document="research" editor="researchPreview" arrayName="researchArticles" storageBucket="research" updater={changeItem}/>
+          <ItemsPreview
+            document="research"
+            editor="researchPreview"
+            arrayName="researchArticles"
+            storageBucket="research"
+            updater={changeItem}
+          />
         </div>
       </div>
     </>
