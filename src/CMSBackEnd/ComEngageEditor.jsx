@@ -15,6 +15,9 @@ import {
   updateDoc,
   arrayRemove,
 } from "firebase/firestore";
+import { auth } from "../data/firebaseConfiguration";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ComEngageEditor = () => {
   const [benefits, setBenefits] = useState([]);
@@ -26,12 +29,23 @@ const ComEngageEditor = () => {
   const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
   //     authors: any[],
   //     articleLink: any
   // }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+    } else {
+      navigate("/loginPage");
+    }
+  });
 
   function addItem() {
     const newList = benefits.concat(document.getElementById("benefits").value);

@@ -13,6 +13,9 @@ import {
   updateDoc,
   arrayRemove,
 } from "firebase/firestore";
+import { auth } from "../data/firebaseConfiguration";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ClassCardEditor = () => {
   const [description, setDescription] = useState("");
@@ -24,6 +27,7 @@ const ClassCardEditor = () => {
   const [imageName, setImageName] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -36,6 +40,20 @@ const ClassCardEditor = () => {
   //     document.getElementById("whenTaught").value = "";
   //     setAuthors(newList);
   // }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      console.log(uid);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      navigate("/loginPage");
+    }
+  });
 
   function changeItem(params) {
     console.log("Called");

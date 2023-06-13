@@ -16,14 +16,11 @@ const ItemsPreview = (props: any) => {
   const [loading, setLoading] = useState(false);
 
   function updateResponse(params: any) {
-    console.log("Called");
-    console.log(params);
     props.updater(params);
   }
 
   async function handleRemove(toRemove: any) {
     const docRef = doc(db, "professordata", props.document);
-    console.log(toRemove);
     await updateDoc(docRef, {
       [props.arrayName]: arrayRemove(toRemove),
     });
@@ -31,11 +28,9 @@ const ItemsPreview = (props: any) => {
 
   useEffect(() => {
     const checkForData = async () => {
-      console.log(props.document);
       const docToGet: any = doc(db, "professordata", props.document);
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
-      console.log(data);
       setItems(data[props.arrayName]);
       const classCardsMade: any = await Promise.all(
         data[props.arrayName].map(async (article: any) => {
@@ -46,11 +41,8 @@ const ItemsPreview = (props: any) => {
               `${props.storageBucket}/${article.image}`
             );
             await getDownloadURL(imageRef).then((url) => {
-              console.log(url);
               imgUrl = url;
             });
-            console.log(imgUrl);
-            console.log(article.image);
             switch (props.editor) {
               case "class": {
                 return (
@@ -167,29 +159,6 @@ const ItemsPreview = (props: any) => {
     // makeList();
   }, []);
 
-  // async function makeClassCards() {
-  //   const classCardsMade = await Promise.all(items.map(async (article: any) => {
-  //     let imgUrl:any = "";
-  //     let imageRef = ref(storage, article.image);
-  //     await getDownloadURL(imageRef).then((url) => {
-  //       console.log(url);
-  //       imgUrl = url;
-  //     });
-  //     console.log(imgUrl);
-  //     return (
-  //       <ClassCard
-  //         class={article.className}
-  //         classNumber={article.classNumber}
-  //         descript={article.description}
-  //         mode={article.mode}
-  //         whenTaught={article.nextOffered}
-  //         schedule={article.schedule}
-  //         classImg={imgUrl}
-  //       />
-  //     );
-  //   }))
-  //   return(classCardsMade);
-  // }
   return <div className="flex flex-col items-center">{finalItems}</div>;
 };
 

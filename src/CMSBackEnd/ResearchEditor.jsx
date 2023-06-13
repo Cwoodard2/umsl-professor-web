@@ -13,6 +13,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import ItemsPreview from "../components/ItemsPreview";
+import { auth } from "../data/firebaseConfiguration";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ResearchEditor = () => {
   const [articleAuthors, setAuthors] = useState([]);
@@ -22,6 +25,21 @@ const ResearchEditor = () => {
   const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      console.log(uid);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      navigate("/loginPage");
+    }
+  });
   // type researchToAdd = {
   //     title: any,
   //     abstract: any,
@@ -38,7 +56,6 @@ const ResearchEditor = () => {
   }
 
   function changeItem(params) {
-    console.log("Called");
     setTitle(params.articleTitle);
     setAbstract(params.abstract);
     setAuthors(params.author);
@@ -90,7 +107,6 @@ const ResearchEditor = () => {
   };
 
   const handleImage = (e) => {
-    console.log(e.target.files);
     setImageURL(e.target.files[0]);
     setImageName(e.target.files[0].name);
     return false;
