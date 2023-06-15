@@ -8,72 +8,29 @@ import LoadingItems from "../components/LoadingItems";
 import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
 import { ref, getDownloadURL } from "firebase/storage";
+import { loadItems } from "../data/LoadingFunctions";
 
 const CommunityEngagement = () => {
   const [comEngageItems, setComEngageItems] = useState([]);
   const [finalComEngageItems, setFinalComEngageItems] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const checkForData = async () => {
       setLoading(true);
       const docToGet: any = doc(db, "professordata", "comEngage");
       const comEngageDoc: any = await getDoc(docToGet);
       const data = comEngageDoc.data();
-      console.log(data.comEngageOpt);
       setComEngageItems(data.comEngageOpt);
-      const classCardsMade: any = await Promise.all(
-        data.comEngageOpt.map(async (activity: any) => {
-          let imgUrl: any = "";
-          try {
-            let imageRef = ref(storage, `comEngage/${activity.image}`);
-            await getDownloadURL(imageRef).then((url) => {
-              console.log(url);
-              imgUrl = url;
-            });
-            console.log(imgUrl);
-            return (
-              <ComEngage
-                title={activity.title}
-                description={activity.description}
-                chips={activity.chips}
-                benefits={activity.benefits}
-                image={imgUrl}
-              />
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        })
-      );
+      const classCardsMade: any = await loadItems(data.comEngageOpt, "comEngage");
       setFinalComEngageItems(classCardsMade);
       setLoading(false);
     };
     checkForData();
   }, []);
 
-  const makeList = () => {
-    const articleArray = comEngageItems.map((activity: any) => (
-      <li className="list-none">
-        <ComEngage
-          title={activity.title}
-          description={activity.description}
-          chips={activity.chips}
-          benefits={activity.benefits}
-        />
-      </li>
-    ));
-    console.log(articleArray);
-    return articleArray;
-  };
-  console.log(comEngageItems[0]);
-
-  const articlesToShow = makeList();
-  console.log(articlesToShow);
-
   const filterList = async (filterCriteria: string) => {
     setLoading(true);
-    // console.log(articles[0].title.toLowerCase().includes(filterCriteria.toLowerCase()));
-    // console.log("article.title".toLowerCase().includes("ARTICLE".toLowerCase()))
     if (filterCriteria != "") {
       const filteredList = comEngageItems.filter((article: any) =>
         // let thisVar = article['title'];
@@ -82,30 +39,7 @@ const CommunityEngagement = () => {
         article.chips.includes(filterCriteria)
       );
 
-      const classCardsMade: any = await Promise.all(
-        filteredList.map(async (activity: any) => {
-          let imgUrl: any = "";
-          try {
-            let imageRef = ref(storage, `comEngage/${activity.image}`);
-            await getDownloadURL(imageRef).then((url) => {
-              console.log(url);
-              imgUrl = url;
-            });
-            console.log(imgUrl);
-            return (
-              <ComEngage
-                title={activity.title}
-                description={activity.description}
-                chips={activity.chips}
-                benefits={activity.benefits}
-                image={imgUrl}
-              />
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        })
-      );
+      const classCardsMade: any = await loadItems(filteredList, "comEngage");
       setFinalComEngageItems(classCardsMade);
       setLoading(false);
     } else {
@@ -116,9 +50,9 @@ const CommunityEngagement = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row md:justify-around items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row md:justify-between items-start bg-white p-16 gap-10">
         <div className="flex flex-col gap-2">
-          <h1 className="text-webGreen rockwell text-4xl">
+          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">
             Community Engagement
           </h1>
           <p className="text-black">

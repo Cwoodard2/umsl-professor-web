@@ -12,7 +12,7 @@ const Navigation = (props: any) => {
 
   return (
     <>
-      <div className="flex flex-col h-auto w-screen justify-center items-center p-3 shadow-md shadow-black sticky top-0 bg-white gap-5">
+      <div className="flex flex-col h-auto w-screen justify-center items-center p-3 shadow-md shadow-black sticky top-0 bg-white gap-5 z-50">
         <NavDesktop />
         <NavMobile />
       </div>

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
 import researchImage from "../images/research2.jpeg";
-import ResearchItems from "../components/ResearchItems";
 import SearchBar from "../components/Searchbar";
-import { db, storage } from "../data/firebaseConfiguration";
-import { listAll, ref, getStorage, getDownloadURL } from "firebase/storage";
+import { db } from "../data/firebaseConfiguration";
 import LoadingResearch from "../components/LoadingResearch";
+import { loadItems } from "../data/LoadingFunctions";
 
 const Research = () => {
   //   let scholar = require('google-scholar-extended')
@@ -25,30 +24,7 @@ const Research = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setResearchArticles(data.researchArticles);
-      const classCardsMade: any = await Promise.all(
-        data.researchArticles.map(async (article: any) => {
-          let imgUrl: any = "";
-          try {
-            let imageRef = ref(storage, `research/${article.image}`);
-            await getDownloadURL(imageRef).then((url) => {
-              console.log(url);
-              imgUrl = url;
-            });
-            console.log(imgUrl);
-            return (
-              <ResearchItems
-                articleTitle={article.title}
-                abstract={article.abstract}
-                articleLink={article.articleLink}
-                authors={article.authors}
-                image={imgUrl}
-              />
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        })
-      );
+      const classCardsMade: any = await loadItems(data.researchArticles, "research");
       setFinalArticles(classCardsMade);
       setLoading(false);
     };
@@ -69,35 +45,10 @@ const Research = () => {
         // article.title === filterCriteria
       );
 
-      const finalList = await Promise.all(
-        filteredList.map(async (article: any) => {
-          let imgUrl: any = "";
-          try {
-            let imageRef = ref(storage, `research/${article.image}`);
-            await getDownloadURL(imageRef).then((url) => {
-              console.log(url);
-              imgUrl = url;
-            });
-            console.log(imgUrl);
-            return (
-              <ResearchItems
-                articleTitle={article.title}
-                abstract={article.abstract}
-                articleLink={article.articleLink}
-                authors={article.authors}
-                image={imgUrl}
-              />
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        })
-      );
-      console.log(filteredList);
+      const finalList = await loadItems(filteredList, "research");
       setFinalArticles(finalList);
       setLoading(false);
     } else {
-      console.log(articles);
       setFinalArticles(finalArticles);
       setLoading(false);
     }
@@ -107,7 +58,7 @@ const Research = () => {
     <StandardPage>
       <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
         <div className="flex flex-col gap-2">
-          <h1 className="text-webGreen rockwell text-4xl">Research</h1>
+          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Research</h1>
           <p className="text-black">
             Discover the research that I partake in and the potential effects of
             it.

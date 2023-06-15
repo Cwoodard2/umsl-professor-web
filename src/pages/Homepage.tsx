@@ -65,7 +65,7 @@ const Homepage = (props: any) => {
           alt="Elaina Johns-Wolfe"
         ></img>
         <div className="flex flex-col">
-          <h1 className="text-webGreen rockwell text-4xl">
+          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">
             Hello I'm Elaina Johns-Wolfe!
           </h1>
           <p className="text-black">

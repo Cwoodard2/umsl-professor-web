@@ -8,7 +8,7 @@ const CourseHighlight = (props: any) => {
       <div className="w-12 h-1 bg-webBlue rounded-sm"></div>
       <br></br>
       <p>
-        In Spring 2018. my Urban Society students and I worked with two local
+        In Spring 2018 my Urban Society students and I worked with two local
         organizations—Housing Opportunities Made Equal and Legal Aid Society of
         Southwest Ohio—to create a report on the geography of evictions in
         Hamilton County, Ohio, using data from nearly 50,000 eviction court
@@ -17,9 +17,9 @@ const CourseHighlight = (props: any) => {
         and calculate tract eviction filing rates, and finally, write about our
         findings in a report. Our work was featured by the local ABC affiliate
         (see{" "}
-        <a href="https://tinyurl.com/ycppkvjf">https://tinyurl.com/ycppkvjf</a>{" "}
+        <a href="https://tinyurl.com/ycppkvjf" className="font-bold">https://tinyurl.com/ycppkvjf</a>{" "}
         and{" "}
-        <a href="https://tinyurl.com/ybv7mq8a">https://tinyurl.com/ybv7mq8a</a>)
+        <a href="https://tinyurl.com/ybv7mq8a" className="font-bold">https://tinyurl.com/ybv7mq8a</a>)
         and appeared in an exhibit on women of color in downtown Cincinnati. As
         a result of our report and my community partners’ efforts, Cincinnati
         City Council approved a budget for a pilot eviction prevention program,
