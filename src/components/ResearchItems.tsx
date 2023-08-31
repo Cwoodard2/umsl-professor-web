@@ -4,17 +4,19 @@ import researchImage from "../images/research2.jpeg";
 const ResearchItems = (props: any) => {
   const authors = props.authors.map((author: any, index: any) => <li key={index}>{author}{index == 2 ? "" : ","}</li>);
   return (
-    <div className="flex flex-col-reverse md:flex-row p-16 gap-10 break-words animate-inOut">
+    <div className="flex flex-col-reverse md:flex-row p-16 md:px-48 md:py-16 gap-10 break-words animate-inOut">
       <img
         src={props.image}
         className="w-3/3 h-max md:w-1/3 rounded-md shadow-lg object-cover"
         alt="Placeholder alt text"
       />
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
         <div>
           <h3 className="rockwell text-2xl md:text-3xl">{props.articleTitle}</h3>
           <p>{props.abstract}</p>
-          <ul className="list-none flex flex-row gap-2">{authors}</ul>
+          <br></br>
+          <ul className="flex flex-col gap-2 list-disc">{authors}</ul>
+          <ul className="list-none flex flex-row"><li><div className="h-2 w-2 bg-webGreen rounded-full"></div></li><li><div className="h-2 w-2 bg-webGreen rounded-full border-white border-2"></div></li><li><div className="h-2 w-2 bg-webGreen rounded-full border-white border-2 "></div></li></ul>
         </div>
         <div className="flex flex-row gap-5">
           <a href={props.articleLink} target="_blank" rel="noopener noreferrer">

@@ -3,7 +3,7 @@ import ExperiencePart from "./ExperiencePart";
 
 const CourseHighlight = (props: any) => {
   return (
-    <div className="p-8 md:p-16 bg-webGreen text-white" id="Course Highlight">
+    <div className="p-8 md:py-16 md:px-48 bg-webGreen text-white" id="Course Highlight">
       <h2 className="rockwell text-3xl">Course Highlight</h2>
       <div className="w-12 h-1 bg-webBlue rounded-sm"></div>
       <br></br>

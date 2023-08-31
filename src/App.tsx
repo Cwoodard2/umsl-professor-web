@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, ScrollRestoration} from 'react-router-dom';
 import LoginPage from './CMSBackEnd/loginPage';
 import ResearchEditor from './CMSBackEnd/ResearchEditor';
 import ComEngageEditor from './CMSBackEnd/ComEngageEditor';
@@ -14,6 +14,7 @@ import './App.css';
 
 function App() {
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/ClassCardEditor" element={<ClassCardEditor />}></Route>
       </Routes>
     </Router>
+    </>
   );
 }
 

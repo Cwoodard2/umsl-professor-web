@@ -45,9 +45,9 @@ const HomepageInfo = (props: any) => {
       <div className="flex flex-col gap-12 items-start h-auto md:h-3/5">
         <div>
           <h1 className={colors.headingStyle}>{props.title}</h1>
-          <div className={colors.divStyle}></div>
+          {/* <div className={colors.divStyle}></div> */}
+          <p className={`${colors.textColors}`}>{props.description}</p>
         </div>
-        <p className={colors.textColors}>{props.description}</p>
         <NavButton
           path={props.route}
           PlaceToGo={props.goingWhere}

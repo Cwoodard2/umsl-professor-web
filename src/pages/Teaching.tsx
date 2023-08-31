@@ -32,16 +32,18 @@ const Teaching = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-8 md:p-16 gap-10">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Teaching</h1>
-          <p className="text-black text-lg">
-            Explore the ways I impact my students and the experience that I have
-            in higher education
-          </p>
+      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-8 md:py-16 md:px-48 gap-10">
+        <div className="flex flex-col gap-10">
+          <div>
+            <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Teaching</h1>
+            <p className="text-black text-lg">
+              Explore the ways I impact my students and the experience that I have
+              in higher education
+            </p>
+          </div>
           <div className="flex gap-3">
             <A to="Philosophy" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white font-semibold hover:bg-white hover:text-webGreen transition-all">
+              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white font-semibold hover:bg-webGreenDark hover:border-webGreenDark transition-all">
                 Philosophy
               </button>
             </A>
@@ -62,7 +64,7 @@ const Teaching = () => {
         <TeachingSection title="Philosophy" />
         <CourseHighlight />
       </div>
-      <div className="p-8 md:p-16">
+      <div className="p-8 md:py-16 md:px-48">
         <h2 className="rockwell text-3xl" id="Experience">
           Experience
         </h2>

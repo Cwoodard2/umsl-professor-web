@@ -11,7 +11,7 @@ const ComEngage = (props: any) => {
     <ComEngageChip name={chip} />
   ));
   return (
-    <div className="flex flex-col-reverse md:flex-row p-16 gap-10 animate-inOut">
+    <div className="flex flex-col-reverse md:flex-row p-16 md:px-48 md:py-16 gap-10 animate-inOut">
       <img
         src={props.image}
         className="w-3/3 h-3/5 md:w-1/3 md:h-3/5 rounded-md shadow-lg object-cover"
@@ -25,10 +25,10 @@ const ComEngage = (props: any) => {
           <p>{props.description}</p>
         </div>
         <br></br>
-        <div>
+        {benefitsArray && <div>
           <h4 className="rockwell text-lg">Benefits</h4>
           <div className="flex flex-row gap-10">{benefitsArray}</div>
-        </div>
+        </div>}
       </div>
     </div>
   );

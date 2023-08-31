@@ -65,16 +65,11 @@ const Homepage = (props: any) => {
           alt="Elaina Johns-Wolfe"
         ></img>
         <div className="flex flex-col">
-          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">
-            Hello I'm Elaina Johns-Wolfe!
+          <h1 className="text-webGreen rockwell text-4xl md:text-5xl">
+            Hello, I'm Elaina Johns-Wolfe!
           </h1>
           <p className="text-black">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
+            Greetings everyone, I am a socicology professor at the University of Missouri - Saint Louis (UMSL). I've been there for 3 years now and am staring my 4th. I have a large passion for serving and studying underpriveldged communities specifically in the housing market. I have done extensive research in the Saint Louis area as it is ripe for learning about the discrimination against non-white races. Additonally, I teach numerous classes at UMSL. 
           </p>
         </div>
       </div>

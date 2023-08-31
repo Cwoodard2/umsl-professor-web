@@ -56,14 +56,15 @@ const Research = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 gap-10">
+      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 md:px-48 md:py-16 gap-10">
         <div className="flex flex-col gap-2">
           <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Research</h1>
-          <p className="text-black">
+          <p className="text-black text-lg">
             Discover the research that I partake in and the potential effects of
             it.
           </p>
-          {/* <p>Quick Facts</p> */}
+          <p>Quick Facts</p>
+          <p>135 Citations, 6 Published Articles</p>
         </div>
         <img
           src={researchImage}
