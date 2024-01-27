@@ -1,16 +1,16 @@
 import React from "react";
 import researchImage from "../images/research2.jpeg";
 
-const ResearchItems = (props: any) => {
+const ResearchItemsCopy = (props: any) => {
   const authors = props.authors.map((author: any, index: any) => <li key={index}>{author}{index == (props.authors.length - 1) ? "" : ","}</li>);
   return (
-    <div className="flex flex-col-reverse md:flex-row p-16 md:px-48 md:py-16 gap-10 break-words animate-inOut">
+    <div className="flex flex-col gap-10 break-words animate-inOut items-center max-w-md border-webGreen border rounded-lg">
       <img
         src={props.image}
-        className="w-3/3 h-max md:w-1/3 rounded-md shadow-lg object-cover"
+        className="w-3/3 h-3/5 md:w-12/12 md:h-auto rounded-md shadow-lg object-contain"
         alt="Placeholder alt text"
       />
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-16 md:px-12 md:py-16">
         <div>
           <h3 className="rockwell text-2xl md:text-3xl">{props.articleTitle}</h3>
           <p>{props.abstract}</p>
@@ -30,4 +30,4 @@ const ResearchItems = (props: any) => {
   );
 };
 
-export default ResearchItems;
+export default ResearchItemsCopy;

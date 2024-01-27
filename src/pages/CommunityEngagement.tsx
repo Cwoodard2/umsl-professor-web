@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { Link as A } from "react-scroll";
 import StandardPage from "../components/StandardPage";
-import ComEngage from "../components/ComEngage";
-import ComEngageFilter from "../components/ComEngageFilter";
+import ComEngageFilterNew from "../components/ComEngageFilterNew";
 import LoadingItems from "../components/LoadingItems";
 import communityImage from "../images/communityengagement.png";
-import { db, storage } from "../data/firebaseConfiguration";
-import { ref, getDownloadURL } from "firebase/storage";
+import { db } from "../data/firebaseConfiguration";
 import { loadItems } from "../data/LoadingFunctions";
 
 const CommunityEngagement = () => {
@@ -75,13 +73,14 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </div>
+      <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} />
       {loading ? (
         <LoadingItems />
       ) : (
-        <>
-          <ComEngageFilter tags={["Housing", "Urban"]} filter={filterList} />
+        <div className="flex md:flex-row flex-col gap-10 m-4 flex-wrap justify-center">
+          {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
           {finalComEngageItems}
-        </>
+        </div>
       )}
     </StandardPage>
   );

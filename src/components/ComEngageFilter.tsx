@@ -40,7 +40,6 @@ const ComEngageFilter = (props: any) => {
           <SearchBar />
           <div></div>
           <div>
-            <h4>Tags</h4>
             <div className=" text-black w-1/5 rounded-md p-1 flex flex-row gap-1">
               {props.tags.map((tag: string) => (
                 <button

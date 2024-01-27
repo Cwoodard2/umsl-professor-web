@@ -56,15 +56,22 @@ const Research = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 md:px-48 md:py-16 gap-10">
+      {/* <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 md:px-48 md:py-16 gap-10"> */}
+      <div className="w-screen flex flex-col md:flex-row md:justify-between items-start bg-webGreen p-16 md:px-48 md:py-16 gap-10">
         <div className="flex flex-col gap-2">
-          <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Research</h1>
-          <p className="text-black text-lg">
+          <h1 className="text-white rockwell text-4xl md:text-6xl">Research</h1>
+          <p className="text-white text-lg">
             Discover the research that I partake in and the potential effects of
             it.
           </p>
-          <p>Quick Facts</p>
-          <p>135 Citations, 6 Published Articles</p>
+          {/* <h1 className="text-webGreen rockwell text-2xl md:text-5xl">Discover my research and the potential effects of
+            it.</h1>
+          <p className="text-black text-lg">
+            Discover the research that I partake in and the potential effects of
+            it.
+          </p> */}
+          {/* <p>Quick Facts</p> */}
+          {/* <p>135 Citations, 6 Published Articles</p> */}
         </div>
         <img
           src={researchImage}
@@ -82,20 +89,9 @@ const Research = () => {
           </li>
         </ul>
       ) : (
-        <div>{finalArticles}</div>
+        <div className="flex md:flex-row flex-col flex-wrap justify-center gap-10 md:my-6">{finalArticles}</div>
+        // grid grid-flow-row grid-cols-2 items-center justify-center
       )}
-      {/* <ul>
-        {finalArticles.map((article: any) => (
-      <li className="list-none">
-        <ResearchItems
-          articleTitle={article.title}
-          abstract={article.abstract}
-          articleLink={article.articleLink}
-          authors={article.authors}
-        />
-      </li>
-    ))}
-    </ul> */}
     </StandardPage>
   );
 };
