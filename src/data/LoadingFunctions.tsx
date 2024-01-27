@@ -1,6 +1,7 @@
 import ComEngage from "../components/ComEngage";
 import ClassCard from "../components/ClassCard";
 import ResearchItems from "../components/ResearchItems";
+import ResearchItemsCopy from "../components/ResearchItems copy";
 import { getDownloadURL, ref } from "firebase/storage";
 import { db, storage } from "../data/firebaseConfiguration";
 
@@ -26,7 +27,7 @@ export const loadItems = async (mapList: any, document: string) => {
             );
           case "research":
             return (
-              <ResearchItems
+              <ResearchItemsCopy
                 articleTitle={activity.title}
                 abstract={activity.abstract}
                 articleLink={activity.articleLink}
