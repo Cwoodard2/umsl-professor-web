@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CMSNav from "../components/CMSNav";
 import ComEngage from "../components/ComEngage";
 import ComEngagePreview from "../components/ComEngagePreview";
+import ItemsPreviewDropDown from "../components/ItemsPreviewDropDown";
 import ItemsPreview from "../components/ItemsPreview";
 import education from "../images/education.jpeg";
 import Loading from "../components/Loading";
@@ -53,17 +54,20 @@ const ComEngageEditor = () => {
   }
 
   function changeItem(params) {
-    setTitle(params.title);
-    setDescription(params.description);
-    setBenefits(params.benefits);
-    setChips(params.chips);
+    console.log(params);
+    const finalData = JSON.parse(params);
+    console.log(finalData);
+    setTitle(finalData.title);
+    setDescription(finalData.description);
+    setBenefits(finalData.benefits);
+    setChips(finalData.chips);
     setLoadedItem({
-      title: params.title,
-      description: params.description,
-      benefits: params.benefits,
-      chips: params.chips,
+      title: finalData.title,
+      description: finalData.description,
+      benefits: finalData.benefits,
+      chips: finalData.chips,
       articleLink: orgLink,
-      image: params.img,
+      image: finalData.img,
     });
   }
 
@@ -121,7 +125,7 @@ const ComEngageEditor = () => {
     <>
       <CMSNav />
       <Loading show={loading} />
-      <div className="flex flex-row w-screen min-h-screen justify-between">
+      <div className="flex flex-row w-screen min-h-screen">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">
             Community Engagement
@@ -195,7 +199,18 @@ const ComEngageEditor = () => {
             Save
           </button>
         </div>
-        <div className="flex flex-row items-start m-10">
+        <div className="flex flex-col items-center gap-20 w-full">
+        <div className="h-20 shadow-lg w-full flex flex-row justify-between px-4 items-center">
+            <button>+</button>
+            <ItemsPreviewDropDown
+              document="comEngage"
+              editor="comEngage"
+              arrayName="comEngageOpt"
+              storageBucket="comEngage"
+              updater={changeItem}
+            />
+            <button className="border-4 rounded-lg border-red-600 p-3 text-red-600">Delete Me</button>
+            </div>
         <ComEngage
           title={title}
           description={description}
@@ -204,7 +219,7 @@ const ComEngageEditor = () => {
           image={URL.createObjectURL(imageURL)}
         />
         </div>
-        <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
+        {/* <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview
             document="comEngage"
             editor="comEngage"
@@ -212,7 +227,7 @@ const ComEngageEditor = () => {
             storageBucket="comEngage"
             updater={changeItem}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

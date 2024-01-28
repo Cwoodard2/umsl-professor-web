@@ -59,6 +59,8 @@ const ResearchEditor = () => {
   }
 
   function changeItem(params) {
+    if (params !== "NotValid") {
+      
     console.log(params);
     const finalData = JSON.parse(params);
     console.log(finalData);
@@ -74,6 +76,7 @@ const ResearchEditor = () => {
       articleLink: finalData.articleLink,
       image: finalData.img,
     });
+  }
   }
 
   function removeItem(author) {

@@ -55,42 +55,35 @@ const ItemsPreviewDropDown = (props: any) => {
                 imgFile: article.image,
                 updater: updateResponse,
                 }
+
+                const finalValue = JSON.stringify(value);
                 return (
                     <option
-                      value={value}
+                      value={finalValue}
                     >
-                      {article.class}
+                      {article.className}
                     </option>
                 );
               }
               case "comEngage": {
+                const value = {
+                      title: article.title,
+                      description: article.description,
+                      chips: article.chips,
+                      benefits: article.benefits,
+                      orgLink: article.orgLink,
+                      image: imgUrl,
+                      imgFile: article.image,
+                      updater: updateResponse,
+                }
+
+                const finalValue = JSON.stringify(value);
                 return (
-                  <div>
-                    <ComEngagePreview
-                      title={article.title}
-                      description={article.description}
-                      chips={article.chips}
-                      benefits={article.benefits}
-                      orgLink={article.orgLink}
-                      image={imgUrl}
-                      imgFile={article.image}
-                      updater={updateResponse}
-                    />
-                    <button
-                      onClick={() =>
-                        handleRemove({
-                          title: article.title,
-                          description: article.description,
-                          benefits: article.benefits,
-                          chips: article.chips,
-                          articleLink: "",
-                          image: article.image,
-                        })
-                      }
-                    >
-                      X
-                    </button>
-                  </div>
+                  <option
+                            value={finalValue}
+                          >
+                            {article.title}
+                          </option>
                 );
               }
               case "research": {
@@ -141,7 +134,7 @@ const ItemsPreviewDropDown = (props: any) => {
     // makeList();
   }, []);
 
-  return <select id="itemPreview" className="p-2 rounded-lg bg-white border-webGreen border-4 text-webGreen font-bold" onChange={(event) => updateResponse(event.target.value)}>{finalItems}</select>;
+  return <select id="itemPreview" className="p-2 rounded-lg bg-white border-webGreen border-4 text-webGreen font-bold" onChange={(event) => updateResponse(event.target.value)}><option value="NotValid">Select an item to edit</option>{finalItems}</select>;
 };
 
 export default ItemsPreviewDropDown;

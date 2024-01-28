@@ -3,6 +3,7 @@ import CMSNav from "../components/CMSNav";
 import ClassCard from "../components/ClassCard";
 import education from "../images/education.jpeg";
 import ItemsPreview from "../components/ItemsPreview";
+import ItemsPreviewDropDown from "../components/ItemsPreviewDropDown";
 import Loading from "../components/Loading";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../data/firebaseConfiguration";
@@ -58,18 +59,19 @@ const ClassCardEditor = () => {
   function changeItem(params) {
     console.log("Called");
     console.log(params);
-    setDescription(params.description);
-    setClassName(params.class);
-    setSchedule(params.schedule);
-    setNextOffered(params.nextOffered);
-    setMode(params.mode);
+    const finalData = JSON.parse(params);
+    setDescription(finalData.description);
+    setClassName(finalData.class);
+    setSchedule(finalData.schedule);
+    setNextOffered(finalData.nextOffered);
+    setMode(finalData.mode);
     setLoadedItem({
-      className: params.class,
-      description: params.description,
-      mode: params.mode,
-      nextOffered: params.nextOffered,
-      schedule: params.schedule,
-      image: params.img,
+      className: finalData.class,
+      description: finalData.description,
+      mode: finalData.mode,
+      nextOffered: finalData.nextOffered,
+      schedule: finalData.schedule,
+      image: finalData.img,
     });
   }
 
@@ -173,7 +175,18 @@ const ClassCardEditor = () => {
             Save
           </button>
         </div>
-        <div className="w-6/12 h-1/2 flex justify-center py-4">
+        <div className="flex flex-col items-center gap-20 w-full">
+        <div className="h-20 shadow-lg w-full flex flex-row justify-between px-4 items-center">
+            <button>+</button>
+            <ItemsPreviewDropDown
+              document="ClassCards"
+              editor="class"
+              arrayName="Cards"
+              storageBucket="classes"
+              updater={changeItem}
+            />
+            <button className="border-4 rounded-lg border-red-600 p-3 text-red-600">Delete Me</button>
+            </div>
           <ClassCard
             class={className}
             descript={description}
@@ -183,7 +196,7 @@ const ClassCardEditor = () => {
             classImg={URL.createObjectURL(imageURL)}
           />
         </div>
-        <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
+        {/* <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview
             document="ClassCards"
             editor="class"
@@ -191,7 +204,7 @@ const ClassCardEditor = () => {
             storageBucket="classes"
             updater={changeItem}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );
