@@ -18,7 +18,7 @@ const ClassModal = (props: any) => {
         <p>{props.description}</p>
         <br></br>
         <div className="flex flex-row gap-5">
-          <p>Mode: {props.mode}</p>
+          <p>Modality: {props.mode}</p>
           {props.nextOffered && <p>Next Offered: {props.nextOffered}</p>}
           <p>How Often It's Taught: {props.taught}</p>
         </div>

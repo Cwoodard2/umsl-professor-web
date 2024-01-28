@@ -10,7 +10,7 @@ import ResearchPreview from "./ResearchPreview";
 import ComEngagePreview from "./ComEngagePreview";
 import ClassCardPreview from "./ClassPreview";
 
-const ItemsPreview = (props: any) => {
+const ItemsPreviewDropDown = (props: any) => {
   const [items, setItems] = useState([]);
   const [finalItems, setFinalItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const ItemsPreview = (props: any) => {
     const docRef = doc(db, "professordata", props.document);
     await updateDoc(docRef, {
       [props.arrayName]: arrayRemove(toRemove),
-    }).then(() => {console.log("Deleted")});
+    });
   }
 
   useEffect(() => {
@@ -45,33 +45,22 @@ const ItemsPreview = (props: any) => {
             });
             switch (props.editor) {
               case "class": {
+               const value: any = {
+                class: article.className,
+                descript: article.description,
+                mode: article.mode,
+                nextOffered: article.nextOffered,
+                schedule: article.schedule,
+                classImg: imgUrl,
+                imgFile: article.image,
+                updater: updateResponse,
+                }
                 return (
-                  <div className="flex flex-row">
-                    <ClassCardPreview
-                      class={article.className}
-                      descript={article.description}
-                      mode={article.mode}
-                      nextOffered={article.nextOffered}
-                      schedule={article.schedule}
-                      classImg={imgUrl}
-                      imgFile={article.image}
-                      updater={updateResponse}
-                    />
-                    <button
-                      onClick={() =>
-                        handleRemove({
-                          className: article.className,
-                          description: article.description,
-                          mode: article.mode,
-                          nextOffered: article.nextOffered,
-                          schedule: article.schedule,
-                          image: article.image,
-                        })
-                      }
+                    <option
+                      value={value}
                     >
-                      X
-                    </button>
-                  </div>
+                      {article.class}
+                    </option>
                 );
               }
               case "comEngage": {
@@ -118,32 +107,25 @@ const ItemsPreview = (props: any) => {
                 );
               }
               case "researchPreview": {
-                return (
-                  <div className="flex flex-row">
-                    <ResearchPreview
-                      articleTitle={article.title}
-                      abstract={article.abstract}
-                      articleLink={article.articleLink}
-                      authors={article.authors}
-                      image={imgUrl}
-                      imgFile={article.image}
-                      updater={updateResponse}
-                    />
-                    <button
-                      onClick={() =>
-                        handleRemove({
-                          title: article.title,
-                          abstract: article.abstract,
-                          articleLink: article.articleLink,
-                          authors: article.authors,
-                          image: article.image,
-                        })
-                      }
-                    >
-                      X
-                    </button>
-                  </div>
-                );
+                const value: any = {
+                  articleTitle: article.title,
+                      abstract: article.abstract,
+                      articleLink: article.articleLink,
+                      authors: article.authors,
+                      image: imgUrl,
+                      imgFile: article.image,
+                      updater: updateResponse
+                  }
+                  const finalValue = JSON.stringify(value);
+
+                      return (
+                          <option
+                            value={finalValue}
+                          >
+                            {article.title}
+                          </option>
+                      );
+              
               }
             }
           } catch (error) {
@@ -159,7 +141,7 @@ const ItemsPreview = (props: any) => {
     // makeList();
   }, []);
 
-  return <div className="flex flex-col items-center">{finalItems}</div>;
+  return <select id="itemPreview" className="p-2 rounded-lg bg-white border-webGreen border-4 text-webGreen font-bold" onChange={(event) => updateResponse(event.target.value)}>{finalItems}</select>;
 };
 
-export default ItemsPreview;
+export default ItemsPreviewDropDown;

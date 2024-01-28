@@ -16,7 +16,7 @@ const ComEngage = (props: any) => {
       <img
         src={props.image}
         className="w-3/3 h-3/5 md:w-12/12 md:h-auto rounded-md shadow-lg object-contain"
-        alt="Placeholder alt text"
+        alt="Community Engagement Picture"
       />
       <div className="flex flex-row gap-2">{chipArray}</div>
       <div className="flex flex-col gap-3 items-center">

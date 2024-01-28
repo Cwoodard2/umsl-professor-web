@@ -28,15 +28,15 @@ const CMSNav = (props: any) => {
       <div className="flex flex-col h-auto w-screen justify-center items-center p-3 shadow-md shadow-black sticky top-0 bg-white gap-5">
         <div className="hidden md:flex md:flex-col md:justify-center md:items-center gap-2">
           <div className="flex flex-row gap-10">
-            <button onClick={() => logOut()} className="relative inline-block after:absolute after:w-full after:h-1 after:bg-webGreen after:bottom-0 after:left-0 after:rounded-md after:scale-x-0 hover:after:scale-x-100 after:transition-all origin-bottom-left">
-              Sign Out
-            </button>
             <TopNavButton path="ResearchEditor" name="Research Editor" />
             <TopNavButton path="ClassCardEditor" name="Class Card Editor" />
             <TopNavButton
               path="ComEngageEditor"
               name="Community Engagement Editor"
             />
+            <button onClick={() => logOut()} className="relative inline-block after:absolute after:w-full after:h-1 after:bg-webGreen after:bottom-0 after:left-0 after:rounded-md after:scale-x-0 hover:after:scale-x-100 after:transition-all origin-bottom-left ml-auto">
+              Sign Out
+            </button>
           </div>
         </div>
         <div className="md:hidden flex flex-row justify-between items-center w-screen pl-2 pr-2">

@@ -102,7 +102,7 @@ const ClassCardEditor = () => {
     setNextOffered("");
     setSchedule("");
     setLoadedItem({});
-    setImageURL("");
+    setImageURL(new File([""], education));
     setImageName("");
 
     await updateDoc(docRef, {

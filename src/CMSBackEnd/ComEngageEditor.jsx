@@ -5,9 +5,8 @@ import ComEngagePreview from "../components/ComEngagePreview";
 import ItemsPreview from "../components/ItemsPreview";
 import education from "../images/education.jpeg";
 import Loading from "../components/Loading";
-import communityImage from "../images/communityengagement.png";
 import { db, storage } from "../data/firebaseConfiguration";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 import {
   arrayUnion,
   doc,
@@ -101,7 +100,7 @@ const ComEngageEditor = () => {
     setDescription("");
     setOrgLink("");
     setLoadedItem({});
-    setImageURL("");
+    setImageURL(new File([""], education));
     setImageName("");
 
     await updateDoc(docRef, {
@@ -196,6 +195,7 @@ const ComEngageEditor = () => {
             Save
           </button>
         </div>
+        <div className="flex flex-row items-start m-10">
         <ComEngage
           title={title}
           description={description}
@@ -203,6 +203,7 @@ const ComEngageEditor = () => {
           benefits={benefits}
           image={URL.createObjectURL(imageURL)}
         />
+        </div>
         <div className="flex flex-col gap-10 items-center border-l border-l-black py-4 px-4 w-3/12">
           <ItemsPreview
             document="comEngage"

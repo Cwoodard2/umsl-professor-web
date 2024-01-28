@@ -8,7 +8,7 @@ const ResearchItemsCopy = (props: any) => {
       <img
         src={props.image}
         className="w-3/3 h-3/5 md:w-12/12 md:h-auto rounded-md shadow-lg object-contain"
-        alt="Placeholder alt text"
+        alt="Figure From a Research Article"
       />
       <div className="flex flex-col gap-5 p-16 md:px-12 md:py-16">
         <div>

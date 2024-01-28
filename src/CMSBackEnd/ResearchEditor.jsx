@@ -3,6 +3,7 @@ import CMSNav from "../components/CMSNav";
 import ResearchItems from "../components/ResearchItems";
 import Loading from "../components/Loading";
 import education from "../images/education.jpeg";
+import ResearchItemsCopy from "../components/ResearchItems copy";
 import { db, storage } from "../data/firebaseConfiguration";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import {
@@ -13,6 +14,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import ItemsPreview from "../components/ItemsPreview";
+import ItemsPreviewDropDown from "../components/ItemsPreviewDropDown";
 import { auth } from "../data/firebaseConfiguration";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,7 @@ const ResearchEditor = () => {
   const [articleAuthors, setAuthors] = useState([]);
   const [title, setTitle] = useState("");
   const [abstract, setAbstract] = useState("");
+  const [articleLink, setArticleLink] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
   const [imageURL, setImageURL] = useState(new File([""], education));
   const [imageName, setImageName] = useState("");
@@ -56,15 +59,20 @@ const ResearchEditor = () => {
   }
 
   function changeItem(params) {
-    setTitle(params.articleTitle);
-    setAbstract(params.abstract);
-    setAuthors(params.author);
+    console.log(params);
+    const finalData = JSON.parse(params);
+    console.log(finalData);
+    console.log(finalData.authors);
+    setTitle(finalData.articleTitle);
+    setAbstract(finalData.abstract);
+    setAuthors(finalData.authors);
+    setArticleLink(finalData.articleLink)
     setLoadedItem({
-      title: params.articleTitle,
-      abstract: params.abstract,
-      authors: params.author,
-      articleLink: "",
-      image: params.img,
+      title: finalData.articleTitle,
+      abstract: finalData.abstract,
+      authors: finalData.author,
+      articleLink: finalData.articleLink,
+      image: finalData.img,
     });
   }
 
@@ -97,7 +105,7 @@ const ResearchEditor = () => {
     setAbstract("");
     setAuthors([]);
     setLoadedItem({});
-    setImageURL("");
+    setImageURL(new File([""], education));
     setImageName("");
 
     await updateDoc(docRef, {
@@ -116,7 +124,7 @@ const ResearchEditor = () => {
     <>
       <CMSNav />
       <Loading show={loading} />
-      <div className="flex flex-row w-screen min-h-screen justify-between">
+      <div className="flex flex-row w-screen min-h-screen">
         <div className="flex flex-col gap-10 items-center border-r border-r-black py-4 px-4">
           <h1 className="text-webGreen rockwell text-2xl">Research Article</h1>
           <input
@@ -157,6 +165,7 @@ const ResearchEditor = () => {
             placeholder="Article Link"
             id="link"
             className="border border-webGreen rounded-sm p-1"
+            onChange={(e) => setArticleLink(e.target.value)}
           ></input>
           <input
             id="input"
@@ -170,14 +179,27 @@ const ResearchEditor = () => {
             Save
           </button>
         </div>
-        <ResearchItems
+        <div className="w-full flex flex-col items-center gap-20">
+          <div className="h-20 shadow-lg w-full flex flex-row justify-between px-4 items-center">
+            <button>+</button>
+            <ItemsPreviewDropDown
+              document="research"
+              editor="researchPreview"
+              arrayName="researchArticles"
+              storageBucket="research"
+              updater={changeItem}
+            />
+            <button className="border-4 rounded-lg border-red-600 p-3 text-red-600">Delete Me</button>
+          </div>
+        <ResearchItemsCopy
           articleTitle={title}
           abstract={abstract}
-          articleLink=""
+          articleLink={articleLink}
           authors={articleAuthors}
           image={URL.createObjectURL(imageURL)}
         />
-        <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">
+        </div>
+        {/* <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">
           <ItemsPreview
             document="research"
             editor="researchPreview"
@@ -185,7 +207,7 @@ const ResearchEditor = () => {
             storageBucket="research"
             updater={changeItem}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );
