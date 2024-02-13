@@ -77,7 +77,7 @@ const CommunityEngagement = () => {
       {loading ? (
         <LoadingItems />
       ) : (
-        <div className="flex md:flex-row flex-col gap-10 m-4 flex-wrap justify-center">
+        <div className="flex md:flex-row flex-col gap-10 m-4 flex-wrap justify-center items-center sm:items-stretch">
           {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
           {finalComEngageItems}
         </div>

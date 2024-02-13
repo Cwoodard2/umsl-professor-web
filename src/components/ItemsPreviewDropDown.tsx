@@ -134,7 +134,7 @@ const ItemsPreviewDropDown = (props: any) => {
     // makeList();
   }, []);
 
-  return <select id="itemPreview" className="p-2 rounded-lg bg-white border-webGreen border-4 text-webGreen font-bold" onChange={(event) => updateResponse(event.target.value)}><option value="NotValid">Select an item to edit</option>{finalItems}</select>;
+  return <select id="itemPreview" className="p-2 rounded-lg bg-white border-webGreen border-4 text-webGreen font-bold max-w-md" onChange={(event) => updateResponse(event.target.value)}><option value="NotValid">Select an item to edit</option>{finalItems}</select>;
 };
 
 export default ItemsPreviewDropDown;
