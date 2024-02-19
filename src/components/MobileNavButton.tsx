@@ -13,7 +13,7 @@ const MobileNavButton = (props: any) => {
 
   return (
     <Link to={props.path}>
-      <button className={styles}><div className="flex flex-row gap-1">{props.icon}{props.PlaceToGo}</div></button>
+      <button className={styles}><div className="flex flex-row gap-1 hover:text-white *:fill-white">{props.icon}{props.PlaceToGo}</div></button>
     </Link>
   );
 };
