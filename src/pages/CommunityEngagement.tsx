@@ -3,6 +3,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { Link as A } from "react-scroll";
 import StandardPage from "../components/StandardPage";
 import ComEngageFilterNew from "../components/ComEngageFilterNew";
+import MainContentHolder from "../components/MainContentHolder";
+import PageTitleWrapper from "../components/PageTitleWrapper";
 import LoadingItems from "../components/LoadingItems";
 import communityImage from "../images/communityengagement.png";
 import { db } from "../data/firebaseConfiguration";
@@ -27,14 +29,23 @@ const CommunityEngagement = () => {
     checkForData();
   }, []);
 
-  const filterList = async (filterCriteria: string) => {
+  const filterList = async (filterCriteria: string []) => {
+    console.log(filterCriteria);
     setLoading(true);
-    if (filterCriteria != "") {
-      const filteredList = comEngageItems.filter((article: any) =>
+    console.log(filterCriteria);
+    if (filterCriteria.length !== 0) {
+      const filteredList = comEngageItems.filter((article: any) => 
+        // filterCriteria.forEach(element => {
+        //   console.log(element);
+        //   console.log(article.chips.includes('Housing'));
+        //   // console.log(article.chips);
+        //   return article.chips.includes(element);
+        // });
+        filterCriteria.sort().toString() == article.chips.sort().toString()
+      
         // let thisVar = article['title'];
         // console.log(typeof thisVar);
         // thisVar.includes(filterCriteria.toLowerCase())
-        article.chips.includes(filterCriteria)
       );
 
       const classCardsMade: any = await loadItems(filteredList, "comEngage");
@@ -48,20 +59,20 @@ const CommunityEngagement = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row md:justify-between items-start bg-white p-8 md:py-16 md:px-48 gap-10">
+      <PageTitleWrapper>
         <div className="flex flex-col gap-10">
           <div>
-            <h1 className="text-webGreen rockwell text-4xl md:text-6xl">
+            <h1 className="text-white rockwell text-4xl md:text-6xl">
               Community Engagement
             </h1>
-            <p className="text-black text-lg">
+            <p className="text-white text-lg">
               Learn the various ways that I connect to my community, and the
               effect it has.
             </p>
           </div>
           <div>
             <A to="filter" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white hover:bg-white hover:text-webGreen transition-all">
+              <button className="bg-webGreen border-white border-2 p-2 rounded-md text-white font-bold hover:bg-white hover:text-webGreen transition-all">
                 Learn More
               </button>
             </A>
@@ -72,15 +83,15 @@ const CommunityEngagement = () => {
           className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
           alt="Elaina Johns-Wolfe"
         ></img>
-      </div>
-      <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} />
+      </PageTitleWrapper>
+      {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
       {loading ? (
         <LoadingItems />
       ) : (
-        <div className="flex md:flex-row flex-col gap-10 m-4 flex-wrap justify-center items-center sm:items-stretch">
+        <MainContentHolder>
           {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
           {finalComEngageItems}
-        </div>
+        </MainContentHolder>
       )}
     </StandardPage>
   );

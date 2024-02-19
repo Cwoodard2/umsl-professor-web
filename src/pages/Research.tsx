@@ -3,6 +3,8 @@ import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
 import researchImage from "../images/research2.jpeg";
 import SearchBar from "../components/Searchbar";
+import MainContentHolder from "../components/MainContentHolder";
+import PageTitleWrapper from "../components/PageTitleWrapper";
 import { db } from "../data/firebaseConfiguration";
 import LoadingResearch from "../components/LoadingResearch";
 import { loadItems } from "../data/LoadingFunctions";
@@ -57,7 +59,7 @@ const Research = () => {
   return (
     <StandardPage>
       {/* <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 md:px-48 md:py-16 gap-10"> */}
-      <div className="w-screen flex flex-col md:flex-row md:justify-between items-start bg-webGreen p-16 md:px-48 md:py-16 gap-10">
+      <PageTitleWrapper>
         <div className="flex flex-col gap-2">
           <h1 className="text-white rockwell text-4xl md:text-6xl">Research</h1>
           <p className="text-white text-lg">
@@ -78,10 +80,10 @@ const Research = () => {
           className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
           alt="Elaina Johns-Wolfe"
         ></img>
-      </div>
-      <div className="flex flex-col items-center justify-center">
+      </PageTitleWrapper>
+      {/* <div className="flex flex-col items-center justify-center">
         <SearchBar filter={filterList} />
-      </div>
+      </div> */}
       {loading ? (
         <ul>
           <li>
@@ -89,7 +91,7 @@ const Research = () => {
           </li>
         </ul>
       ) : (
-        <div className="flex md:flex-row flex-col flex-wrap justify-center gap-10 md:my-6">{finalArticles}</div>
+        <MainContentHolder>{finalArticles}</MainContentHolder>
         // grid grid-flow-row grid-cols-2 items-center justify-center
       )}
     </StandardPage>

@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
 import TeachingSection from "../components/TeachingSection";
 import CourseHighlight from "../components/CourseHighlight";
+import PageTitleWrapper from "../components/PageTitleWrapper";
 import teachingImage from "../images/TEACHING.png";
 import { db } from "../data/firebaseConfiguration";
 import LoadingClasses from "../components/LoadingClasses";
@@ -32,23 +33,23 @@ const Teaching = () => {
 
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-8 md:py-16 md:px-48 gap-10">
+      <PageTitleWrapper>
         <div className="flex flex-col gap-10">
           <div>
-            <h1 className="text-webGreen rockwell text-4xl md:text-6xl">Teaching</h1>
-            <p className="text-black text-lg">
+            <h1 className="text-white rockwell text-4xl md:text-6xl">Teaching</h1>
+            <p className="text-white text-lg">
               Explore the ways I impact my students and the experience that I have
               in higher education
             </p>
           </div>
           <div className="flex gap-3">
             <A to="Philosophy" spy={true} smooth={true}>
-              <button className="bg-webGreen border-webGreen border-2 p-2 rounded-md text-white font-semibold hover:bg-webGreenDark hover:border-webGreenDark transition-all">
+              <button className="bg-webBlue border-webBlue border-2 p-2 rounded-md text-white font-bold hover:border-webBlue transition-all">
                 Philosophy
               </button>
             </A>
             <A to="Experience" spy={true} smooth={true}>
-              <button className="border-webGreen border-2 p-2 rounded-md text-webGreen font-semibold hover:bg-webGreen hover:bg-opacity-10 transition-all">
+              <button className="border-white border-2 p-2 rounded-md text-white font-bold hover:bg-white hover:bg-opacity-10 transition-all">
                 Experience
               </button>
             </A>
@@ -59,7 +60,7 @@ const Teaching = () => {
           className="w-3/3 h-5/5 md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
           alt="Elaina Johns-Wolfe teaching"
         ></img>
-      </div>
+      </PageTitleWrapper>
       <div className="flex flex-col gap-10">
         <TeachingSection title="Philosophy" />
         <CourseHighlight />
