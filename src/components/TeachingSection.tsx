@@ -29,10 +29,10 @@ const TeachingSection = (props: any) => {
         <br></br>
       <br></br>
       <h3 className="rockwell text-2xl">My three key points</h3>
-      <p>The three points listed below describe what the overall goal of my teaching is. It encourages the students to grow, while preparing them to become productive embers of society.</p>
+      <p>The three points listed below describe what the overall goal of my teaching is. It encourages the students to grow, while preparing them to become productive members of society.</p>
       <br></br>
       <br></br>
-      <div className="flex md:flex-row flex-col gap-5 md:justify-around">
+      <div className="flex md:flex-row flex-col gap-5 md:justify-between">
         <PhilosophyTile
           number="1"
           philDescript="Students learn how to answer sociological questions by analyzing real data."

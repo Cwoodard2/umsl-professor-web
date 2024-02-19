@@ -7,7 +7,7 @@ const ResearchItemsCopy = (props: any) => {
     <div className="flex flex-col gap-10 break-words animate-inOut items-center max-w-md border-webGreen border rounded-lg">
       <img
         src={props.image}
-        className="w-3/3 h-3/5 md:w-12/12 md:h-auto rounded-md shadow-lg object-contain"
+        className="w-3/3 max-h-64 md:w-12/12 md:h-auto rounded-md shadow-lg"
         alt="Figure From a Research Article"
       />
       <div className="flex flex-col gap-5 p-16 md:px-12 md:py-16">

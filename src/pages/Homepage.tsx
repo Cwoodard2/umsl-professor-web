@@ -58,7 +58,7 @@ const Homepage = (props: any) => {
   ));
   return (
     <StandardPage>
-      <div className="w-screen flex flex-col-reverse md:flex-row justify-start items-start bg-white p-16 gap-10 h-screen">
+      <div className="w-screen flex flex-col-reverse md:flex-row justify-center items-start bg-white p-16 gap-10 md:h-screen">
         <img
           src={elainaImage}
           className="w-3/3 h-4/5 sm:w-3/3 sm:h-5/5 md:w-1/3 md:h-5/5 rounded-md shadow-md object-cover"
