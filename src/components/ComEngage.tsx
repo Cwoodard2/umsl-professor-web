@@ -15,12 +15,12 @@ const ComEngage = (props: any) => {
     <div className="flex flex-col gap-10 animate-inOut items-center border-webGreen border rounded-lg max-w-md">
       <img
         src={props.image}
-        className="w-3/3 h-3/5 md:w-12/12 md:h-auto rounded-md shadow-lg object-contain"
+        className="w-3/3 max-h-64 md:w-12/12 md:h-auto rounded-md shadow-lg"
         alt="Community Engagement Picture"
       />
-      <div className="flex flex-row gap-2">{chipArray}</div>
+      <div className="flex flex-row gap-2 ">{chipArray}</div>
       <div className="flex flex-col gap-3 items-center">
-        <div className="flex flex-col">
+        <div className="flex flex-col p-16 md:px-12 md:py-16">
           <h3 className="rockwell text-2xl md:text-3xl text-center">{props.title}</h3>
           <br></br>
           <p className="text-center">{props.description}</p>

@@ -3,17 +3,32 @@ import SearchBar from "./Searchbar";
 
 const ComEngageFilterNew = (props: any) => {
   const [isActive, SetIsActive] = useState(false);
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState<string []>([]);
 
   const handleFilter = (tag: string) => {
-    SetIsActive(!isActive);
-    props.filter(tag);
+    const index: number = showFilters.indexOf(tag);
+    let newFilters: string[] = showFilters;
+    console.log(index);
+    console.log(tag);
+    if (index === -1) {
+      console.log("here");
+      newFilters.push(tag);
+    } else {
+      newFilters.splice(index, 1);
+    }
+    console.log(newFilters);
+    // SetIsActive(!isActive);
+    setShowFilters(newFilters);
+    props.filter(newFilters);
   };
 
-  const handleActive = () => {
-    if (isActive) {
+  const handleActive = (tag: string) => {
+    if (showFilters.includes(tag)) {
       return "bg-webGreen bg-opacity-10";
     }
+    // if (isActive) {
+    //   return "bg-webGreen bg-opacity-10";
+    // }
   };
 
   return (
@@ -29,7 +44,7 @@ const ComEngageFilterNew = (props: any) => {
               {props.tags.map((tag: string) => (
                 <button
                   onClick={() => handleFilter(tag)}
-                  className={`border rounded-full px-1 border-webGreen ${handleActive()} hover:bg-webGreen hover:bg-opacity-10 transition-all`}
+                  className={`border rounded-full px-1 border-webGreen ${handleActive(tag)} hover:bg-webGreen hover:bg-opacity-10 transition-all`}
                 >
                   {tag}
                 </button>
