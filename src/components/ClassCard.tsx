@@ -9,7 +9,7 @@ const ClassCard = (props: any) => {
   }
 
   return (
-    <div className="flex flex-col w-56 sm:w-6/12 md:w-3/12 bg-webGreen rounded-md shadow-md shadow-webGreen transition-all p-4 gap-2 max-w-xs">
+    <div className="flex flex-col w-56 md:w-4/12 bg-webGreen rounded-md shadow-md shadow-webGreen transition-all p-4 gap-2 max-w-xs min-w-[14rem]">
       <ClassModal
         show={showModal}
         toggle={() => setShowModal(false)}
