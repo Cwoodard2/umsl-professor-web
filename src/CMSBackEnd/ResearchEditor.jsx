@@ -26,6 +26,7 @@ const ResearchEditor = () => {
   const [articleLink, setArticleLink] = useState("");
   const [loadedItem, setLoadedItem] = useState({});
   const [imageURL, setImageURL] = useState(new File([""], education));
+  const [image, setImage] = useState("");
   const [imageName, setImageName] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ const ResearchEditor = () => {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/auth.user
       const uid = user.uid;
-      console.log(uid);
       // ...
     } else {
       // User is signed out
@@ -62,8 +62,9 @@ const ResearchEditor = () => {
     if (params !== "NotValid") {
       
     console.log(params);
+    console.log(params.image)
     const finalData = JSON.parse(params);
-    console.log(finalData);
+    console.log(finalData.image);
     console.log(finalData.authors);
     setTitle(finalData.articleTitle);
     setAbstract(finalData.abstract);
@@ -74,7 +75,7 @@ const ResearchEditor = () => {
       abstract: finalData.abstract,
       authors: finalData.author,
       articleLink: finalData.articleLink,
-      image: finalData.img,
+      image: finalData.image,
     });
   }
   }
@@ -194,12 +195,12 @@ const ResearchEditor = () => {
             />
             <button className="border-4 rounded-lg border-red-600 p-3 text-red-600">Delete Me</button>
           </div>
-        <ResearchItemsCopy
+        <ResearchItems
           articleTitle={title}
           abstract={abstract}
           articleLink={articleLink}
           authors={articleAuthors}
-          image={URL.createObjectURL(imageURL)}
+          image={loadedItem.image}
         />
         </div>
         {/* <div className="flex flex-col gap-10 border-l border-l-black py-4 w-3/12">

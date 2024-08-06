@@ -60,14 +60,14 @@ const ClassCardEditor = () => {
     console.log("Called");
     console.log(params);
     const finalData = JSON.parse(params);
-    setDescription(finalData.description);
+    setDescription(finalData.descript);
     setClassName(finalData.class);
     setSchedule(finalData.schedule);
     setNextOffered(finalData.nextOffered);
     setMode(finalData.mode);
     setLoadedItem({
       className: finalData.class,
-      description: finalData.description,
+      description: finalData.descript,
       mode: finalData.mode,
       nextOffered: finalData.nextOffered,
       schedule: finalData.schedule,
