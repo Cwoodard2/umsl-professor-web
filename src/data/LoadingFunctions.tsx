@@ -27,7 +27,7 @@ export const loadItems = async (mapList: any, document: string) => {
             );
           case "research":
             return (
-              <ResearchItemsCopy
+              <ResearchItems
                 articleTitle={activity.title}
                 abstract={activity.abstract}
                 articleLink={activity.articleLink}

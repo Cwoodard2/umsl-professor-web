@@ -2,11 +2,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-footerGrey w-screen flex flex-row text-white p-10 sticky left-0 justify-around">
+    <div className="bg-footerGrey w-screen flex flex-col gap-3 md:gap-0 md:flex-row text-white p-10 sticky left-0 justify-around">
       <div className="flex flex-row gap-2">
         {" "}
         <svg
-          className="w-6 h-6 text-gray-800 dark:text-white"
+          className="w-6 h-6 text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,7 +25,7 @@ const Footer = () => {
       <div className="flex flex-row gap-2">
         {" "}
         <svg
-          className="w-6 h-6 text-gray-800 dark:text-white"
+          className="w-6 h-6 text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -43,7 +43,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-row gap-2">
         <svg
-          className="w-6 h-6 text-gray-800 dark:text-white"
+          className="w-6 h-6 text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -70,13 +70,13 @@ const CommunityEngagement = () => {
               effect it has.
             </p>
           </div>
-          <div>
+          {/* <div>
             <A to="filter" spy={true} smooth={true}>
               <button className="bg-webGreen border-white border-2 p-2 rounded-md text-white font-bold hover:bg-white hover:text-webGreen transition-all">
                 Learn More
               </button>
             </A>
-          </div>
+          </div> */}
         </div>
         <img
           src={communityImage}

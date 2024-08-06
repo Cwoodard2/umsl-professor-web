@@ -4,7 +4,7 @@ import ExperiencePart from "./ExperiencePart";
 
 const TeachingSection = (props: any) => {
   return (
-    <div className="px-8 md:px-48" id={props.title}>
+    <div className="px-8 md:px-48 pt-[2.5rem] md:pt-0" id={props.title}>
       <h2 className="rockwell text-3xl">{props.title}</h2>
       <div className="w-12 h-1 bg-webGreen rounded-sm"></div>
       <br></br>
@@ -32,7 +32,7 @@ const TeachingSection = (props: any) => {
       <p>The three points listed below describe what the overall goal of my teaching is. It encourages the students to grow, while preparing them to become productive members of society.</p>
       <br></br>
       <br></br>
-      <div className="flex md:flex-row flex-col gap-5 md:justify-between">
+      <div className="flex md:flex-row flex-col gap-10 md:justify-between">
         <PhilosophyTile
           number="1"
           philDescript="Students learn how to answer sociological questions by analyzing real data."
