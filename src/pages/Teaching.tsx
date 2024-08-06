@@ -65,7 +65,7 @@ const Teaching = () => {
         <TeachingSection title="Philosophy" />
         <CourseHighlight />
       </div>
-      <div className="p-8 md:py-16 md:px-48">
+      <div className="p-8 md:py-16 md:px-24">
         <h2 className="rockwell text-3xl" id="Experience">
           Experience
         </h2>
@@ -76,7 +76,7 @@ const Teaching = () => {
         </p>
         <br></br>
         <h3 className="rockwell text-2xl">Classes Taught</h3>
-        <div className="flex flex-row md:justify-center gap-10 py-4 overflow-auto md:flex-wrap">
+        <div className="flex flex-row gap-10 py-4 overflow-auto md:flex-wrap">
           {loading ? (
             <>
               <LoadingClasses />

@@ -8,6 +8,7 @@ import PageTitleWrapper from "../components/PageTitleWrapper";
 import LoadingItems from "../components/LoadingItems";
 import communityImage from "../images/communityengagement.png";
 import { db } from "../data/firebaseConfiguration";
+import loadAni from "../images/Loading.gif";
 import { loadItems } from "../data/LoadingFunctions";
 
 const CommunityEngagement = () => {
@@ -59,7 +60,12 @@ const CommunityEngagement = () => {
 
   return (
     <StandardPage>
-      <PageTitleWrapper>
+      {loading ? (
+        <div className="flex justify-center">
+          <img src={loadAni} alt="book flipping pages" className="h-[128px] w-[128px]"/>
+        </div>
+      ) : (
+        <><PageTitleWrapper>
         <div className="flex flex-col gap-10">
           <div>
             <h1 className="text-white rockwell text-4xl md:text-6xl">
@@ -70,13 +76,6 @@ const CommunityEngagement = () => {
               effect it has.
             </p>
           </div>
-          {/* <div>
-            <A to="filter" spy={true} smooth={true}>
-              <button className="bg-webGreen border-white border-2 p-2 rounded-md text-white font-bold hover:bg-white hover:text-webGreen transition-all">
-                Learn More
-              </button>
-            </A>
-          </div> */}
         </div>
         <img
           src={communityImage}
@@ -84,14 +83,9 @@ const CommunityEngagement = () => {
           alt="Elaina Johns-Wolfe"
         ></img>
       </PageTitleWrapper>
-      {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
-      {loading ? (
-        <LoadingItems />
-      ) : (
         <MainContentHolder>
-          {/* <ComEngageFilterNew tags={["Housing", "Urban"]} filter={filterList} /> */}
           {finalComEngageItems}
-        </MainContentHolder>
+        </MainContentHolder></>
       )}
     </StandardPage>
   );

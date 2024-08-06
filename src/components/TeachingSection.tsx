@@ -4,7 +4,7 @@ import ExperiencePart from "./ExperiencePart";
 
 const TeachingSection = (props: any) => {
   return (
-    <div className="px-8 md:px-48 pt-[2.5rem] md:pt-0" id={props.title}>
+    <div className="px-8 md:px-24 pt-[2.5rem] md:pt-0" id={props.title}>
       <h2 className="rockwell text-3xl">{props.title}</h2>
       <div className="w-12 h-1 bg-webGreen rounded-sm"></div>
       <br></br>

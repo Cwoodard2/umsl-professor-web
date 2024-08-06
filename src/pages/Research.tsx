@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import StandardPage from "../components/StandardPage";
 import researchImage from "../images/research2.jpeg";
+import loadAni from "../images/Loading.gif";
 import SearchBar from "../components/Searchbar";
 import MainContentHolder from "../components/MainContentHolder";
 import PageTitleWrapper from "../components/PageTitleWrapper";
@@ -26,7 +27,10 @@ const Research = () => {
       const researchDoc: any = await getDoc(docToGet);
       const data = researchDoc.data();
       setResearchArticles(data.researchArticles);
-      const classCardsMade: any = await loadItems(data.researchArticles, "research");
+      const classCardsMade: any = await loadItems(
+        data.researchArticles,
+        "research"
+      );
       setFinalArticles(classCardsMade);
       setLoading(false);
     };
@@ -58,41 +62,34 @@ const Research = () => {
 
   return (
     <StandardPage>
-      {/* <div className="w-screen flex flex-col md:flex-row justify-between items-start bg-white p-16 md:px-48 md:py-16 gap-10"> */}
-      <PageTitleWrapper>
-        <div className="flex flex-col gap-2">
-          <h1 className="text-white rockwell text-4xl md:text-6xl">Research</h1>
-          <p className="text-white text-lg">
-            Discover the research that I partake in and the potential effects of
-            it.
-          </p>
-          {/* <h1 className="text-webGreen rockwell text-2xl md:text-5xl">Discover my research and the potential effects of
-            it.</h1>
-          <p className="text-black text-lg">
-            Discover the research that I partake in and the potential effects of
-            it.
-          </p> */}
-          {/* <p>Quick Facts</p> */}
-          {/* <p>135 Citations, 6 Published Articles</p> */}
-        </div>
-        <img
-          src={researchImage}
-          className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
-          alt="Elaina Johns-Wolfe"
-        ></img>
-      </PageTitleWrapper>
-      {/* <div className="flex flex-col items-center justify-center">
-        <SearchBar filter={filterList} />
-      </div> */}
       {loading ? (
-        <ul>
-          <li>
-            <LoadingResearch />
-          </li>
-        </ul>
+        <div className="flex justify-center">
+          <img
+            src={loadAni}
+            alt="book flipping pages"
+            className="h-[128px] w-[128px]"
+          />
+        </div>
       ) : (
-        <MainContentHolder>{finalArticles}</MainContentHolder>
-        // grid grid-flow-row grid-cols-2 items-center justify-center
+        <>
+          <PageTitleWrapper>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-white rockwell text-4xl md:text-6xl">
+                Research
+              </h1>
+              <p className="text-white text-lg">
+                Discover the research that I partake in and the potential
+                effects of it.
+              </p>
+            </div>
+            <img
+              src={researchImage}
+              className="w-3/3 h-auto md:w-1/3 md:h-3/5 rounded-md shadow-md object-cover"
+              alt="Elaina Johns-Wolfe"
+            ></img>
+          </PageTitleWrapper>
+          <MainContentHolder>{finalArticles}</MainContentHolder>
+        </>
       )}
     </StandardPage>
   );
